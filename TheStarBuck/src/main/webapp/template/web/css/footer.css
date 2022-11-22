@@ -1,0 +1,78 @@
+/* FOOTER */
+
+.footer {
+    background-color: white;
+    padding: 6rem 1rem;
+    line-height: 3rem;
+    box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+  }
+  
+  .footer-center span {
+    margin-right: 1rem;
+  }
+  
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: black;
+    align-content: center;
+    justify-content: flex-start;
+    justify-items: flex-start;
+  }
+  
+  .footer-center a:link,
+  .footer-center a:visited {
+    display: block;
+    color: black;
+    font-size: 1.4rem;
+    
+    transition: 0.6s;
+  }
+  
+  .footer-center a:hover {
+    color: var(--primary);
+  }
+  
+  .footer-center div {
+    color: black;
+    font-size: 1.4rem;
+  }
+  
+  .footer-center h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .footer-center .social_media {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .footer .payment-methods {
+    margin-top: 2rem;
+  }
+  
+  @media (max-width: 998px) {
+    .footer-container {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 2rem;
+      
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+      
+    }
+  }
+.fb-livechat{
+  box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.75);
+}

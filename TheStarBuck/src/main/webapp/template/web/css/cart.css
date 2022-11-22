@@ -1,0 +1,404 @@
+/*common*/
+:root {
+  --primary: #017143;
+  --white: #fff;
+  --black: #222;
+  --grey1: #3a3b3c;
+  --grey2: #828282;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.7rem;
+  background-color: #f7f7f7;
+  color: var(--black);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 60rem;
+  }
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+/*end common*/
+.messenger{
+  background: transparent;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.28;
+  overflow: hidden;
+  -webkit-text-size-adjust: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  animation: shimmy3 2s infinite;
+  animation-direction: alternate;
+
+}
+.messenger img{
+  cursor: pointer;
+}
+@keyframes shimmy3 {
+  0% {
+    transform: translate(0,0);
+  }
+  100% {
+    transform: translate(10px, -10px);
+  }
+}
+.up{
+  font-size: 50px;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  color: #788d84;
+}
+.up:hover{
+  color: #00a05d;
+}
+.iconUp{
+  display: none;
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.40rem
+}
+
+.img-sm {
+  width: 80px;
+  height: 80px
+}
+
+.itemside .info {
+  padding-left: 15px;
+  padding-right: 7px
+}
+
+.table-shopping-cart .price-wrap {
+  line-height: 1.2
+}
+
+.table-shopping-cart .price {
+  font-weight: bold;
+  margin-right: 5px;
+  display: block
+}
+
+.text-muted {
+  color: #969696 !important
+}
+
+a {
+  text-decoration: none !important
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: 0px
+}
+
+.itemside {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%
+}
+
+.dlist-align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}
+
+[class*="dlist-"] {
+  margin-bottom: 5px
+}
+
+.coupon {
+  border-radius: 1px
+}
+
+.price {
+  font-weight: 600;
+  color: #212529
+}
+
+.btn.btn-out {
+  outline: 1px solid #fff;
+  outline-offset: -5px
+}
+
+.btn-main {
+  border-radius: 2px;
+  text-transform: capitalize;
+  font-size: 15px;
+  padding: 10px 19px;
+  cursor: pointer;
+  color: #fff;
+  width: 100%
+}
+
+.btn-light {
+  color: #ffffff;
+  background-color: var(--primary);
+  border-color: #f8f9fa;
+  font-size: 12px
+}
+
+.btn-light:hover {
+  color: #ffffff;
+  background-color: #F44336;
+  border-color: #F44336
+}
+
+.btn-apply {
+  font-size: 11px
+}
+.table td{
+  vertical-align: middle;
+}
+.btn-success{
+  background-color: var(--white);
+  color: var(--primary);
+}
+.btn-success:hover{
+  background-color: var(--primary);
+}
+.btn-primary{
+  background-color: var(--primary);
+}
+.btn-primary:hover{
+  background-color: var(--white);
+  color: var(--primary);
+}
+.text-uppercase{
+  background: var(--primary);
+  color: white;
+}
+/*Check-out bar*/
+.checkout-wrap {
+  margin: 30px auto 100px;
+  z-index: 0;
+}
+
+ul.checkout-bar li {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  margin: 30px auto;
+  padding: 0;
+  text-align: center;
+  width: 24.5%;
+}
+
+ul.checkout-bar li:before {
+  -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  background: #ddd;
+  border: 2px solid #FFF;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  height: 34px;
+  left: 40%;
+  line-height: 34px;
+  position: absolute;
+  top: -40px;
+  width: 34px;
+  z-index: 99999;
+}
+
+ul.checkout-bar li.active {
+  color: #A6447A;
+  font-weight: bold;
+}
+
+ul.checkout-bar li.active:before {
+  background: #A6447A;
+}
+
+ul.checkout-bar li.visited {
+  color: var(--primary);
+  z-index: 99999;
+  background: none;
+}
+
+ul.checkout-bar li.visited:before {
+  background: var(--primary);
+  z-index: 99999;
+}
+
+ul.checkout-bar li:nth-child(1):before {
+  content: "1";
+}
+
+ul.checkout-bar li:nth-child(2):before {
+  content: "2";
+}
+
+ul.checkout-bar li:nth-child(3):before {
+  content: "3";
+}
+
+ul.checkout-bar li:nth-child(4):before {
+  content: "4";
+}
+
+ul.checkout-bar li:nth-child(5):before {
+  content: "5";
+}
+
+ul.checkout-bar li:nth-child(6):before {
+  content: "6";
+}
+
+ul.checkout-bar a {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+ul.checkout-bar li.active a {
+  color: #A6447A;
+}
+
+ul.checkout-bar li.visited a {
+  color: var(--primary);
+}
+
+.checkout-bar li.active:after {
+  -webkit-animation: myanimation 3s 0;
+  animation: myanimation 3s 0;
+  background-size: 35px 35px;
+  background-color: var(--pink);
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  content: "";
+  height: 15px;
+  width: 100%;
+  left: 50%;
+  position: absolute;
+  top: -30px;
+  z-index: 0;
+}
+
+ul.checkout-bar {
+  -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  background-size: 35px 35px;
+  background-color: #EcEcEc;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+  border-radius: 15px;
+  height: 15px;
+  margin: 0 -15px 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
+
+ul.checkout-bar:before {
+  background-size: 35px 35px;
+  background-color: var(--primary);
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  content: " ";
+  height: 15px;
+  left: 0;
+  position: absolute;
+  width: 14%;
+}
+
+ul.checkout-bar li.visited:after {
+  background-size: 35px 35px;
+  background-color: var(--primary);
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  content: "";
+  height: 15px;
+  left: 50%;
+  position: absolute;
+  top: -30px;
+  width: 100%;
+  z-index: 99;
+}
+.mrCheckout {
+  margin-right: 0px !important;
+}
+.checkout-bar {
+  margin: 80px 0 0 0 !important;
+}
+
+/*End Check-out bar*/
