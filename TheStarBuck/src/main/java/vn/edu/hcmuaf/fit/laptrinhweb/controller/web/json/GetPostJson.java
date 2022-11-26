@@ -1,24 +1,22 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.json;
 
 import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Post;
 import vn.edu.hcmuaf.fit.laptrinhweb.paging.IPageAble;
-import vn.edu.hcmuaf.fit.laptrinhweb.paging.PageRequest;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.IPostService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.PostService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "post",urlPatterns = {"/post"},initParams = {
-        @WebInitParam(name="id",value = "po0001"),
+@WebServlet(name = "post", urlPatterns = {"/post"}, initParams = {
+        @WebInitParam(name = "id", value = "po0001"),
 })
 public class GetPostJson extends HttpServlet {
     private final IPostService postService = PostService.getInstance();
@@ -41,7 +39,7 @@ public class GetPostJson extends HttpServlet {
             e.printStackTrace();
         }
 
-        if(post!=null) {
+        if (post != null) {
             resp.setContentType("application/json");
             resp.setCharacterEncoding("utf-8");
             String json = new Gson().toJson(post);
@@ -52,12 +50,12 @@ public class GetPostJson extends HttpServlet {
                 out.close();
 
             }
-        }else
+        } else
             System.err.println("ERROR!");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req,resp);
+        doGet(req, resp);
     }
 }

@@ -1,15 +1,13 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.feedback;
 
 
-
-
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.FeedbackService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
@@ -24,13 +22,13 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(request.getContextPath() +"/feedback").forward(request, response);
+        request.getRequestDispatcher(request.getContextPath() + "/feedback").forward(request, response);
         System.out.println("------------------");
         String id = request.getParameter("id");
 
         System.out.println(id);
         boolean check = feedbackService.deleteItem(id);
-        if(check){
+        if (check) {
             System.out.println("++++++++");
             doPost(request, response);
         } else {
@@ -41,7 +39,7 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() +"/feedback");
+        response.sendRedirect(request.getContextPath() + "/feedback");
 
     }
 }

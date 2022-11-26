@@ -22,7 +22,7 @@ public class CategoryMapper implements IRowMapper<Category> {
             category.setModifiedBy(resultSet.getString("modifiedBy"));
             return category;
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }

@@ -9,13 +9,17 @@ import java.util.List;
 public class ShipperService implements IShipperService {
     private ShipperDAO shipperDAO = ShipperDAO.getInstance();
     private static ShipperService instance;
-    private ShipperService(){}
-    public static ShipperService getInstance(){
-        if(instance == null){
+
+    private ShipperService() {
+    }
+
+    public static ShipperService getInstance() {
+        if (instance == null) {
             instance = new ShipperService();
         }
         return instance;
     }
+
     @Override
     public List<Shipper> findAll() {
         return shipperDAO.findAll();

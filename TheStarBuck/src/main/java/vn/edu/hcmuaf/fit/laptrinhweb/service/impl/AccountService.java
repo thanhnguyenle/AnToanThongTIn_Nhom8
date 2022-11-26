@@ -12,11 +12,12 @@ import java.util.Map;
 public class AccountService implements IAccountService {
     private AccountDAO accountDAO = AccountDAO.getInstance();
     private static AccountService instance;
+
     private AccountService() {
     }
 
-    public static AccountService getInstance(){
-        if(instance==null)
+    public static AccountService getInstance() {
+        if (instance == null)
             instance = new AccountService();
         return instance;
     }
@@ -51,21 +52,23 @@ public class AccountService implements IAccountService {
         return accountDAO.verifyAccount(email);
     }
 
-    public Map<String, Account> getAll(){
-        return  AccountDAO.getInstance().getAll();
+    public Map<String, Account> getAll() {
+        return AccountDAO.getInstance().getAll();
     }
 
-    public Account login(String username, String password){
+    public Account login(String username, String password) {
         return accountDAO.login(username, password);
     }
 
-    public boolean checkUsername(String username){
+    public boolean checkUsername(String username) {
         return accountDAO.checkUsername(username);
     }
-    public boolean checkUserEmail(String email){
+
+    public boolean checkUserEmail(String email) {
         return accountDAO.checkUserEmail(email);
     }
-    public boolean registerByGoogle(String username, String email, String avatar,String fullname)  {
+
+    public boolean registerByGoogle(String username, String email, String avatar, String fullname) {
         Account account = new Account();
         account.setUsername(username);
         account.setEmail(email);
@@ -83,43 +86,48 @@ public class AccountService implements IAccountService {
         accountDAO.registerAd(account);
         return true;
     }
-    public Map<String, Object> register(String username, String email, String password,String retypepassword) throws NoSuchAlgorithmException {
+
+    public Map<String, Object> register(String username, String email, String password, String retypepassword) throws NoSuchAlgorithmException {
         Map<String, Object> output = new HashMap<>();
-        if(username.isEmpty() || email.isEmpty() || password.isEmpty() || retypepassword.isEmpty()){
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || retypepassword.isEmpty()) {
             output.put("pleaseFill", "Please fill");
         }
-        if(!accountDAO.register(username, email, password)){
-            if(checkUsername(username)){
+        if (!accountDAO.register(username, email, password)) {
+            if (checkUsername(username)) {
                 output.put("errorUsername", "Username is exist");
             }
-            if(accountDAO.checkUserEmail(email)){
+            if (accountDAO.checkUserEmail(email)) {
                 output.put("errorEmail", "Email is used");
             }
-            if(!retypepassword.equals(password)){
+            if (!retypepassword.equals(password)) {
                 output.put("errorPassword", "Retyped password is wrong");
             }
         }
         return output;
     }
-    public boolean checkChangePass(String passwordOld,String passwordNew) throws NoSuchAlgorithmException {
-       return accountDAO.checkChangePass(passwordOld,passwordNew);
+
+    public boolean checkChangePass(String passwordOld, String passwordNew) throws NoSuchAlgorithmException {
+        return accountDAO.checkChangePass(passwordOld, passwordNew);
     }
+
     public String mdbPassword(String password) throws NoSuchAlgorithmException {
         return accountDAO.mdbPassword(password);
     }
-    public Account getAcc(String id){
+
+    public Account getAcc(String id) {
         return AccountDAO.getInstance().getItem(id);
     }
 
-    public boolean deleteItem(String id){
+    public boolean deleteItem(String id) {
         return accountDAO.deleteItem(id) == 1;
     }
 
-    public boolean updateAuth(Account account){
+    public boolean updateAuth(Account account) {
         return accountDAO.editAuth(account);
     }
-    public boolean updatePass(String pass,String id){
-        return accountDAO.editPassword(pass,id);
+
+    public boolean updatePass(String pass, String id) {
+        return accountDAO.editPassword(pass, id);
     }
 
 

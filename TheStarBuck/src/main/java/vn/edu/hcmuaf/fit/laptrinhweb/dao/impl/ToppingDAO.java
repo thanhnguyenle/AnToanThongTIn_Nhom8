@@ -10,13 +10,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class ToppingDAO extends  AbstractDAO<Topping> implements IToppingDAO {
+public class ToppingDAO extends AbstractDAO<Topping> implements IToppingDAO {
     private static ToppingDAO instance;
 
-    private  ToppingDAO(){}
+    private ToppingDAO() {
+    }
 
-    public static ToppingDAO getInstance(){
-        if(instance == null){
+    public static ToppingDAO getInstance() {
+        if (instance == null) {
             instance = new ToppingDAO();
         }
         return instance;
@@ -30,10 +31,10 @@ public class ToppingDAO extends  AbstractDAO<Topping> implements IToppingDAO {
 
     @Override
     public Long save(Topping topping) {
-        if(topping.getId().equals("")){
+        if (topping.getId().equals("")) {
             return addItem(topping);
         } else
-        return updateItem(topping);
+            return updateItem(topping);
     }
 
     @Override

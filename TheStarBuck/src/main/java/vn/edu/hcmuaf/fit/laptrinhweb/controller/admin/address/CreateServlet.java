@@ -1,15 +1,15 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.address;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Address;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AddressService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "CreateAddressServlet", value = "/createAddress")
@@ -46,6 +46,6 @@ public class CreateServlet extends HttpServlet {
 
         addressService.save(address);
 
-        response.sendRedirect(request.getContextPath() +"/address");
+        response.sendRedirect(request.getContextPath() + "/address");
     }
 }

@@ -5,169 +5,170 @@ import java.sql.Date;
 import java.util.List;
 
 public class Account extends AbsModel implements Serializable {
-	private String id;
-	private String username;
-	private String fullname;
-	private String phoneNumber;
-	private String email;
-	private Date emailVerifiedAt;
-	private String password;
-	private String avatar;
-	private String aboutMe;
-	private Date lastLogin;
-	private String groupId;
-	private boolean active;
-	private String rememberToken;
-	private String addressId;
-	public  Account(String username,String password,String fullname){
-		this.username = username;
-		this.password = password;
-		this.fullname = fullname;
-	}
+    private String id;
+    private String username;
+    private String fullname;
+    private String phoneNumber;
+    private String email;
+    private Date emailVerifiedAt;
+    private String password;
+    private String avatar;
+    private String aboutMe;
+    private Date lastLogin;
+    private String groupId;
+    private boolean active;
+    private String rememberToken;
+    private String addressId;
 
-	public String getAddressId() {
-		return addressId;
-	}
+    public Account(String username, String password, String fullname) {
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+    }
 
-	public void setAddressId(String addressId) {
-		this.addressId = addressId;
-	}
+    public String getAddressId() {
+        return addressId;
+    }
 
-	private List<String> listAddressId;
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
 
-	public Account() {
-	}
+    private List<String> listAddressId;
 
-	@Override
-	public String toString() {
-		return "Account{" +
-				"id='" + id + '\'' +
-				", username='" + username + '\'' +
-				", fullname='" + fullname + '\'' +
-				", phoneNumber='" + phoneNumber + '\'' +
-				", email='" + email + '\'' +
-				", emailVerifiedAt=" + emailVerifiedAt +
-				", password='" + password + '\'' +
-				", avatar='" + avatar + '\'' +
-				", aboutMe='" + aboutMe + '\'' +
-				", lastLogin=" + lastLogin +
-				", groupId='" + groupId + '\'' +
-				", active=" + active +
-				", rememberToken='" + rememberToken + '\'' +
-				", addressId='" + addressId + '\'' +
-				", listAddressId=" + listAddressId +
-				'}';
-	}
+    public Account() {
+    }
 
-	public String getId() {
-		return id;
-	}
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", emailVerifiedAt=" + emailVerifiedAt +
+                ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", lastLogin=" + lastLogin +
+                ", groupId='" + groupId + '\'' +
+                ", active=" + active +
+                ", rememberToken='" + rememberToken + '\'' +
+                ", addressId='" + addressId + '\'' +
+                ", listAddressId=" + listAddressId +
+                '}';
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getFullname() {
-		return fullname;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
+    public String getFullname() {
+        return fullname;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Date getEmailVerifiedAt() {
-		return emailVerifiedAt;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setEmailVerifiedAt(Date emailVerifiedAt) {
-		this.emailVerifiedAt = emailVerifiedAt;
-	}
+    public Date getEmailVerifiedAt() {
+        return emailVerifiedAt;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setEmailVerifiedAt(Date emailVerifiedAt) {
+        this.emailVerifiedAt = emailVerifiedAt;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getAvatar() {
-		return avatar;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
+    public String getAvatar() {
+        return avatar;
+    }
 
-	public String getAboutMe() {
-		return aboutMe;
-	}
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
-	public void setAboutMe(String aboutMe) {
-		this.aboutMe = aboutMe;
-	}
+    public String getAboutMe() {
+        return aboutMe;
+    }
 
-	public Date getLastLogin() {
-		return lastLogin;
-	}
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
 
-	public void setLastLogin(Date lastLogin) {
-		this.lastLogin = lastLogin;
-	}
+    public Date getLastLogin() {
+        return lastLogin;
+    }
 
-	public String getGroupId() {
-		return groupId;
-	}
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
 
-	public void setGroupId(String groupId) {
-		this.groupId = groupId;
-	}
+    public String getGroupId() {
+        return groupId;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public String getRememberToken() {
-		return rememberToken;
-	}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-	public void setRememberToken(String rememberToken) {
-		this.rememberToken = rememberToken;
-	}
+    public String getRememberToken() {
+        return rememberToken;
+    }
 
-	public List<String> getListAddressId() {
-		return listAddressId;
-	}
+    public void setRememberToken(String rememberToken) {
+        this.rememberToken = rememberToken;
+    }
 
-	public void setListAddressId(List<String> listAddressId) {
-		this.listAddressId = listAddressId;
-	}
+    public List<String> getListAddressId() {
+        return listAddressId;
+    }
+
+    public void setListAddressId(List<String> listAddressId) {
+        this.listAddressId = listAddressId;
+    }
 }

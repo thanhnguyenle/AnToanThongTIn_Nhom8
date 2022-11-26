@@ -1,5 +1,11 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Slide;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.IAccountService;
@@ -11,9 +17,6 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AddressService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.SlideService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +100,7 @@ public class HomeController extends HttpServlet {
         Thread thread6 = new Thread(new Runnable() {
             @Override
             public void run() {
-               thumbs = slideService.printTypeSlide("THUMB", 3);
+                thumbs = slideService.printTypeSlide("THUMB", 3);
             }
         });
         threads.add(thread6);
@@ -118,7 +121,7 @@ public class HomeController extends HttpServlet {
         thread6.start();
         thread7.start();
 
-    // Now everything's running - join all the threads
+        // Now everything's running - join all the threads
         for (Thread thread : threads) {
             try {
                 thread.join();
@@ -126,23 +129,23 @@ public class HomeController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        if (minis != null && titles != null && banners != null && productLasest != null && productFeatured != null && productHot != null&&thumbs!=null&&thumbs_big!=null) {
-                request.setAttribute("slideMini", minis);
-                request.setAttribute("slideTitle", titles);
-                request.setAttribute("slideBanner", banners);
-                request.setAttribute("slideThumb",thumbs);
-                request.setAttribute("slideThumbBig",thumbs_big);
-                request.setAttribute("listProductLasest", productLasest);
-                request.setAttribute("listProductFeatured", productFeatured);
-                request.setAttribute("listProductHot", productHot);
-                RequestDispatcher rd = request.getRequestDispatcher("/views/web/index.jsp");
-                rd.forward(request, response);
-            }
+        if (minis != null && titles != null && banners != null && productLasest != null && productFeatured != null && productHot != null && thumbs != null && thumbs_big != null) {
+            request.setAttribute("slideMini", minis);
+            request.setAttribute("slideTitle", titles);
+            request.setAttribute("slideBanner", banners);
+            request.setAttribute("slideThumb", thumbs);
+            request.setAttribute("slideThumbBig", thumbs_big);
+            request.setAttribute("listProductLasest", productLasest);
+            request.setAttribute("listProductFeatured", productFeatured);
+            request.setAttribute("listProductHot", productHot);
+            RequestDispatcher rd = request.getRequestDispatcher("/views/web/index.jsp");
+            rd.forward(request, response);
         }
+    }
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
 }

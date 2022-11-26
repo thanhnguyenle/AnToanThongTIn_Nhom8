@@ -1,16 +1,19 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin;
 
 import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AccountService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "APIController", value = "/api/*")
 public class APIController extends HttpServlet {
@@ -26,7 +29,7 @@ public class APIController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String action = request.getPathInfo();
-        switch (action){
+        switch (action) {
             case "/account":
                 account(request, response);
                 break;
@@ -35,11 +38,11 @@ public class APIController extends HttpServlet {
 
     private void account(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        switch (action){
+        switch (action) {
             case "create":
                 creatAccount(request, response);
                 break;
-            case  "get":
+            case "get":
                 getAccount(request, response);
                 break;
             case "update":
@@ -60,7 +63,7 @@ public class APIController extends HttpServlet {
 //        RequestDispatcher rd = request.getRequestDispatcher("/views/admin/accountManagement.jsp");
 //        rd.forward(request,response);
 
-        PrintWriter pw =response.getWriter();
+        PrintWriter pw = response.getWriter();
         pw.println(new Gson().toJson(accs));
         pw.close();
     }

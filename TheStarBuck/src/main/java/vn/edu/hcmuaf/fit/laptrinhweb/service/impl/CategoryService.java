@@ -2,7 +2,6 @@ package vn.edu.hcmuaf.fit.laptrinhweb.service.impl;
 
 import vn.edu.hcmuaf.fit.laptrinhweb.dao.impl.CategoryDAO;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Category;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.ICategoryService;
 
 import java.util.List;
@@ -11,10 +10,11 @@ public class CategoryService implements ICategoryService {
     private static CategoryService instance;
     private CategoryDAO categoryDAO = CategoryDAO.getInstance();
 
-    private CategoryService(){}
+    private CategoryService() {
+    }
 
-    public static CategoryService getInstance(){
-        if(instance == null){
+    public static CategoryService getInstance() {
+        if (instance == null) {
             instance = new CategoryService();
         }
         return instance;
@@ -33,7 +33,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Long deleteItem(String id) {
-        return categoryDAO.deleteItem(id) ;
+        return categoryDAO.deleteItem(id);
     }
 
     @Override

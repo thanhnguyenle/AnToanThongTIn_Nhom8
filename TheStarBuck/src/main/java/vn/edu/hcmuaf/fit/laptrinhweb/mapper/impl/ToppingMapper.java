@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ToppingMapper implements IRowMapper<Topping> {
     @Override
     public Topping mapRow(ResultSet resultSet) {
-        try{
+        try {
             Topping topping = new Topping();
             topping.setId(resultSet.getString("id_tp"));
             topping.setName(resultSet.getString("tp_name"));
@@ -21,7 +21,7 @@ public class ToppingMapper implements IRowMapper<Topping> {
             topping.setModifiedBy(resultSet.getString("modifiedBy"));
 
             return topping;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             return null;
         }
 

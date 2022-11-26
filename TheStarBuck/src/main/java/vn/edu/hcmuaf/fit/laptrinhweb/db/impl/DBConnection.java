@@ -9,6 +9,7 @@ import java.sql.SQLException;
 public class DBConnection {
     private static DBConnection dbConnection;
     private static final IDBConnectionPool dbPool = new DBConnectionPool(DBProperties.getDbMaxConnections());
+
     private DBConnection() {
     }
 
@@ -24,7 +25,7 @@ public class DBConnection {
     }
 
     public static Connection getConnection() {
-        Connection connection=dbPool.getConnection();
+        Connection connection = dbPool.getConnection();
         System.out.println("Pool status: " + dbPool);
         return connection;
     }

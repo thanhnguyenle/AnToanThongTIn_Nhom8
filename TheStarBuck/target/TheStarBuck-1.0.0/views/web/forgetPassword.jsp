@@ -22,42 +22,19 @@
                 </div>
                 <div class="col-lg-7 text-center py-4 loginContent">
                     <h1>FORGOT PASSWORD</h1>
-                    <form>
+                    <form method="post" action="${pageContext.request.contextPath}/send_mail" name="SendMail" >
                         <div class="form-row py-3">
                             <div class="offset-1 col-lg-10">
                                     <input type="text" class="inp px-3" placeholder="email" name="email" id="email">
                             </div>
                         </div>
                             <div class="offset-1 col-lg-10">
-                                <button type="button" class="btn1" onclick="sendMail()">Submit</button>
+                                <input type="submit" class="btn1" name="Submit">
                             </div>
                     </form>                    
                     </div>
                 </div>
             </div>
     </section>
-
-<%--<script src="<%= Asset.url("/template/web/js/login.js")%>"></script>--%>
-<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>--%>
-<script>
-
-  function sendMail(){
-      let email = document.getElementById("email").value;
-      console.log(email);
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", "${pageContext.request.contextPath}/send_mail");
-      xhr.setRequestHeader("Accept", "application/json");
-      xhr.setRequestHeader("Content-Type", "application/json");
-
-      xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-              console.log(xhr.status);
-              console.log(xhr.responseText);
-          }};
-      let data = `{"hello":\"`+email+`\"}`;
-      console.log(data);
-      xhr.send(data);
-  }
-</script>
 </body>
 </html>

@@ -7,10 +7,16 @@ import java.util.Map;
 
 public interface IToppingDAO extends IGenericDAO<Topping> {
     List<Topping> findAll();
+
     Long save(Topping topping);
+
     Long deleteItem(String id);
+
     Topping getItem(String id);
+
     Map<String, Topping> getAll();
+
     Long addItem(Topping topping);
+
     Long updateItem(Topping topping);
 }

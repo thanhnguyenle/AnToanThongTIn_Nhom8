@@ -5,10 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import static vn.edu.hcmuaf.fit.laptrinhweb.db.DBProperties.*;
-import static vn.edu.hcmuaf.fit.laptrinhweb.db.DBProperties.getDbPassword;
 
 public class DBConnectionUtils {
-    public synchronized static Connection openConnection(){
+    public synchronized static Connection openConnection() {
         Connection connection = null;
         try {
             String url;

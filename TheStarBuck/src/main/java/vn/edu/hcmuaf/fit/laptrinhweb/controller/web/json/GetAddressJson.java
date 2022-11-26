@@ -1,36 +1,34 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.json;
 
 import com.google.gson.Gson;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Address;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.IAccountService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.IAddressService;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AccountService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AddressService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "GetAddressJson",urlPatterns = {"/getAddressJson"},initParams = {
-        @WebInitParam(name="id",value = "ac0001"),
+@WebServlet(name = "GetAddressJson", urlPatterns = {"/getAddressJson"}, initParams = {
+        @WebInitParam(name = "id", value = "ac0001"),
 })
 public class GetAddressJson extends HttpServlet {
     private IAddressService addressService = AddressService.getInstance();
     List<Address> addressList;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-               addressList = addressService.getByAccountID(id);
+                addressList = addressService.getByAccountID(id);
             }
         });
         thread.start();
@@ -40,7 +38,7 @@ public class GetAddressJson extends HttpServlet {
             e.printStackTrace();
         }
 
-        if(addressList!=null) {
+        if (addressList != null) {
             resp.setCharacterEncoding("utf-8");
             String json = new Gson().toJson(addressList);
             PrintWriter out = resp.getWriter();
@@ -54,6 +52,6 @@ public class GetAddressJson extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req,resp);
+        doGet(req, resp);
     }
 }

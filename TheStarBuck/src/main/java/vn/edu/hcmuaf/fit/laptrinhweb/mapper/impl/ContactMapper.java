@@ -23,7 +23,7 @@ public class ContactMapper implements IRowMapper<Contact> {
             contact.setCreatedBy(resultSet.getString("createdBy"));
             contact.setModifiedBy(resultSet.getString("modifiedBy"));
             return contact;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             return null;
         }
 

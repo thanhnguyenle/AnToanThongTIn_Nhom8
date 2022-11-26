@@ -9,19 +9,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class SlideDAO extends  AbstractDAO<Slide> implements ISlideDAO {
+public class SlideDAO extends AbstractDAO<Slide> implements ISlideDAO {
     private static SlideDAO instance;
-    private SlideDAO(){}
+
+    private SlideDAO() {
+    }
 
     public static SlideDAO getInstance() {
-        if(instance == null)
+        if (instance == null)
             instance = new SlideDAO();
         return instance;
     }
 
     @Override
     public List<Slide> findAll() {
-        return query(QUERIES.SLIDER.GET_LIST,new SlideMapper());
+        return query(QUERIES.SLIDER.GET_LIST, new SlideMapper());
     }
 
     @Override
@@ -30,8 +32,8 @@ public class SlideDAO extends  AbstractDAO<Slide> implements ISlideDAO {
     }
 
     @Override
-    public List<Slide> printTypeSlide(String type,int num) {
-        return query(QUERIES.SLIDER.GETBANNER,new SlideMapper(),type,num);
+    public List<Slide> printTypeSlide(String type, int num) {
+        return query(QUERIES.SLIDER.GETBANNER, new SlideMapper(), type, num);
     }
 
     @Override
@@ -41,16 +43,16 @@ public class SlideDAO extends  AbstractDAO<Slide> implements ISlideDAO {
     }
 
     public Slide getItem(String id) {
-        return query(QUERIES.SLIDER.GET_ITEM_BYID,new SlideMapper(),id).get(0);
+        return query(QUERIES.SLIDER.GET_ITEM_BYID, new SlideMapper(), id).get(0);
     }
 
     @Override
     public Long update(String greetingH2, String greetingSpan, String greetingP, boolean active, String type) {
-        return update(QUERIES.SLIDER.UPDATE, greetingH2,greetingSpan,greetingP,active, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), "hello",type);
+        return update(QUERIES.SLIDER.UPDATE, greetingH2, greetingSpan, greetingP, active, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), "hello", type);
     }
 
     @Override
     public Long updateImageByID(String id, String image, String type) {
-        return update(QUERIES.SLIDER.UPDATE_IMAGE_TITLE_BYID,image,new SimpleDateFormat("yyyy-MM-dd").format(new Date()), "hello",type,id);
+        return update(QUERIES.SLIDER.UPDATE_IMAGE_TITLE_BYID, image, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), "hello", type, id);
     }
 }

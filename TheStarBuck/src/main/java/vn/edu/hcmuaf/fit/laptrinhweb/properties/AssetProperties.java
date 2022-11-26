@@ -7,13 +7,14 @@ public class AssetProperties {
     private static Properties prop = new Properties();
 
     static {
-        try{
+        try {
             prop.load(AssetProperties.class.getClassLoader().getResourceAsStream("asset.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static String getBaseUrl(){
+
+    public static String getBaseUrl() {
         return prop.get("baseUrl").toString();
     }
 }

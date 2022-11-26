@@ -10,15 +10,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class ShipperDAO extends  AbstractDAO<Shipper> implements IShipperDAO {
+public class ShipperDAO extends AbstractDAO<Shipper> implements IShipperDAO {
     private static ShipperDAO instance;
-    private ShipperDAO(){}
-    public static ShipperDAO getInstance(){
-        if(instance == null){
+
+    private ShipperDAO() {
+    }
+
+    public static ShipperDAO getInstance() {
+        if (instance == null) {
             instance = new ShipperDAO();
         }
         return instance;
     }
+
     @Override
     public List<Shipper> findAll() {
         List<Shipper> output = query(QUERIES.SHIPPER.GET_LIST, new ShipperMapper());
@@ -27,7 +31,7 @@ public class ShipperDAO extends  AbstractDAO<Shipper> implements IShipperDAO {
 
     @Override
     public Long save(Shipper shipper) {
-        if(shipper.getId().equals("")){
+        if (shipper.getId().equals("")) {
             return addItem(shipper);
         }
         return updateItem(shipper);
@@ -59,7 +63,7 @@ public class ShipperDAO extends  AbstractDAO<Shipper> implements IShipperDAO {
 
     @Override
     public Long updateItem(Shipper shipper) {
-        long output  = update(QUERIES.SHIPPER.UPDATE, shipper.getName(), shipper.getMobile(), shipper.getAddress(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), shipper.getModifiedBy(), shipper.getId());
+        long output = update(QUERIES.SHIPPER.UPDATE, shipper.getName(), shipper.getMobile(), shipper.getAddress(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), shipper.getModifiedBy(), shipper.getId());
         return output;
     }
 }

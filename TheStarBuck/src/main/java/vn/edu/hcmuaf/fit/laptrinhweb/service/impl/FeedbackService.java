@@ -7,15 +7,19 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.IFeedbackService;
 import java.util.List;
 
 public class FeedbackService implements IFeedbackService {
-    private static  FeedbackService instance;
+    private static FeedbackService instance;
     private FeedbackDAO feedbackDAO = FeedbackDAO.getInstance();
-    private FeedbackService(){}
-    public static FeedbackService getInstance(){
-        if(instance == null){
+
+    private FeedbackService() {
+    }
+
+    public static FeedbackService getInstance() {
+        if (instance == null) {
             instance = new FeedbackService();
         }
         return instance;
     }
+
     @Override
     public List<FeedBack> findAll() {
         return feedbackDAO.findAll();

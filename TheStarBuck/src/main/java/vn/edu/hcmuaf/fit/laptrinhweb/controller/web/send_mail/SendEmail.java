@@ -1,4 +1,5 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.send_mail;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -7,21 +8,24 @@ import java.util.Properties;
 
 public class SendEmail {
     private static SendEmail instance;
-    private SendEmail(){}
-    public static SendEmail getInstance(){
-        if(instance == null) instance = new SendEmail();
+
+    private SendEmail() {
+    }
+
+    public static SendEmail getInstance() {
+        if (instance == null) instance = new SendEmail();
         return instance;
     }
 
     public String getRandom() {
         int min = 100000;
         int max = 999999;
-        return (int) Math.floor(Math.random() * (max - min + 1) + min)+"";
+        return (int) Math.floor(Math.random() * (max - min + 1) + min) + "";
     }
 
-    public boolean sendEmail(String email,String content) {
-        String fromEmail = "trasuanuocloc@gmail.com";
-        String password = "pyafmlnseddcapfv";
+    public boolean sendEmail(String email, String content) {
+        String fromEmail = "19130206@st.hcmuaf.edu.vn";
+        String password = "zzdykvdjcpotwtvf";
         try {
             // sets SMTP server properties
             Properties prop = new Properties();
@@ -50,15 +54,15 @@ public class SendEmail {
             );
             message.setSubject("Dear The StarBuck");
             message.setSentDate(new Date());
-            message.setContent(content,"text/html; charset=utf-8");
+            message.setContent(content, "text/html; charset=utf-8");
 
             // sends the e-mail
             Transport transport = session.getTransport("smtp");
 //            session.setDebug(true);
-            transport.connect(fromEmail,password);
-            transport.sendMessage(message,message.getAllRecipients());
+            transport.connect(fromEmail, password);
+            transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-           return true;
+            return true;
         } catch (MessagingException e) {
             e.printStackTrace();
         }
