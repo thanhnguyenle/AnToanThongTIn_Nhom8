@@ -15,13 +15,17 @@ import java.util.Map;
 
 public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
     private static OrderDAO instance;
-    private OrderDAO(){}
-    public static OrderDAO getInstance(){
-        if (instance == null){
+
+    private OrderDAO() {
+    }
+
+    public static OrderDAO getInstance() {
+        if (instance == null) {
             instance = new OrderDAO();
         }
         return instance;
     }
+
     @Override
     public List<Orders> findAll() {
         List<Orders> output = query(QUERIES.ORDER.GET_LIST, new OrderMapper());
@@ -30,7 +34,7 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
 
     @Override
     public Long save(Orders orders) {
-        if(orders.getId().equals("")){
+        if (orders.getId().equals("")) {
             return addItem(orders);
         }
         return updateItem(orders);
@@ -58,7 +62,7 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
         long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(), orders.getIdSession(), orders.getToken(),
                 orders.getStatus(), orders.getAddress(), orders.getSubTotal(), orders.getItemDiscount(), orders.getTax(),
                 orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
-                new SimpleDateFormat("yyyy-MM-dd").format(new Date()),new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
+                new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                 orders.getIdAccount(), orders.getIdAccount());
         return output;
     }
@@ -74,22 +78,22 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
         long checkTotalProduct = 0;
         long checkProItem = 0;
         long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(),
-               orders.getIdSession(), orders.getToken(),
+                orders.getIdSession(), orders.getToken(),
                 orders.getStatus(), orders.getAddress(), orders.getSubTotal(), orders.getItemDiscount(),
                 orders.getTax(),
                 orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
-                new SimpleDateFormat("yyyy-MM-dd").format(new Date()),new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
+                new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                 orders.getIdAccount(), orders.getIdAccount());
         Orders orders1 = getItemByIdAc(account.getId());
-        for (Product pro: cart.getProductList()
-             ) {
+        for (Product pro : cart.getProductList()
+        ) {
             pro.setNote("");
-            checkProItem = insert(QUERIES.ORDERITEM.CREATE, pro.getId(), orders1.getId(), pro.getQuantitySold(), pro.getNote(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
+            checkProItem = insert(QUERIES.ORDERITEM.CREATE, pro.getId(), orders1.getId(), pro.getQuantitySold(), pro.getNote(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                     orders.getIdAccount(), orders.getIdAccount());
-            System.out.println(pro.getId() + " " + pro.getQuantitySold()+ " "+ pro.getNote() + " ------");
-            checkTotalProduct+= checkProItem;
+            System.out.println(pro.getId() + " " + pro.getQuantitySold() + " " + pro.getNote() + " ------");
+            checkTotalProduct += checkProItem;
         }
-        System.out.println("check : " + (output  ) + " check2: " + ( checkTotalProduct + " " + cart.getProductList().size()));
+        System.out.println("check : " + (output) + " check2: " + (checkTotalProduct + " " + cart.getProductList().size()));
         return output == 1 && checkTotalProduct == cart.getProductList().size();
     }
 

@@ -30,9 +30,9 @@ public class ProductMapper implements IRowMapper<Product> {
             product.setCreatedBy(resultSet.getString("createdBy"));
             product.setModifiedBy(resultSet.getString("modifiedBy"));
             return product;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        }
+    }
 }

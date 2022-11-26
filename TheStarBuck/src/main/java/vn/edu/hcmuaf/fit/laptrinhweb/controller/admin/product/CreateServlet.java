@@ -1,19 +1,15 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.product;
 
 
-
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.*;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "CreateProductServlet", value = "/createProduct")
 public class CreateServlet extends HttpServlet {
@@ -53,10 +49,11 @@ public class CreateServlet extends HttpServlet {
         product.setPrice(Double.parseDouble(price));
         product.setDiscount(Double.parseDouble(discount));
         product.setQuantity(Integer.parseInt(quantity));
-        if(active.equals("0")){
+        if (active.equals("0")) {
             product.setActive(false);
         } else {
-        product.setActive(true);}
+            product.setActive(true);
+        }
         product.setHot(Integer.parseInt(hot));
         product.setView(Integer.parseInt("0"));
         product.setDescription(description);
@@ -68,6 +65,6 @@ public class CreateServlet extends HttpServlet {
         product.setCreatedBy(createdBy);
 
         productService.save(product);
-        response.sendRedirect(request.getContextPath() +"/product");
+        response.sendRedirect(request.getContextPath() + "/product");
     }
 }

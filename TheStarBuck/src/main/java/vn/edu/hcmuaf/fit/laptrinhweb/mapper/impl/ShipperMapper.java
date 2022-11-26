@@ -19,7 +19,7 @@ public class ShipperMapper implements IRowMapper<Shipper> {
             shipper.setModifiedDate(resultSet.getDate("modifiedDate"));
             shipper.setCreatedBy(resultSet.getString("createdBy"));
             shipper.setModifiedBy(resultSet.getString("modifiedBy"));
-            return  shipper;
+            return shipper;
 
         } catch (SQLException e) {
             return null;

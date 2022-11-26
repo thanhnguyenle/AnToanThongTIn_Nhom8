@@ -3,9 +3,7 @@ package vn.edu.hcmuaf.fit.laptrinhweb.dao.impl;
 import vn.edu.hcmuaf.fit.laptrinhweb.dao.IContactDAO;
 import vn.edu.hcmuaf.fit.laptrinhweb.db.QUERIES;
 import vn.edu.hcmuaf.fit.laptrinhweb.mapper.impl.ContactMapper;
-import vn.edu.hcmuaf.fit.laptrinhweb.mapper.impl.ShipperMapper;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Contact;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Shipper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,13 +12,17 @@ import java.util.Map;
 
 public class ContactDAO extends AbstractDAO<Contact> implements IContactDAO {
     private static ContactDAO instance;
-    private ContactDAO(){}
-    public static ContactDAO getInstance(){
-        if(instance == null){
+
+    private ContactDAO() {
+    }
+
+    public static ContactDAO getInstance() {
+        if (instance == null) {
             instance = new ContactDAO();
         }
         return instance;
     }
+
     @Override
     public List<Contact> findAll() {
         List<Contact> output = query(QUERIES.CONTACT.GET_LIST, new ContactMapper());
@@ -29,7 +31,7 @@ public class ContactDAO extends AbstractDAO<Contact> implements IContactDAO {
 
     @Override
     public Long save(Contact contact) {
-        if(contact.getId().equals("")){
+        if (contact.getId().equals("")) {
             return addItem(contact);
         } else {
             return updateItem(contact);
@@ -64,9 +66,9 @@ public class ContactDAO extends AbstractDAO<Contact> implements IContactDAO {
         return null;
     }
 
-    public boolean addContact(String name,String email,String messges){
-        System.out.println(name+" - "+email+" - "+messges);
-        long number = insert(QUERIES.CONTACT.CREATE,"","ac0001",name,email,"",messges,1, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),"NONE","NONE");
-   return number == 1;
+    public boolean addContact(String name, String email, String messges) {
+        System.out.println(name + " - " + email + " - " + messges);
+        long number = insert(QUERIES.CONTACT.CREATE, "", "ac0001", name, email, "", messges, 1, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), "NONE", "NONE");
+        return number == 1;
     }
 }

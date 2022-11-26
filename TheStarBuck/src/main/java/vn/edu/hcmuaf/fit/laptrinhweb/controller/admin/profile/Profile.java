@@ -1,19 +1,15 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.profile;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AccountService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @WebServlet(name = "Profile", value = "/admin-profile")
 public class Profile extends HttpServlet {
@@ -42,6 +38,6 @@ public class Profile extends HttpServlet {
 
         accountService.updateAuth(account);
 
-        response.sendRedirect(request.getContextPath() +"/admin-profile");
+        response.sendRedirect(request.getContextPath() + "/admin-profile");
     }
 }

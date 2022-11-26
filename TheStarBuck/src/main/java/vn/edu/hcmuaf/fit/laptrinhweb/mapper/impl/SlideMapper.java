@@ -1,7 +1,6 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.mapper.impl;
 
 import vn.edu.hcmuaf.fit.laptrinhweb.mapper.IRowMapper;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Slide;
 
 import java.sql.ResultSet;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 public class SlideMapper implements IRowMapper<Slide> {
     @Override
     public Slide mapRow(ResultSet resultSet) {
-        try{
+        try {
             Slide slide = new Slide();
             slide.setId(resultSet.getString("id_sl"));
             slide.setImage(resultSet.getString("sl_image"));
@@ -24,7 +23,7 @@ public class SlideMapper implements IRowMapper<Slide> {
             slide.setCreatedBy(resultSet.getString("createdBy"));
             slide.setModifiedBy(resultSet.getString("modifiedBy"));
             return slide;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }

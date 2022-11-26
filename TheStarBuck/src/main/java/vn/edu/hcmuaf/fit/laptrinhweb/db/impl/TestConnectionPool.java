@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.CountDownLatch;
 
-public class TestConnectionPool extends Thread{
+public class TestConnectionPool extends Thread {
     private String taskName;
     private CountDownLatch latch;
 
@@ -28,7 +28,7 @@ public class TestConnectionPool extends Thread{
             String sqlSelect = "SELECT COUNT(*) AS total FROM Account";
             Connection connection = DBConnection.getConnection();
             try (Statement st = connection.createStatement();
-                ResultSet rs = st.executeQuery(sqlSelect);) {
+                 ResultSet rs = st.executeQuery(sqlSelect);) {
                 Thread.sleep(2000);
                 rs.next();
                 System.out.println("Task = " + taskName + ": Run SQL successfully " + rs.getInt("total"));

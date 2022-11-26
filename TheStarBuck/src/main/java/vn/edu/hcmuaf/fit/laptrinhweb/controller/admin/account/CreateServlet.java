@@ -1,11 +1,13 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.account;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AccountService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -14,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet(name = "CreateAccountServlet", value = "/createAccount")
 public class CreateServlet extends HttpServlet {
     AccountService accountService = AccountService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // show form
@@ -39,10 +42,11 @@ public class CreateServlet extends HttpServlet {
         account.setId("");
         account.setUsername(username);
         account.setFullname(fullname);
-        if(active.equals("0")){
+        if (active.equals("0")) {
             account.setActive(false);
         } else {
-        account.setActive(true);}
+            account.setActive(true);
+        }
         account.setPhoneNumber(phoneNumber);
         account.setEmail(email);
         account.setAvatar(image);
@@ -63,6 +67,6 @@ public class CreateServlet extends HttpServlet {
 
         accountService.save(account);
 
-        response.sendRedirect(request.getContextPath() +"/account");
+        response.sendRedirect(request.getContextPath() + "/account");
     }
 }

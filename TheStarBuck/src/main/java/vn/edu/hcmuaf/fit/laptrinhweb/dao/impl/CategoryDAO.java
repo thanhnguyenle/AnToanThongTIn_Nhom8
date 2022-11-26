@@ -11,17 +11,17 @@ import java.util.List;
 import java.util.Map;
 
 public class CategoryDAO extends AbstractDAO<Category> implements ICategoryDAO {
-    private static  CategoryDAO instance;
+    private static CategoryDAO instance;
 
-    private CategoryDAO(){
+    private CategoryDAO() {
 
     }
 
-    public static CategoryDAO getInstance(){
-        if(instance == null){
+    public static CategoryDAO getInstance() {
+        if (instance == null) {
             instance = new CategoryDAO();
         }
-        return  instance;
+        return instance;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class CategoryDAO extends AbstractDAO<Category> implements ICategoryDAO {
 
     @Override
     public Long save(Category category) {
-        if(category.getId().equals("")){
+        if (category.getId().equals("")) {
             return addItem(category);
         }
         return updateItem(category);

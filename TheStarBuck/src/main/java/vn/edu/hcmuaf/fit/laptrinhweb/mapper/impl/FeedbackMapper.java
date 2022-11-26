@@ -21,8 +21,8 @@ public class FeedbackMapper implements IRowMapper<FeedBack> {
             feedBack.setModifiedDate(resultSet.getDate("modifiedDate"));
             feedBack.setCreatedBy(resultSet.getString("createdBy"));
             feedBack.setModifiedBy(resultSet.getString("modifiedBy"));
-            return  feedBack;
-        } catch (SQLException e){
+            return feedBack;
+        } catch (SQLException e) {
             return null;
         }
     }

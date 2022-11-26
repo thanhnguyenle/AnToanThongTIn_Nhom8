@@ -1,21 +1,17 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.payment;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.OrderService;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -69,7 +65,7 @@ public class CheckoutServlet extends HttpServlet {
         System.out.println(orders.toString());
         boolean checkFlag = orderService.createOrder(account, cart, orders);
         System.out.println("------ " + checkFlag);
-        if(checkFlag){
+        if (checkFlag) {
             Orders orders1 = orderService.getItemByIdAc(account.getId());
             session.removeAttribute("cart");
             session.setAttribute("order", orders1);

@@ -1,201 +1,202 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
-public class Product extends AbsModel  implements Serializable {
-	private String id;
-	private String name;
-	private String idCategory;
-	private String ingredients;
-	private double price;
-	private double discount;
-	private int quantity;
-	private boolean active;
-	private int hot;
-	private int view;
-	private String description;
-	private String image;
-	private String descriptionSeo;
-	private String keywordSeo;
-	private String titleSeo;
-	private String note;
-	private int quantitySold = 1;
-	private String sale;
+public class Product extends AbsModel implements Serializable {
+    private String id;
+    private String name;
+    private String idCategory;
+    private String ingredients;
+    private double price;
+    private double discount;
+    private int quantity;
+    private boolean active;
+    private int hot;
+    private int view;
+    private String description;
+    private String image;
+    private String descriptionSeo;
+    private String keywordSeo;
+    private String titleSeo;
+    private String note;
+    private int quantitySold = 1;
+    private String sale;
 
-	public Product() {
-	}
+    public Product() {
+    }
 
-	@Override
-	public String toString() {
-		return "Product{" +
-				"id='" + id + '\'' +
-				", name='" + name + '\'' +
-				", idCategory='" + idCategory + '\'' +
-				", ingredients='" + ingredients + '\'' +
-				", price=" + price +
-				", discount=" + discount +
-				", quantity=" + quantity +
-				", active=" + active +
-				", hot=" + hot +
-				", view=" + view +
-				", description='" + description + '\'' +
-				", image='" + image + '\'' +
-				", descriptionSeo='" + descriptionSeo + '\'' +
-				", keywordSeo='" + keywordSeo + '\'' +
-				", titleSeo='" + titleSeo + '\'' +
-				", note='" + note + '\'' +
-				", quantitySold=" + quantitySold +
-				", sale='" + sale + '\'' +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", idCategory='" + idCategory + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", quantity=" + quantity +
+                ", active=" + active +
+                ", hot=" + hot +
+                ", view=" + view +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", descriptionSeo='" + descriptionSeo + '\'' +
+                ", keywordSeo='" + keywordSeo + '\'' +
+                ", titleSeo='" + titleSeo + '\'' +
+                ", note='" + note + '\'' +
+                ", quantitySold=" + quantitySold +
+                ", sale='" + sale + '\'' +
+                '}';
+    }
 
-	public String getSale() {
-		return String.format("%,.1f", (this.discount / this.price) * 100);
-	}
-	public void setSale() {
-		this.sale = String.format("%,.0f",(this.discount / this.price) * 100);
-	}
-	public String getId() {
-		return id;
-	}
+    public String getSale() {
+        return String.format("%,.1f", (this.discount / this.price) * 100);
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setSale() {
+        this.sale = String.format("%,.0f", (this.discount / this.price) * 100);
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getIdCategory() {
-		return idCategory;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setIdCategory(String idCategory) {
-		this.idCategory = idCategory;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getIngredients() {
-		return ingredients;
-	}
+    public String getIdCategory() {
+        return idCategory;
+    }
 
-	public void setIngredients(String ingredients) {
-		this.ingredients = ingredients;
-	}
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public String getIngredients() {
+        return ingredients;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
 
-	public double getDiscount() {
-		return discount;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public double getDiscount() {
+        return discount;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public int getHot() {
-		return hot;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public void setHot(int hot) {
-		this.hot = hot;
-	}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-	public int getView() {
-		return view;
-	}
+    public int getHot() {
+        return hot;
+    }
 
-	public void setView(int view) {
-		this.view = view;
-	}
+    public void setHot(int hot) {
+        this.hot = hot;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public int getView() {
+        return view;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setView(int view) {
+        this.view = view;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getDescriptionSeo() {
-		return descriptionSeo;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public void setDescriptionSeo(String descriptionSeo) {
-		this.descriptionSeo = descriptionSeo;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public String getKeywordSeo() {
-		return keywordSeo;
-	}
+    public String getDescriptionSeo() {
+        return descriptionSeo;
+    }
 
-	public void setKeywordSeo(String keywordSeo) {
-		this.keywordSeo = keywordSeo;
-	}
+    public void setDescriptionSeo(String descriptionSeo) {
+        this.descriptionSeo = descriptionSeo;
+    }
 
-	public String getTitleSeo() {
-		return titleSeo;
-	}
+    public String getKeywordSeo() {
+        return keywordSeo;
+    }
 
-	public void setTitleSeo(String titleSeo) {
-		this.titleSeo = titleSeo;
-	}
+    public void setKeywordSeo(String keywordSeo) {
+        this.keywordSeo = keywordSeo;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getTitleSeo() {
+        return titleSeo;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setTitleSeo(String titleSeo) {
+        this.titleSeo = titleSeo;
+    }
 
-	public int getQuantitySold(){
-		return this.quantitySold;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setQuantitySold(int quantitySold){
-		this.quantitySold = quantitySold;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	//get total price
-	public double getTotalPrice(){
-		return quantitySold * (price - (price * discount));
-	}
+    public int getQuantitySold() {
+        return this.quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
+    }
+
+    //get total price
+    public double getTotalPrice() {
+        return quantitySold * (price - (price * discount));
+    }
 
 
 }

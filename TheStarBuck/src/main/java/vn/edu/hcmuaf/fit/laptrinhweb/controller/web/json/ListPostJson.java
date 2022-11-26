@@ -1,32 +1,31 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.json;
 
 import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Post;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.paging.IPageAble;
 import vn.edu.hcmuaf.fit.laptrinhweb.paging.PageRequest;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.IPostService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.PostService;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "posts",urlPatterns = {"/posts"},initParams = {
-        @WebInitParam(name="page-index",value = "1"),
-        @WebInitParam(name="per-page",value = "9")
+@WebServlet(name = "posts", urlPatterns = {"/posts"}, initParams = {
+        @WebInitParam(name = "page-index", value = "1"),
+        @WebInitParam(name = "per-page", value = "9")
 })
 public class ListPostJson extends HttpServlet {
     private IPostService postService = PostService.getInstance();
     private List<Post> posts;
     private IPageAble pageable;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pageIndex = req.getParameter("page-index");
@@ -38,15 +37,15 @@ public class ListPostJson extends HttpServlet {
         try {
             pageIndexNum = Integer.parseInt(pageIndex);
             perPageNum = Integer.parseInt(perPage);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-        pageable = new PageRequest(pageIndexNum,perPageNum);
+        pageable = new PageRequest(pageIndexNum, perPageNum);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                posts = postService.findAll(pageable,text);
+                posts = postService.findAll(pageable, text);
             }
         });
         thread.start();
@@ -56,7 +55,7 @@ public class ListPostJson extends HttpServlet {
             e.printStackTrace();
         }
 
-        if(posts!=null) {
+        if (posts != null) {
             String json = new Gson().toJson(posts);
             PrintWriter out = resp.getWriter();
             try {
@@ -69,6 +68,6 @@ public class ListPostJson extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req,resp);
+        doGet(req, resp);
     }
 }

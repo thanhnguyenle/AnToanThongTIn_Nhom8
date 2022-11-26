@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
 import java.io.Serializable;
 
-public class Topping extends AbsModel  implements Serializable {
+public class Topping extends AbsModel implements Serializable {
     private String id;
     private String name;
     private int quantity;

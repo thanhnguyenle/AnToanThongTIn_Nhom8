@@ -13,25 +13,28 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CrawlPostToJson {
-    private IPostService iPostService ;
+    private IPostService iPostService;
     private static CrawlPostToJson instance = null;
-    private CrawlPostToJson(){
+
+    private CrawlPostToJson() {
         iPostService = PostService.getInstance();
     }
-    public static CrawlPostToJson getInstance(){
-        if(instance==null) instance = new CrawlPostToJson();
+
+    public static CrawlPostToJson getInstance() {
+        if (instance == null) instance = new CrawlPostToJson();
         return instance;
     }
+
     public static void main(String[] args) {
         CrawlPostToJson crawlObj = CrawlPostToJson.getInstance();
         String str = crawlObj.crawlPostAt("https://punchdrink.com/articles/most-popular-best-cocktail-recipes/");
         System.out.println(str);
 
-        for(int i = 1;i<10;i++){
+        for (int i = 1; i < 10; i++) {
             List<Post> list = crawlObj.crawlDataAt(i);
-            for(Post pos:list){
-               //pos.setPost_content(crawlObj.crawlPostAt(pos.getPost_url()));
-               // System.out.println(pos);
+            for (Post pos : list) {
+                //pos.setPost_content(crawlObj.crawlPostAt(pos.getPost_url()));
+                // System.out.println(pos);
                 crawlObj.iPostService.add(pos);
             }
         }
@@ -71,7 +74,7 @@ public class CrawlPostToJson {
     }
 
     public String crawlPostAt(String url) {
-        String result="";
+        String result = "";
         Document document = connectToWebsite(url);
         if (document != null) {
             Element content = document.getElementById("content");
@@ -79,8 +82,8 @@ public class CrawlPostToJson {
             Element entryContentFirst = entryContent.first();
             Elements contentBlock = entryContentFirst.getElementsByClass("new_article_block");
             for (Element element : contentBlock) {
-                if(element.hasClass("tags")) break;
-                result+=element.html();
+                if (element.hasClass("tags")) break;
+                result += element.html();
                 System.out.println(result);
             }
         }

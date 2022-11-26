@@ -7,13 +7,14 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.IToppingService;
 import java.util.List;
 
 public class ToppingService implements IToppingService {
-    private static  ToppingService instance;
+    private static ToppingService instance;
     private ToppingDAO toppingDAO = ToppingDAO.getInstance();
 
-    private ToppingService(){}
+    private ToppingService() {
+    }
 
-    public static ToppingService getInstance(){
-        if(instance == null){
+    public static ToppingService getInstance() {
+        if (instance == null) {
             instance = new ToppingService();
         }
         return instance;

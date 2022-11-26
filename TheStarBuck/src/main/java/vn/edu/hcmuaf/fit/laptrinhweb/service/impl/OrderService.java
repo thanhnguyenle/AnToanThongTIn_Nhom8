@@ -9,15 +9,19 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.IOrderService;
 import java.util.List;
 
 public class OrderService implements IOrderService {
-    private  static  OrderService instance;
+    private static OrderService instance;
     private OrderDAO orderDAO = OrderDAO.getInstance();
-    private OrderService(){}
-    public static OrderService getInstance(){
-        if(instance == null){
+
+    private OrderService() {
+    }
+
+    public static OrderService getInstance() {
+        if (instance == null) {
             instance = new OrderService();
         }
         return instance;
     }
+
     @Override
     public List<Orders> findAll() {
         return orderDAO.findAll();

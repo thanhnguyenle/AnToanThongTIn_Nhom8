@@ -1,12 +1,13 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.cart;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 import java.io.IOException;
 
 
@@ -23,7 +24,7 @@ public class ShowServlet extends HttpServlet {
         //get cart from session
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
-        if(cart == null){
+        if (cart == null) {
             cart = Cart.getInstance();
         }
         session.setAttribute("cart", cart);

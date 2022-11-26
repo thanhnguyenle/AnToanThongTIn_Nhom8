@@ -18,7 +18,7 @@ public class Post extends AbsModel implements Serializable {
     @Override
     public String toString() {
         return "Post [title=" + title + ", image_url=" + image_url + ", post_url=" + post_url + ", date=" + date
-                + ", author=" + author + ", description=" + description + ", content=" + post_content+"]";
+                + ", author=" + author + ", description=" + description + ", content=" + post_content + "]";
     }
 
     public String getId() {

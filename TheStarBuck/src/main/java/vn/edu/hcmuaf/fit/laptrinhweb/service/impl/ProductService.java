@@ -11,17 +11,19 @@ import java.util.Map;
 public class ProductService implements IProductService {
     private ProductDAO productDAO = ProductDAO.getInstance();
     private static ProductService instance;
+
     private ProductService() {
     }
 
-    public static ProductService getInstance(){
-        if(instance==null)
+    public static ProductService getInstance() {
+        if (instance == null)
             instance = new ProductService();
         return instance;
     }
+
     @Override
-    public List<Product> findAll(IPageAble pageAble,double fromPrice, double toPrice,String categoryID,String sortBy,String orderBy,String text)  {
-        return productDAO.findAll(pageAble,fromPrice,toPrice,categoryID,sortBy,orderBy,text);
+    public List<Product> findAll(IPageAble pageAble, double fromPrice, double toPrice, String categoryID, String sortBy, String orderBy, String text) {
+        return productDAO.findAll(pageAble, fromPrice, toPrice, categoryID, sortBy, orderBy, text);
     }
 
     @Override
@@ -49,19 +51,19 @@ public class ProductService implements IProductService {
         return productDAO.totalItem();
     }
 
-    public Map<String, Product> getAll(){
+    public Map<String, Product> getAll() {
         return productDAO.getAll();
     }
 
-    public Product getItem(String id){
+    public Product getItem(String id) {
         return ProductDAO.getInstance().getItem(id);
     }
 
-    public boolean deleteItem(String id){
+    public boolean deleteItem(String id) {
         return productDAO.deleteItem(id) == 1;
     }
 
-    public List<Product> searchByName(String txt){
+    public List<Product> searchByName(String txt) {
         return productDAO.searchByName(txt);
     }
 

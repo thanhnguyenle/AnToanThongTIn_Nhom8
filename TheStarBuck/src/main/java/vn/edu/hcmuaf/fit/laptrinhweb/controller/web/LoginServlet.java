@@ -1,25 +1,27 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web;
 
-import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AccountService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "LoginServlet", value = "/doLogin")
 public class LoginServlet extends HttpServlet {
-    private AccountService accountService ;
+    private AccountService accountService;
     private Account account;
     private String username;
     private String password;
-    public LoginServlet(){
+
+    public LoginServlet() {
         accountService = AccountService.getInstance();
     }
 
@@ -73,6 +75,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
     }
+
     // lam vo hieu hoa người dung
     public static void deleteAvailableSession(HttpServletRequest request) {
         if (request.getSession(false) != null) {

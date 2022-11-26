@@ -9,14 +9,24 @@ import java.util.Map;
 
 public interface IOrderDAO extends IGenericDAO<Orders> {
     List<Orders> findAll();
+
     Long save(Orders orders);
+
     Long deleteItem(String id);
+
     Orders getItem(String id);
+
     Map<String, Orders> getAll();
+
     Long addItem(Orders orders);
+
     Long updateItem(Orders orders);
+
     boolean createOrder(Account account, Cart cart, Orders orders);
+
     Orders getItemByIdAc(String accId);
+
     int getAmountOrder();
+
     double getSumMoney();
 }

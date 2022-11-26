@@ -1,26 +1,19 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web;
 
-import org.apache.http.HttpRequest;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
-import vn.edu.hcmuaf.fit.laptrinhweb.paging.IPageAble;
-import vn.edu.hcmuaf.fit.laptrinhweb.paging.PageRequest;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.IPostService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.PostService;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "BlogServlet", value = "/blog",initParams = {
-        @WebInitParam(name="blogid",value = "po0001")})
+@WebServlet(name = "BlogServlet", value = "/blog", initParams = {
+        @WebInitParam(name = "blogid", value = "po0001")})
 public class BlogServlet extends HttpServlet {
     private final IPostService postService = PostService.getInstance();
     private int total = 0;
@@ -34,7 +27,7 @@ public class BlogServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         String blogIdTemp = request.getParameter("blogid");
-        if(blogIdTemp!=null&&!blogIdTemp.isEmpty()){
+        if (blogIdTemp != null && !blogIdTemp.isEmpty()) {
             blogId = blogIdTemp;
         }
 
@@ -50,15 +43,15 @@ public class BlogServlet extends HttpServlet {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if(total!=-1) {
+        if (total != -1) {
             //paging attribute setup
             request.setAttribute("page", page);
             request.setAttribute("totalPage", (int) Math.ceil((double) total / max_page));
-            request.setAttribute("blogid",blogId);
+            request.setAttribute("blogid", blogId);
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/poster.jsp");
             try {
                 rd.forward(request, response);
-            } catch (ServletException|IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         }

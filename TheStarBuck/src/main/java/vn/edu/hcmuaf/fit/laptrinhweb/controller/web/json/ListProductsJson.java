@@ -1,33 +1,32 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.json;
 
 import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.paging.IPageAble;
 import vn.edu.hcmuaf.fit.laptrinhweb.paging.PageRequest;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "product-json",urlPatterns = {"/products"},initParams = {
-        @WebInitParam(name="page-index",value = "1"),
-        @WebInitParam(name="per-page",value = "9")
+@WebServlet(name = "product-json", urlPatterns = {"/products"}, initParams = {
+        @WebInitParam(name = "page-index", value = "1"),
+        @WebInitParam(name = "per-page", value = "9")
 })
-public class ListProductsJson extends HttpServlet{
+public class ListProductsJson extends HttpServlet {
     private ProductService productService;
     private List<Product> products;
     private IPageAble pageable;
-    private String json,categoryID,sortBy;
-    private double fromPrice = 0,toPrice = 100;
+    private String json, categoryID, sortBy;
+    private double fromPrice = 0, toPrice = 100;
+
     public ListProductsJson() {
         productService = ProductService.getInstance();
     }
@@ -44,7 +43,7 @@ public class ListProductsJson extends HttpServlet{
         try {
             pageIndexNum = Integer.parseInt(pageIndex);
             perPageNum = Integer.parseInt(perPage);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         //receive request categoryID
@@ -54,19 +53,19 @@ public class ListProductsJson extends HttpServlet{
         String orderBy = request.getParameter("order_by");
         String toPriceStr = request.getParameter("to_price");
         String text = request.getParameter("text_search");
-        if(!fromPriceStr.isEmpty()&&!toPriceStr.isEmpty())
-        try {
-            fromPrice = Double.parseDouble(fromPriceStr);
-            toPrice = Double.parseDouble(toPriceStr);
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
+        if (!fromPriceStr.isEmpty() && !toPriceStr.isEmpty())
+            try {
+                fromPrice = Double.parseDouble(fromPriceStr);
+                toPrice = Double.parseDouble(toPriceStr);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
 
-        pageable = new PageRequest(pageIndexNum,perPageNum);
+        pageable = new PageRequest(pageIndexNum, perPageNum);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                products = productService.findAll(pageable,fromPrice,toPrice,categoryID,sortBy,orderBy,text);
+                products = productService.findAll(pageable, fromPrice, toPrice, categoryID, sortBy, orderBy, text);
             }
         });
         thread.start();
@@ -76,16 +75,16 @@ public class ListProductsJson extends HttpServlet{
             e.printStackTrace();
         }
 
-            if(products!=null) {
-                json  = new Gson().toJson(products);
-                PrintWriter out = response.getWriter();
-                try {
-                    out.println(json);
-                } finally {
-                    out.close();
+        if (products != null) {
+            json = new Gson().toJson(products);
+            PrintWriter out = response.getWriter();
+            try {
+                out.println(json);
+            } finally {
+                out.close();
 
-                }
             }
+        }
     }
 
     @Override

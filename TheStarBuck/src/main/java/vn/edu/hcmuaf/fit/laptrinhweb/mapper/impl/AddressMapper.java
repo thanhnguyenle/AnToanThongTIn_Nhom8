@@ -23,7 +23,7 @@ public class AddressMapper implements IRowMapper<Address> {
             address.setCreatedBy(resultSet.getString("createdBy"));
             address.setModifiedBy(resultSet.getString("modifiedBy"));
             return address;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

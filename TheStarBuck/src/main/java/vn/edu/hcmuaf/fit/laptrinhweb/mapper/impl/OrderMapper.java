@@ -29,7 +29,7 @@ public class OrderMapper implements IRowMapper<Orders> {
             orders.setCreatedBy(resultSet.getString("createdBy"));
             orders.setModifiedBy(resultSet.getString("modifiedBy"));
             return orders;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             return null;
         }
 

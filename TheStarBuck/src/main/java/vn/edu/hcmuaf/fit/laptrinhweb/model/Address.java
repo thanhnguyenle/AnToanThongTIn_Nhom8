@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
 import java.io.Serializable;
 
-public class Address extends AbsModel  implements Serializable {
+public class Address extends AbsModel implements Serializable {
     private String id;
     private String idAccount;
 

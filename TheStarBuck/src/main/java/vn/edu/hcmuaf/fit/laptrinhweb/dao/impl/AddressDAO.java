@@ -10,24 +10,25 @@ import java.util.Date;
 import java.util.List;
 
 public class AddressDAO extends AbstractDAO<Address> implements IAddressDAO {
-   private static AddressDAO instance;
+    private static AddressDAO instance;
 
     private AddressDAO() {
     }
 
-    public static AddressDAO getInstance(){
-        if(instance == null)
+    public static AddressDAO getInstance() {
+        if (instance == null)
             instance = new AddressDAO();
         return instance;
     }
+
     @Override
     public List<Address> findAll() {
-        return query(QUERIES.ADDRESS.GET_LIST,new AddressMapper());
+        return query(QUERIES.ADDRESS.GET_LIST, new AddressMapper());
     }
 
     @Override
     public Long save(Address address) {
-        if(address.getId().equals("")){
+        if (address.getId().equals("")) {
             return addItem(address);
         } else
             return updateItem(address);
@@ -48,6 +49,6 @@ public class AddressDAO extends AbstractDAO<Address> implements IAddressDAO {
 
     @Override
     public List<Address> getByAccountID(String id) {
-        return query(QUERIES.ADDRESS.GET_BY_ACCID,new AddressMapper(),id);
+        return query(QUERIES.ADDRESS.GET_BY_ACCID, new AddressMapper(), id);
     }
 }

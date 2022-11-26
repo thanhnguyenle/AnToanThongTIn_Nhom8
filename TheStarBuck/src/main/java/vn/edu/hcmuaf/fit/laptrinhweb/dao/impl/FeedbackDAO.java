@@ -10,15 +10,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class FeedbackDAO extends  AbstractDAO<FeedBack> implements IFeedbackDAO {
+public class FeedbackDAO extends AbstractDAO<FeedBack> implements IFeedbackDAO {
     private static FeedbackDAO instance;
-    private FeedbackDAO(){}
-    public static FeedbackDAO getInstance(){
-        if(instance == null){
+
+    private FeedbackDAO() {
+    }
+
+    public static FeedbackDAO getInstance() {
+        if (instance == null) {
             instance = new FeedbackDAO();
         }
         return instance;
     }
+
     @Override
     public List<FeedBack> findAll() {
         List<FeedBack> output = query(QUERIES.FEEDBACK.GET_LIST, new FeedbackMapper());
@@ -27,7 +31,7 @@ public class FeedbackDAO extends  AbstractDAO<FeedBack> implements IFeedbackDAO 
 
     @Override
     public Long save(FeedBack feedBack) {
-        if(feedBack.getId().equals("")){
+        if (feedBack.getId().equals("")) {
             return addItem(feedBack);
         } else {
             return updateItem(feedBack);

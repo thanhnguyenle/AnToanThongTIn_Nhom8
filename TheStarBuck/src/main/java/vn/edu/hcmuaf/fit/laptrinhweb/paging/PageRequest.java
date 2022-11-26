@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.paging;
 
-public class PageRequest implements IPageAble{
+public class PageRequest implements IPageAble {
     private Integer page;
     private Integer maxPageItem;
 
@@ -16,8 +16,8 @@ public class PageRequest implements IPageAble{
 
     @Override
     public Integer getOffset() {
-        if(this.page!=null && this.maxPageItem !=null){
-            return (this.page - 1)*this.maxPageItem;
+        if (this.page != null && this.maxPageItem != null) {
+            return (this.page - 1) * this.maxPageItem;
         }
         return null;
     }

@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class PostMapper implements IRowMapper<Post> {
     @Override
-    public Post mapRow(ResultSet resultSet){
-       Post post = new Post();
+    public Post mapRow(ResultSet resultSet) {
+        Post post = new Post();
         try {
             post.setId(resultSet.getString("id_po"));
             post.setTitle(resultSet.getString("po_title"));
