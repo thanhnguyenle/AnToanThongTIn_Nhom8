@@ -28,7 +28,9 @@ public class ForgotPasswordServlet extends HttpServlet {
             if (code.equals(codeEmail)) {
                 rd = request.getRequestDispatcher("/views/web/login.jsp");
             } else {
-                rd = request.getRequestDispatcher("/views/web/verifyEmail.jsp");
+               String error = "Change password is fail";
+                session.setAttribute("error", error);
+                rd = request.getRequestDispatcher("/views/web/forgetPassword.jsp");
             }
             rd.forward(request, response);
         } catch (ServletException e) {

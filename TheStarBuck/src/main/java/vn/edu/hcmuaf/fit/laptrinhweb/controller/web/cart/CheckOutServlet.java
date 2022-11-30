@@ -31,7 +31,7 @@ public class CheckOutServlet extends HttpServlet {
         if (session.getAttribute("account") == null) {
             response.sendRedirect(request.getContextPath() + "/doLogin");
             return;
-        } else if (cart.getProductList().isEmpty()) {
+        } else if (cart==null||cart.getProductList().isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/cart");
             return;
         } else

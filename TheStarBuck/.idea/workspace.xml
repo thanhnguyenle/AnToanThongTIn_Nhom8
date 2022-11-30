@@ -9,11 +9,60 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56b7abdb-d4c3-4190-8bbf-8704636be26c" name="Changes" comment="" />
+    <list default="true" id="56b7abdb-d4c3-4190-8bbf-8704636be26c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/GetNumberProductInCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Database_MySQL_WebTraSua.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Database_MySQL_WebTraSua.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheStarBuck.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TheStarBuck.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/CheckOutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/CheckOutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/RemoveServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/RemoveServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/ShowServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/ShowServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/UpdateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/UpdateServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/ShowServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/ShowServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/taglib.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/taglib.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/web/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/web/css/cart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/web/css/product.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/web/css/product.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/web/js/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/web/js/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/OTP.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/OTP.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/layout/css.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/layout/css.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/layout/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/layout/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/layout/script.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/layout/script.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/payment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/payment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/products.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$POST.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$POST.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/common/taglib.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/common/taglib.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/css/cart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/css/product.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/css/product.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/js/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/js/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/OTP.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/OTP.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/layout/css.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/layout/css.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/layout/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/layout/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/layout/script.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/layout/script.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/products.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$POST.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$POST.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -26,22 +75,24 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2I5hhQ9kkrkNwBe91pwKulUi5Jg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/thanhdev/Documents/OnTap_CSDL/TheStarBuck/src/main/webapp/WEB-INF/lib",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/thanhdev/Documents/GitHub/AnToanThongTin_Nhom8/TheStarBuck&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib" />
@@ -50,8 +101,24 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="vn.edu.hcmuaf.fit.laptrinhweb.controller.web.cart" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.27">
+    <configuration name="CrawlPostToJson" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vn.edu.hcmuaf.fit.laptrinhweb.controller.web.json.CrawlPostToJson" />
+      <module name="TheStarBuck" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.hcmuaf.fit.laptrinhweb.controller.web.json.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 10.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.27" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="corretto-16">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -139,6 +206,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CrawlPostToJson" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -149,10 +221,28 @@
       <option name="presentableId" value="Default" />
       <updated>1669477475287</updated>
       <workItem from="1669477478094" duration="6692000" />
+      <workItem from="1669517655993" duration="6437000" />
+      <workItem from="1669557107098" duration="1204000" />
+      <workItem from="1669599054622" duration="7514000" />
+      <workItem from="1669645264042" duration="5767000" />
+      <workItem from="1669682268370" duration="4433000" />
+      <workItem from="1669734984639" duration="6470000" />
+      <workItem from="1669770504938" duration="16309000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

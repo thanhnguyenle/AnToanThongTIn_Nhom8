@@ -82,7 +82,6 @@
                                 <select class="d-flex jusify-content-start align-items-center rounded p-2"
                                         name="country" id="country">
                                     <option value="Vietnam">Vietnam</option>
-                                    <option value="China">China</option>
                                 </select>
                             </div>
                         </div>

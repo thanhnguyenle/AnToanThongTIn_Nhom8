@@ -87,7 +87,7 @@
             <div class="img-container">
               <img src="${x.image}" alt="" />
               <div class="addCart">
-                <a href="<%=request.getContextPath()%>/add-cart?id=${x.id}">
+                <a onclick='return addToCart("${x.id}")'>
                   <i class="fas fa-shopping-cart"></i>
                 </a>
               </div>
@@ -111,9 +111,9 @@
                   <span class="fa fa-stack"><i class="fa fa-star-o"></i><i class="fa fa-star"></i></span>
                 </div>
               </div>
-              <a href="<%=request.getContextPath()%>/detailProduct?id=${x.id}">${x.name}</a>
+              <a onclick='return addToCart("${x.id}")'>${x.name}</a>
               <div class="price">
-                <span>$${x.price - x.discount}</span>
+                <span>$<fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${x.price - x.discount}" /></span>
                 <span class="cancel">$${x.price}</span>
               </div>
             </div>
@@ -135,7 +135,9 @@
             <div class="img-container">
               <img src="${x.image}" alt="" />
               <div class="addCart">
+                <a onclick='return addToCart("${x.id}")'>
                 <i class="fas fa-shopping-cart"></i>
+                </a>
               </div>
               <div class="sale-text">
                 <span class="section-sale">${x.sale}% Off</span>
@@ -159,7 +161,7 @@
               </div>
               <a href="">${x.name}</a>
               <div class="price">
-                <span>$${x.price - x.discount}</span>
+                <span>$<fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${x.price - x.discount}" /></span>
                 <span class="cancel">$${x.price}</span>
               </div>
             </div>
@@ -181,7 +183,9 @@
               <div class="img-container">
                 <img src="${x.image}" alt="" />
                 <div class="addCart">
+                  <a onclick='return addToCart("${x.id}")'>
                   <i class="fas fa-shopping-cart"></i>
+                  </a>
                 </div>
                 <div class="sale-text">
                   <span class="section-sale">${x.sale}% Off</span>
@@ -205,7 +209,7 @@
                 </div>
                 <a href="">${x.name}</a>
                 <div class="price">
-                  <span>$${x.price - x.discount}</span>
+                  <span>$<fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${x.price - x.discount}" /></span>
                   <span class="cancel">$${x.price}</span>
                 </div>
               </div>
@@ -213,7 +217,7 @@
           </c:forEach>
         </div>
         <div class="btn-box">
-          <a href="">
+          <a href="${pageContext.request.contextPath}/menu">
             View More
           </a>
         </div>
@@ -399,6 +403,25 @@
 
   let randomNum = Math.floor(Math.random() * 50);
   ajaxRunPost(randomNum);
+
+  function addToCart(id){
+    let confirmBox = confirm("Add to cart ?");
+    if (confirmBox === true) {
+      $.ajax({
+        url: '<%=request.getContextPath()%>/add-cart?id='+id,
+        type: 'GET',
+        success: function (data) {
+          alert('Add to cart is success!');
+          updateCart();
+        },
+        error: function (data) {
+          alert('Add to cart is error!');
+        }
+      });
+    } else {
+      console.log("No add product to cart!");
+    }
+  }
 </script>
 </body>
 </html>

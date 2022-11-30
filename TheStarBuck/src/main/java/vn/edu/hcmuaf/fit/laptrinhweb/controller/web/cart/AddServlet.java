@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.cart;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,11 +13,11 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 
 import java.io.IOException;
 
-@WebServlet(name = "AddCartServlet", value = "/add-cart")
+@WebServlet(name = "AddCart_Servlet", urlPatterns = {"/add-cart"}, initParams = {
+        @WebInitParam(name = "id", value = "pr0001")
+})
 public class AddServlet extends HttpServlet {
     private ProductService productService;
-    private Product product;
-    private String id;
 
     public AddServlet() {
         productService = ProductService.getInstance();
@@ -25,8 +26,8 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //get product id from request
-        id = request.getParameter("id");
-        product = productService.getItem(id);
+        String id = request.getParameter("id");
+        Product product = productService.getItem(id);
         if (product != null) {
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
@@ -36,30 +37,10 @@ public class AddServlet extends HttpServlet {
             cart.putProduct(product);
             session.setAttribute("cart", cart);
         }
-//        Cookie cookie[] = request.getCookies();
-//        String txt = "";
-//        for (Cookie c: cookie) {
-//            if(c.getName().equals("id")){
-//                txt = txt + c.getValue();
-//                c.setMaxAge(0);
-//                response.addCookie(c);
-//            }
-//        }
-//        if(txt.isEmpty()){
-//            txt = id;
-//        } else {
-//            txt += "," + id;
-//        }
-//
-//        Cookie cookie1 = new Cookie("id", txt);
-//        cookie1.setMaxAge(60 * 60 * 24);
-//        response.addCookie(cookie1);
-
-        response.sendRedirect(request.getContextPath() + "/cart");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+      doGet(request,response);
     }
 }

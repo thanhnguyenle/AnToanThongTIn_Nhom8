@@ -40,7 +40,7 @@
                 <a href="<%=request.getContextPath()%>/cart">
               <span>
                 <img src="<c:url value='/template/web/image/shoppingBag.svg'/>" alt="" />
-                <small class="count d-flex" id="itemcart"><c:if test="${cart == null}"> 0 </c:if>${cart.productList.size()}</small>
+                <small class="count d-flex" id="itemcart">0</small>
               </span>
                 </a>
             </li>
@@ -69,7 +69,21 @@
 <!-- serchBar -->
 <section class="ipSearchBox"></section>
 <!-- thumbnail -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
+function updateCart(){
+    $.ajax({
+        url: '<%=request.getContextPath()%>/num-cart',
+        type: 'GET',
+        success: function (data) {
+          $("#itemcart").text(data);
+        },
+        error: function (data) {
+            alert('Product is not in cart');
+        }
+    });
 
+}
+updateCart();
 </script>

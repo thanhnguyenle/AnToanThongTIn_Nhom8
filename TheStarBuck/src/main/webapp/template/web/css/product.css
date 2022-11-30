@@ -561,6 +561,7 @@ option:hover {
 
 .block-content li label small {
   font-size: 1rem;
+  margin-left: 15px;
 }
 
 .block-content li input {

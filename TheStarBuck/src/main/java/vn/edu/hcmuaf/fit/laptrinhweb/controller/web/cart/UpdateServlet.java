@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@WebServlet(name = "UpdateCartServlet", value = "/cart-updateQuantity")
+@WebServlet(name = "UpdateCart_Servlet", value = "/cart-updateQuantity")
 public class UpdateServlet extends HttpServlet {
     private ProductService productService;
 

@@ -194,11 +194,12 @@
             let obj = json;
             for (let i = 0; i < obj.length; i++) {
               let val = obj[i];
+              // onclick="return theFunction();"
               data += "<div class=\"product\">"
                       + "<div class=\"img-container\">"
                       + "<img class=\"lazy-image\" src=\"" + val.image + "\" />"
                       + "<div class=\"addCart\">"
-                      + "<a href=\"<%=request.getContextPath()%>/add-cart?id=" + val.id + "\"><i class=\"fas fa-shopping-cart\"></i></a>"
+                      + "<a onclick=\'return addToCart(\""+val.id+"\")\'><i class=\"fas fa-shopping-cart\"></i></a>"
                       + "</div>"
                       + "<div class=\"sale-text\">"
                       + "<span class=\"section-sale\">20% Off</span>"
@@ -221,8 +222,8 @@
                       + "</div>"
                       + "<a href=\"<%=request.getContextPath()%>/detailProduct?id=" + val.id + "\">" + val.name + "</a>"
                       + "<div class=\"price\">"
-                      + "<span>$" + val.price + "</span>"
-                      + "<span class=\"cancel\">$" + val.discount + "</span>"
+                      + "<span>$" + Math.round((val.price - val.discount)*100)/100.0+"</span>"
+                      + "<span class=\"cancel\">  $" + Math.round((val.price)*100)/100.0 + "</span>"
                       + "</div>"
                       + "</div>"
                       + "</div>";
@@ -233,6 +234,24 @@
       }
       ajaxRun(category_id,sort_by,from_price,to_price,order_by,text);
 
+    function addToCart(id){
+      let confirmBox = confirm("Add to cart ?");
+      if (confirmBox === true) {
+        $.ajax({
+          url: '<%=request.getContextPath()%>/add-cart?id='+id,
+          type: 'GET',
+          success: function (data) {
+            alert('Add to cart is success!');
+            updateCart();
+          },
+          error: function (data) {
+            alert('Add to cart is error!');
+          }
+        });
+      } else {
+        console.log("No add product to cart!");
+      }
+    }
   </script>
 </body>
 
