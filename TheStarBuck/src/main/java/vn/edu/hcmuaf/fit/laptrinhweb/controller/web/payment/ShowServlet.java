@@ -7,17 +7,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.Address;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
+import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AddressService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ShowPaymentServlet", value = "/payment")
 public class ShowServlet extends HttpServlet {
     private ProductService productService;
+    private AddressService addressService;
 
     public ShowServlet() {
         productService = ProductService.getInstance();
+        addressService = AddressService.getInstance();
     }
 
     @Override
@@ -27,13 +33,21 @@ public class ShowServlet extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         Account account = (Account) session.getAttribute("account");
 
-        session.setAttribute("cart", cart);
-        request.setAttribute("cart", cart);
+        if(account!=null){
+            List<Address> addresses = addressService.getByAccountID(account.getId());
+            session.setAttribute("cart", cart);
+            request.setAttribute("cart", cart);
 
-        session.setAttribute("account", account);
-        request.setAttribute("account", account);
+            session.setAttribute("account", account);
+            request.setAttribute("account", account);
+            if(addresses!=null&& addresses.size()>0){
+                request.setAttribute("addresses",addresses);
+            }else{
+                request.setAttribute("addresses",new ArrayList<Address>());
+            }
+            request.getRequestDispatcher("/views/web/payment.jsp").forward(request, response);
+        }
 
-        request.getRequestDispatcher("/views/web/payment.jsp").forward(request, response);
     }
 
     @Override

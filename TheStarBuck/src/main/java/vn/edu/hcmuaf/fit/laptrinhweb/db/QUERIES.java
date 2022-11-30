@@ -75,7 +75,7 @@ public class QUERIES {
     //CONTACT
     public static class CONTACT {
         public static final String GET_LIST = "select * from Contact";
-        public static final String CREATE = "insert into contact values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public static final String CREATE = "insert into Contact values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         public static final String DELETE = "delete from Contact where id_co = ?";
         public static final String UPDATE = "update Contact set co_active = ?, modifiedDate = ?, modifiedBy = ? where id_co = ?";
         public static final String GET_ITEM_BYID = "select * from Contact where id_co = ?";
@@ -92,40 +92,40 @@ public class QUERIES {
 
     //ORDER
     public static class ORDER {
-        public static final String GET_LIST = "select * from orders";
-        public static final String CREATE = "insert into orders values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        public static final String DELETE = "delete from orders where id_od = ?";
+        public static final String GET_LIST = "select * from Orders";
+        public static final String CREATE = "insert into Orders values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public static final String DELETE = "delete from Orders where id_od = ?";
         public static final String UPDATE = "update orders set od_status = ?, modifiedDate = ?, modifiedBy = ? where id_od = ?";
-        public static final String GET_ITEM_BYID = "select * from orders where id_od = ?";
-        public static final String GET_LAST_BYACCID = "select * from orders where od_acId = ? order by id_od DESC";
-        public static final String COUNT_ITEM = "select COUNT(*) from orders";
-        public static final String SUM_MONEY = "select sum(od_grandTotal) from orders";
+        public static final String GET_ITEM_BYID = "select * from Orders where id_od = ?";
+        public static final String GET_LAST_BYACCID = "select * from Orders where od_acId = ? order by id_od DESC";
+        public static final String COUNT_ITEM = "select COUNT(*) from Orders";
+        public static final String SUM_MONEY = "select sum(od_grandTotal) from Orders";
     }
 
     //ADDRESS
     public static class ADDRESS {
-        public static final String GET_LIST = "select * from address";
-        public static final String CREATE = "insert into address values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        public static final String DELETE = "delete from address where id_ad = ?";
-        public static final String UPDATE = "update address set modifiedDate = ?, modifiedBy = ? where id_ar = ?";
-        public static final String GET_ITEM_BYID = "select * from address where id_ar = ?";
-        public static final String GET_BY_ACCID = "select * from address where ad_userId = ?";
+        public static final String GET_LIST = "select * from Address";
+        public static final String CREATE = "insert into Address values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public static final String DELETE = "delete from Address where id_ad = ?";
+        public static final String UPDATE = "update Address set modifiedDate = ?, modifiedBy = ? where id_ar = ?";
+        public static final String GET_ITEM_BYID = "select * from Address where id_ar = ?";
+        public static final String GET_BY_ACCID = "select * from Address where ad_userId = ?";
     }
 
     //ORDERITEM
     public static class ORDERITEM {
-        public static final String GET_LIST = "select * from orderitem";
-        public static final String CREATE = "insert into orderitem values (?, ?, ?, ?, ?, ?, ?, ?)";
-        public static final String DELETE = "delete from orderitem where oi_prId = ? and oi_orId = ?";
-        public static final String UPDATE = "update orderitem set od_status = ?, modifiedDate = ?, modifiedBy = ? where oi_prId = ? and oi_orId = ?";
-        public static final String GET_ITEM_BYID = "select * from orderitem where oi_prId = ? and oi_orId = ?";
+        public static final String GET_LIST = "select * from OrderItem";
+        public static final String CREATE = "insert into OrderItem values (?, ?, ?, ?, ?, ?, ?, ?)";
+        public static final String DELETE = "delete from OrderItem where oi_prId = ? and oi_orId = ?";
+        public static final String UPDATE = "update OrderItem set od_status = ?, modifiedDate = ?, modifiedBy = ? where oi_prId = ? and oi_orId = ?";
+        public static final String GET_ITEM_BYID = "select * from OrderItem where oi_prId = ? and oi_orId = ?";
     }
 
     public static class POST {
         public static final String GET_LIST = "select * from Post";
         public static final String CREATE = "insert into Post(id_po,po_title, po_description, po_content, po_author,po_url_image,po_url_post,date) values (?, ?, ?, ?, ?, ?, ?,?)";
         public static final String DELETE = "delete from Post where id_po = ?";
-        public static final String UPDATE = "update Post set po_title=?, po_description=?, po_content=?, po_author=?,	po_url_image=?,	po_url_post=?,date=? where id_po=?";
+        public static final String UPDATE = "update Post set po_title=?, po_description=?, po_content=?, po_author=?,	po_url_image=?,	po_url_Post=?,date=? where id_po=?";
         public static final String GET_POST_BYID = "select * from Post where id_po=?";
         public static final String TOTAL = "select COUNT(*) from Post";
     }

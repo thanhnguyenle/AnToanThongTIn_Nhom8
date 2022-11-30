@@ -11,7 +11,7 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.ProductService;
 import java.io.IOException;
 
 
-@WebServlet(name = "ShowCartServlet", value = "/cart")
+@WebServlet(name = "ShowCart_Servlet", value = "/cart")
 public class ShowServlet extends HttpServlet {
     private ProductService productService;
 

@@ -69,12 +69,17 @@
                                   </figure>
                               </td>
                               <td>
-                              <input class="changeQuantity" type="number" pid="${product.id}" value="${product.quantitySold}" min="1"  max="${product.quantity}"/>
+                                  <div class="number-input">
+                                      <button onclick="myStepDown(this.parentNode)" ></button>
+                                      <input class="changeQuantity" min="0" name="quantity" type="number" id="${product.id}" value="${product.quantitySold}" max="${product.quantity}" disabled>
+                                      <button onclick="myStepUp(this.parentNode)" class="plus"></button>
+                                  </div>
+<%--                              <input class="changeQuantity" type="number" pid="${product.id}" value="${product.quantitySold}" min="1"  max="${product.quantity}"/>--%>
                               </td>
                               <td>
                               </td>
                               <td>
-                                  <div class="price-wrap align-items-center"> <var class="price">$${product.price}</var></div>
+                                  <div class="price-wrap align-items-center"> <var class="price">$<fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${product.price - product.discount}"/></var></div>
                               </td>
 
                               <td>
@@ -126,6 +131,7 @@
   <script src="<%= Asset.url("/vendor/dt/datatables.min.js")%>"></script>
 <%--  <script src="/vendor/dt/datatables.min.js"></script>--%>
 <script>
+
   // $(".sub-total-cart").html("123");
   var cart;
   // var sumItem = 0;
@@ -139,7 +145,6 @@
       searching: false,
     });
     loadCart(cart);
-      console.log('abc');
     $('#cart tbody .product-remove').on('click', function (){
         // send ajax to remove product in cart
         var id=$(this).attr('pid');
@@ -159,11 +164,38 @@
             }
         });
     });
-      $('#cart tbody .changeQuantity').on('blur', function (){
-          // send ajax to remove product in cart
-          var id=$(this).attr('pid');
-          var quantity=$(this).val();
-          thisRow = $(this);
+
+  } );
+  function changeQuantity(parentNode){
+      let parent =  parentNode.querySelector('input[type=number]');
+      // send ajax to remove product in cart
+      let id=parent.getAttribute("id");
+      let quantity = parent.value * 1;
+      console.log(id);
+      if(quantity=="0"){
+          //delete product in cart
+          let confirmBox = confirm("Remove product ?");
+          if (confirmBox === true) {
+              $.ajax({
+                  url: '<%=request.getContextPath()%>/cart-remove',
+                  type: 'POST',
+                  data: {
+                      id: id,
+                  },
+                  success: function (data) {
+                      delete cart.productList[id];
+                      dt.row($(parent).parents('tr')).remove().draw();
+                      loadCart(cart);
+                      console.log("remove product is success!");
+                  },
+                  error: function (data) {
+                      alert('Product is not in cart');
+                  }
+              });
+          }else{
+              parent.value = 1;
+          }
+      }else{
           $.ajax({
               url: '<%=request.getContextPath()%>/cart-updateQuantity',
               type: 'POST',
@@ -173,7 +205,7 @@
               },
               success: function (data) {
                   JSQuantity = JSON.parse(data);
-                  thisRow.val(JSQuantity.quantity);
+                  parent.value = (JSQuantity.quantity);
                   updateQuantity(cart, id, JSQuantity.quantity);
                   loadCart(cart);
               },
@@ -181,23 +213,41 @@
                   alert('Product is not in cart');
               }
           });
-      });
-  } );
+      }
+  }
   function loadCart(cart){
-    var sub_sum = 0;
-    var sum = 0;
+      var sub_sum = 0;
+      var sum = 0;
 
-    for (const x in cart.productList) {
-      sub_sum += cart.productList[x].quantitySold * (cart.productList[x].price - (cart.productList[x].price * cart.productList[x].discount));
-      // sumItem += 1;
-    }
-    console.log(sum);
-    sum = sub_sum + sub_sum * 0.01;
-    $(".sub-total-cart").html("$" + sub_sum) ;
-    $(".total-cart").html("$" + sum);
+      for (const x in cart.productList) {
+          sub_sum += Math.round(cart.productList[x].quantitySold * (cart.productList[x].price - cart.productList[x].discount)*100)/100.0;
+          // sumItem += 1;
+      }
+      sum = Math.round((sub_sum + sub_sum * 0.01)*100)/100.0;
+      $(".sub-total-cart").html("$" + sub_sum) ;
+      $(".total-cart").html("$" + sum);
   }
   function updateQuantity(cart, id, quantity){
       cart.productList[id].quantitySold =quantity;
+  }
+  function myStepDown(parentNode) {
+      let selector = parentNode.querySelector('input[type=number]');
+      let val = selector.value*1;
+      selector.value = val - 1;
+      if(val<val.min) selector.value = 1;
+      if(val>val.max) selector.value = val.max;
+
+      changeQuantity(parentNode);
+      console.log(val);
+  }
+  function myStepUp(parentNode) {
+      let selector = parentNode.querySelector('input[type=number]');
+      let val = selector.value*1;
+      selector.value = (val + 1);
+      if(val<val.min) selector.value = 1;
+      if(val>val.max) selector.value = val.max;
+      changeQuantity(parentNode);
+      console.log(val);
   }
 </script>
 </body>

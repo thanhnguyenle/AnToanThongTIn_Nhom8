@@ -320,7 +320,7 @@ IF
 		SET 'utf8mb4' NULL,
 		`po_url_image` VARCHAR ( 255 ) NOT NULL,
 		`po_url_Post` VARCHAR ( 255 ) NOT NULL,
-		`date` DATETIME ( 6 ) NULL DEFAULT NULL,
+		`date` VARCHAR ( 10 ) NULL DEFAULT NULL,
 		PRIMARY KEY ( `id_po` )
 	);
 --  -- FUNCTION --
