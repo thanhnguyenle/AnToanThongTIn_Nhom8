@@ -25,13 +25,12 @@ public class AddAddressJson extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setCharacterEncoding("utf-8");
-        req.setCharacterEncoding("utf-8");
         String userId = req.getParameter("ad_userId");
         String ad_provinceCode = req.getParameter("ad_provinceCode");
         String ad_districtCode = req.getParameter("ad_districtCode");
         String ad_wardCode = req.getParameter("ad_wardCode");
         String ad_addressDetail = req.getParameter("ad_addressDetail");
+        System.out.println("Hello: "+ad_addressDetail);
         if (ad_provinceCode != null && ad_districtCode != null && ad_wardCode != null) {
             Address address = new Address();
             address.setId("");

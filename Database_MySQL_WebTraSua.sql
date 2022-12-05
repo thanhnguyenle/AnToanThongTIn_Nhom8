@@ -57,9 +57,9 @@ IF
 	NOT EXISTS `Address` (
 		`id_ad` VARCHAR ( 6 ) NOT NULL,
 		`ad_userId` VARCHAR ( 6 ) NOT NULL,
-		`ad_provinceCode` VARCHAR(5) NOT NULL,
-		`ad_districtCode` VARCHAR(5) NOT NULL,
-		`ad_wardCode` VARCHAR(5) NOT NULL,
+		`ad_provinceCode` VARCHAR(50) NOT NULL,
+		`ad_districtCode` VARCHAR(50) NOT NULL,
+		`ad_wardCode` VARCHAR(50) NOT NULL,
 		`ad_addressDetail` VARCHAR ( 255 ) CHARACTER SET 'utf8mb4' NOT NULL,
 		`createdDate` DATETIME ( 6 ) NOT NULL,
 		`modifiedDate` DATETIME ( 6 ) NULL DEFAULT NULL,

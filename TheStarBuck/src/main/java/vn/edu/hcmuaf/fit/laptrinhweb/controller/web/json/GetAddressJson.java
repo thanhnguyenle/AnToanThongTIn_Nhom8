@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "GetAddressJson", urlPatterns = {"/getAddressJson"}, initParams = {
+@WebServlet(name = "GetAddress_Json", urlPatterns = {"/getAddressJson"}, initParams = {
         @WebInitParam(name = "id", value = "ac0001"),
 })
 public class GetAddressJson extends HttpServlet {
@@ -24,6 +24,8 @@ public class GetAddressJson extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        req.setCharacterEncoding("utf-8");
         String id = req.getParameter("id");
         Thread thread = new Thread(new Runnable() {
             @Override
