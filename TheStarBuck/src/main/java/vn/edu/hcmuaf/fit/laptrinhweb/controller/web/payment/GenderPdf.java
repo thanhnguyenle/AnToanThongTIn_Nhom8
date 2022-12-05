@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.payment;
 
-import com.ckfinder.connector.errors.ConnectorException;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
@@ -31,8 +30,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
-
-import static com.ckfinder.connector.ServletContextFactory.getServletContext;
 
 public class GenderPdf {
     private static GenderPdf genderPdf;
