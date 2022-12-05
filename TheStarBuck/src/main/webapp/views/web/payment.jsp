@@ -17,6 +17,11 @@
     <!-- Custom StyleSheet -->
     <link rel="stylesheet" href="<%= Asset.url("/template/web/css/payment.css")%>"/>
     <title>Payment</title>
+    <style>
+        .cursor-pointer {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -154,9 +159,8 @@
                 <div class="col-md-6 pt-md-0 pt-3" onclick="return sendRequestToCheckOut()">
                     <div class="btnNav ml-auto text-uppercase btnContinue"><span
                             class="fas fa-lock"></span>
-                        <a>Continue</a>
+                        <a href="<%=request.getContextPath()%>/payment-checkout">Continue</a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -171,9 +175,27 @@
 <!-- Custom Scripts -->
 <script src="<%= Asset.url("/template/web/js/payment.js")%>"></script>
 <script>
+<<<<<<< Updated upstream
+
+=======
     $("#addresses").change(function (){
         getAddressDetail();
     });
+    function openVerify(){
+        let onetime = false;
+        $('#verify-invoice').on('click',function (event) {
+            event.preventDefault();
+            this.blur(); // Manually remove focus from clicked link.
+            if (!onetime) {
+                $.get("<c:url value='/views/web/popupInvoiceVerify.jsp'/>", function (html) {
+                    $(html).appendTo('body').modal();
+                });
+                onetime = true;
+            }else{
+                document.querySelectorAll(".modal").forEach(a=>a.style.display = "block");
+            }
+        });
+    }
     function sendRequestToCheckOut(){
         let fullname = $("#name").val();
         let phonenumber = $("#phone").val();
@@ -189,7 +211,7 @@
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
             success: function (json) {
-                var tab = window.open('/TheStarBuck/payment-checkout', '_blank');
+                let tab = window.open('/TheStarBuck/payment-checkout', '_blank');
                 tab.document.write(json);
                 tab.document.close();
             }

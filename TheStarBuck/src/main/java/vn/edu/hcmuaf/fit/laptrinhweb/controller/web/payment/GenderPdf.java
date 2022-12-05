@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.payment;
 
+import com.ckfinder.connector.errors.ConnectorException;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
@@ -12,6 +13,8 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.VerticalAlignment;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.OrderItem;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
@@ -29,24 +32,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
+import static com.ckfinder.connector.ServletContextFactory.getServletContext;
+
 public class GenderPdf {
-    private File getResourceFile()
-    {
-         URL url = null;
-        try {
-            url = new URL(AssetProperties.getBaseUrl() + "template/invoice.pdf");
-            try {
-                Path path = Paths.get(url.toURI());
-                return path.toFile();
-            } catch (URISyntaxException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private static GenderPdf genderPdf;
+    public static GenderPdf instance(){
+        if(genderPdf==null) genderPdf = new GenderPdf();
+        return genderPdf;
     }
-        public void generatePDF(Account account,Orders orders) {
-        File file = getResourceFile();
+    private File getResourceFile(HttpServletRequest request)
+    {
+        ServletContext context = request.getServletContext();
+        String fullPath = context.getRealPath("/template/invoice.pdf");
+        System.out.println(fullPath);
+        return new File(fullPath);
+    }
+        public void generatePDF(Account account,Orders orders,HttpServletRequest request) {
+        File file = getResourceFile(request);
         DeviceRgb deviceRgb = new DeviceRgb(63,169,219);
         try {
             PdfWriter pdfWriter = new PdfWriter(file);

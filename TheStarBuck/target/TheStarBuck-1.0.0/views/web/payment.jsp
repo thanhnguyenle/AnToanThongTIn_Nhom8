@@ -189,7 +189,7 @@
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
             success: function (json) {
-                var tab = window.open('/TheStarBuck/payment-checkout', '_blank');
+                let tab = window.open('/TheStarBuck/payment-checkout', '_blank');
                 tab.document.write(json);
                 tab.document.close();
             }

@@ -14,7 +14,7 @@ public class AssetProperties {
         }
     }
 
-    public static String getBaseUrl() {
+    public static String  getBaseUrl() {
         return prop.get("baseUrl").toString();
     }
 }
