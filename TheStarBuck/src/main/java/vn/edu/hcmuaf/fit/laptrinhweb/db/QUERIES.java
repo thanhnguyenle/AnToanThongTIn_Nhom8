@@ -13,7 +13,7 @@ public class QUERIES {
         public static final String GET_ITEM_BYEMAIL = "select * from Account where ac_email = ?";
         public static final String UPDATE = "update Account set ac_active = ?, ac_lastLogin = ?, ac_groupId = ?, ac_avatar = ?,modifiedDate = ?, modifiedBy = ?  where id_ac = ?";
         public static final String UPDATE_PROFILE = "update Account set ac_fullname = ?, ac_mobile = ?, ac_email = ?, ac_avatar = ?, ac_addressId = ?, ac_lastLogin = ?, modifiedDate = ?, modifiedBy = ? where id_ac = ?";
-        public static final String COUNT_ITEM = "select COUNT(*) from account";
+        public static final String COUNT_ITEM = "select COUNT(*) from Account";
         public static final String VERIFY_ACCOUNT = "update Account set ac_emailVerifiedAt = ? WHERE id_ac = ?";
         public static final String CHANGEPASS = "update Account ac_password = ? where id_ac=?";
 

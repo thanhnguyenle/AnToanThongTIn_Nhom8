@@ -17,6 +17,11 @@
     <!-- Custom StyleSheet -->
     <link rel="stylesheet" href="<%= Asset.url("/template/web/css/payment.css")%>"/>
     <title>Payment</title>
+    <style>
+        .cursor-pointer {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -136,8 +141,13 @@
                             href="<%=request.getContextPath()%>/menu">Back to shopping</a>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 <div class="col-md-6 pt-md-0 pt-3">
                     <div class="btnNav ml-auto text-uppercase btnContinue"><span
+=======
+                <div class="col-md-6 pt-md-0 pt-3" onclick="return sendRequestToCheckOut()">
+                    <div class="btnNav ml-auto text-uppercase btnContinue cursor-pointer" id="verify-invoice"><span
+>>>>>>> Stashed changes
                             class="fas fa-lock"></span>
                         <a href="<%=request.getContextPath()%>/payment-checkout">Continue</a>
                     </div>
@@ -155,7 +165,90 @@
 <!-- Custom Scripts -->
 <script src="<%= Asset.url("/template/web/js/payment.js")%>"></script>
 <script>
+<<<<<<< Updated upstream
 
+=======
+    $("#addresses").change(function (){
+        getAddressDetail();
+    });
+    function openVerify(){
+        let onetime = false;
+        $('#verify-invoice').on('click',function (event) {
+            event.preventDefault();
+            this.blur(); // Manually remove focus from clicked link.
+            if (!onetime) {
+                $.get("<c:url value='/views/web/popupInvoiceVerify.jsp'/>", function (html) {
+                    $(html).appendTo('body').modal();
+                });
+                onetime = true;
+            }else{
+                document.querySelectorAll(".modal").forEach(a=>a.style.display = "block");
+            }
+        });
+    }
+    function sendRequestToCheckOut(){
+        let fullname = $("#name").val();
+        let phonenumber = $("#phone").val();
+        let email = $("#email").val();
+        let addresses = $("#addresses :selected").text();
+        let addressDetails = $("#addressDetail :selected").val();
+        let payment = $("#payment :selected").val();
+
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/payment-checkout",
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
+            success: function (json) {
+                let tab = window.open('/TheStarBuck/payment-checkout', '_blank');
+                tab.document.write(json);
+                tab.document.close();
+            }
+        });
+    }
+    function ajaxRun() {
+        let id = "${account.id}";
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/getAddressJson?id="+id,
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            success: function (json) {
+                let obj = JSON.parse(json);
+                let data = "";
+                for (let i = 0; i < obj.length; i++) {
+                  let o = obj[i];
+                  data="<option value=\""+o.id+"\">"+o.wardCode+" - "+o.districtCode+" - "+o.provinceCode+"</option>";
+                  $("#addresses").append(data);
+                }
+                // $("div.products-layout div.product-layout").html(data);
+            }
+        });
+    }
+    function getAddressDetail() {
+        let id = "${account.id}";
+        let addresses = $("#addresses :selected").val();
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/getAddressJson?id="+id,
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            success: function (json) {
+                let obj = JSON.parse(json);
+                let data = "";
+                for (let i = 0; i < obj.length; i++) {
+                    let o = obj[i];
+                    if(o.id==addresses){
+                        $("addressDetail").text(o.addressDetail);
+                    }
+                }
+                // $("div.products-layout div.product-layout").html(data);
+            }
+        });
+    }
+    ajaxRun();
+>>>>>>> Stashed changes
 </script>
 </body>
 

@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56b7abdb-d4c3-4190-8bbf-8704636be26c" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/GetNumberProductInCart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Database_MySQL_WebTraSua.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Database_MySQL_WebTraSua.sql" afterDir="false" />
@@ -33,9 +34,19 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/layout/css.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/layout/css.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/layout/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/layout/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/layout/script.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/layout/script.jsp" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/web/popupInvoiceVerify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/CheckoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/CheckoutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/GenderPdf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/GenderPdf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/properties/AssetProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/laptrinhweb/properties/AssetProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/order.jsp" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/payment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/payment.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/products.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0.war" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/ForgotPasswordServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" afterDir="false" />
@@ -55,6 +66,17 @@
       <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/cart/AddServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/PostDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$POST.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$POST.class" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/CheckoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/CheckoutServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/AccountDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/AccountDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$ACCOUNT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/WEB-INF/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$ACCOUNT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/js/profileAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/template/web/js/profileAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/order.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/payment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/TheStarBuck-1.0.0/views/web/payment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/CheckoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/controller/web/payment/CheckoutServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/AccountDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/dao/impl/AccountDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$ACCOUNT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/vn/edu/hcmuaf/fit/laptrinhweb/db/QUERIES$ACCOUNT.class" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +102,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -91,15 +114,41 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/thanhdev/Documents/GitHub/AnToanThongTin_Nhom8/TheStarBuck/src/main/webapp/views/web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> Stashed changes
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< Updated upstream
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib" />
       <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java" />
+=======
+      <recent name="$PROJECT_DIR$/src/main/webapp/views/web" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/template" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib" />
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+>>>>>>> Stashed changes
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="vn.edu.hcmuaf.fit.laptrinhweb.controller.web.cart" />
@@ -228,6 +277,15 @@
       <workItem from="1669682268370" duration="4433000" />
       <workItem from="1669734984639" duration="6470000" />
       <workItem from="1669770504938" duration="16309000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1669857503123" duration="11155000" />
+      <workItem from="1669963046727" duration="6094000" />
+      <workItem from="1669992054486" duration="600000" />
+      <workItem from="1670035079633" duration="11942000" />
+      <workItem from="1670138774017" duration="599000" />
+      <workItem from="1670206855876" duration="10619000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

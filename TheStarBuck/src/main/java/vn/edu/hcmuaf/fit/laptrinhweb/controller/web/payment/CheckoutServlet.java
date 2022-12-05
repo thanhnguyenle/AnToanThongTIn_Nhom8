@@ -9,18 +9,21 @@ import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.OrderService;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toCollection;
 
-@WebServlet(name = "CheckoutPaymentServlet", value = "/payment-checkout")
+@WebServlet(name = "CheckoutPayment_Servlet", value = "/payment-checkout")
 public class CheckoutServlet extends HttpServlet {
     private OrderService orderService;
+    private GenderPdf genderPdf;
 
     public CheckoutServlet() {
         orderService = OrderService.getInstance();
+        genderPdf = GenderPdf.instance();
     }
 
     @Override
@@ -61,15 +64,20 @@ public class CheckoutServlet extends HttpServlet {
         orders.setShipping(1);
         orders.setId("");
         orders.setPromo("");
+        for(Product product:cart.getProductList()){
+            orders.getProductList().put(product.getId(),product);
+        }
 
-        System.out.println(orders.toString());
+
         boolean checkFlag = orderService.createOrder(account, cart, orders);
         System.out.println("------ " + checkFlag);
         if (checkFlag) {
+            //generate PDF:
+            genderPdf.generatePDF(account,orders,request);
             Orders orders1 = orderService.getItemByIdAc(account.getId());
             session.removeAttribute("cart");
-            session.setAttribute("order", orders1);
-            session.setAttribute("productSold", cart.getProductList().stream().collect(toCollection(ArrayList::new)));
+          //  session.setAttribute("order", orders1);
+          //  session.setAttribute("productSold", cart.getProductList().stream().collect(toCollection(ArrayList::new)));
             request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/payment");

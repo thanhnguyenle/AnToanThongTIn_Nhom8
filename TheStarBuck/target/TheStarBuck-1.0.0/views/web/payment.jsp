@@ -156,6 +156,63 @@
 <script src="<%= Asset.url("/template/web/js/payment.js")%>"></script>
 <script>
 
+<<<<<<< Updated upstream
+=======
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/payment-checkout",
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
+            success: function (json) {
+                let tab = window.open('/TheStarBuck/payment-checkout', '_blank');
+                tab.document.write(json);
+                tab.document.close();
+            }
+        });
+    }
+    function ajaxRun() {
+        let id = "${account.id}";
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/getAddressJson?id="+id,
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            success: function (json) {
+                let obj = JSON.parse(json);
+                let data = "";
+                for (let i = 0; i < obj.length; i++) {
+                  let o = obj[i];
+                  data="<option value=\""+o.id+"\">"+o.wardCode+" - "+o.districtCode+" - "+o.provinceCode+"</option>";
+                  $("#addresses").append(data);
+                }
+                // $("div.products-layout div.product-layout").html(data);
+            }
+        });
+    }
+    function getAddressDetail() {
+        let id = "${account.id}";
+        let addresses = $("#addresses :selected").val();
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/getAddressJson?id="+id,
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            success: function (json) {
+                let obj = JSON.parse(json);
+                let data = "";
+                for (let i = 0; i < obj.length; i++) {
+                    let o = obj[i];
+                    if(o.id==addresses){
+                        $("addressDetail").text(o.addressDetail);
+                    }
+                }
+                // $("div.products-layout div.product-layout").html(data);
+            }
+        });
+    }
+    ajaxRun();
+>>>>>>> Stashed changes
 </script>
 </body>
 
