@@ -70,7 +70,7 @@
     @keyframes slackbefore {
         0% {
             width: 1em;
-            box-shadow: 2em -1em rgba(225, 20, 98, 0.75), -2em 1em rgba(111, 202, 220, 0.75);
+            box-shadow: 2em -1em rgba(225, 20, 98, 0.75), 2em 1em rgba(111, 202, 220, 0.75);
         }
         35% {
             width: 5em;
@@ -81,25 +81,25 @@
             box-shadow: -2em -1em rgba(225, 20, 98, 0.75), 2em 1em rgba(111, 202, 220, 0.75);
         }
         100% {
-            box-shadow: 2em -1em rgba(225, 20, 98, 0.75), -2em 1em rgba(111, 202, 220, 0.75);
+            box-shadow: 2em -1em rgba(225, 20, 98, 0.75), 2em 1em rgba(111, 202, 220, 0.75);
         }
     }
 
     @keyframes slackafter {
         0% {
             height: 1em;
-            box-shadow: 1em 2em rgba(61, 184, 143, 0.75), -1em -2em rgba(233, 169, 32, 0.75);
+            box-shadow: 1em 2em rgba(61, 184, 143, 0.75), 1em -2em rgba(233, 169, 32, 0.75);
         }
         35% {
             height: 5em;
-            box-shadow: 1em 0 rgba(61, 184, 143, 0.75), -1em 0 rgba(233, 169, 32, 0.75);
+            box-shadow: 1em 0 rgba(61, 184, 143, 0.75), 1em 0 rgba(233, 169, 32, 0.75);
         }
         70% {
             height: 1em;
-            box-shadow: 1em -2em rgba(61, 184, 143, 0.75), -1em 2em rgba(233, 169, 32, 0.75);
+            box-shadow: 1em -2em rgba(61, 184, 143, 0.75), 1em 2em rgba(233, 169, 32, 0.75);
         }
         100% {
-            box-shadow: 1em 2em rgba(61, 184, 143, 0.75), -1em -2em rgba(233, 169, 32, 0.75);
+            box-shadow: 1em 2em rgba(61, 184, 143, 0.75), 1em -2em rgba(233, 169, 32, 0.75);
         }
     }
 
