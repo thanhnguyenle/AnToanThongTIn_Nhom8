@@ -58,9 +58,9 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     session.setAttribute("account", account);
                     if (account.getGroupId().equals("MOD")) {
-                        response.sendRedirect(request.getContextPath() + "/admin-home");
+                        response.sendRedirect(request.getContextPath() + "/selectPage");
                     } else {
-                        request.getRequestDispatcher("/user-home").forward(request, response);
+                        request.getRequestDispatcher("/selectPage").forward(request, response);
                     }
                 }
             } else {

@@ -7,19 +7,24 @@
 <html lang="en">
 
 <head>
-	<jsp:include page="layout/css.jsp"/>
 	<link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileAccount.css")%>" />
 	<!-- Custom StyleSheet -->
 	<title>Profile</title>
+	<style>
+		.container-popup{
+			background-color: white;
+			width: 50%;
+			height: 60%;
+			margin: -50px auto auto;
+		}
+	</style>
 </head>
 
 <body>
-<br />
-<br />
-<br />
 	<div class="container modal">
 		<br />
-		<form class="bg-white shadow rounded-lg d-block d-sm-flex" method="post" action="${pageContext.request.contextPath}/user-profile" id="form-profile">
+		<div class="container-popup">
+			<form class="bg-white shadow rounded-lg d-block d-sm-flex" method="post" action="${pageContext.request.contextPath}/user-profile" id="form-profile">
 			<div class="profile-tab-nav border-right">
 				<div class="p-4">
 					<div class="img-circle text-center mb-3 file-upload">
@@ -151,6 +156,7 @@
 				</div>
 			</div>
 		</form>
+		</div>
 	</div>
 <script src="<%= Asset.url("/template/web/js/profileAccount.js")%>"></script>
 <script>

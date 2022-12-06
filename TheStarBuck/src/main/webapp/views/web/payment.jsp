@@ -51,8 +51,7 @@
         <div class="col-lg-8 col-md-8 col-sm-12 offset-lg-0 offset-md-2 offset-sm-1 blockInfo">
             <div class="mobile h5">Billing Address</div>
             <div id="details" class="bg-white rounded pb-5">
-                <form role="form" action="${pageContext.request.contextPath}/payment-checkout"
-                      method="post">
+                <form>
                     <!--Name-->
                     <div class="form-group"><label class="" for="name">Name</label>
                         <div class="d-flex jusify-content-start align-items-center rounded p-2">
@@ -79,78 +78,85 @@
                                     id="email" name="email" value="${account.email}">
                             <span class="fas fa-check text-success pr-sm-2 pr-0"></span></div>
                     </div>
-                    <div class="row">
-                        <!--Country-->
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="country">Country</label>
-                                <select class="d-flex jusify-content-start align-items-center rounded p-2"
-                                        name="country" id="country">
-                                    <option value="Vietnam">Vietnam</option>
-                                </select>
-                            </div>
+<%--                    <div class="row">--%>
+<%--                        <!--Country-->--%>
+<%--                        <div class="col-lg-6">--%>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="country">Country</label>--%>
+<%--                                <select class="d-flex jusify-content-start align-items-center rounded p-2"--%>
+<%--                                        name="country" id="country">--%>
+<%--                                    <option value="Vietnam">Vietnam</option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="col-lg-6">--%>
+<%--                            <!--Province-->--%>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="province">Province</label>--%>
+<%--                                <select class="d-flex jusify-content-start align-items-center rounded p-2"--%>
+<%--                                        name="province" id="province">--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row">--%>
+<%--                        <!--District-->--%>
+<%--                        <div class="col-lg-6">--%>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="district">District</label>--%>
+<%--                                <select class="d-flex jusify-content-start align-items-center rounded p-2"--%>
+<%--                                        name="district" id="district">--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <!--Ward-->--%>
+<%--                        <div class="col-lg-6">--%>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="ward">Ward</label>--%>
+<%--                                <select class="d-flex jusify-content-start align-items-center rounded p-2"--%>
+<%--                                        name="ward" id="ward">--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="col-lg-12">--%>
+
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+                        <div class="form-group">
+                            <label for="addresses">Address</label>
+                            <select class="d-flex jusify-content-start align-items-center rounded p-2"
+                                    name="addresses" id="addresses">
+
+
+                            </select>
                         </div>
-                        <div class="col-lg-6">
-                            <!--Province-->
-                            <div class="form-group">
-                                <label for="province">Province</label>
-                                <select class="d-flex jusify-content-start align-items-center rounded p-2"
-                                        name="province" id="province">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--District-->
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="district">District</label>
-                                <select class="d-flex jusify-content-start align-items-center rounded p-2"
-                                        name="district" id="district">
-                                </select>
-                            </div>
-                        </div>
-                        <!--Ward-->
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="ward">Ward</label>
-                                <select class="d-flex jusify-content-start align-items-center rounded p-2"
-                                        name="ward" id="ward">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group"><label for="addressDetail">Address
-                                Detail</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2">
+                    <div class="form-group">
+                        <label for="addressDetail">Address Detail</label>
+                        <div class="d-flex jusify-content-start align-items-center rounded p-2">
                                         <textarea style="width:100%;resize: none;border: none;"
                                                   id="addressDetail"
                                                   name="addressDetail"></textarea>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <input type="checkbox" id="pay" name="pay" value="accept">
-                    <label for="pay">Payment in cash</label><br>
-                    <button type="submit" id="check-out">check out</button>
+                        <div class="form-group">
+                            <label for="payment">Payment</label>
+                            <select class="d-flex jusify-content-start align-items-center rounded p-2"
+                                    name="payment" id="payment">
+                                <option value="master-card">Master Card</option>
+                                <option value="visa-card">Visa</option>
+                                <option value="cash">Cash</option>
+                            </select>
+                    </div>
                 </form>
             </div>
             <div class="row pt-lg-3 buttons mb-sm-0 mb-2">
-                <div class="col-md-6 pt-md-0 pt-3">
-                    <div class="btnNav text-uppercase btnBack"><a
-                            href="<%=request.getContextPath()%>/menu">Back to shopping</a>
-                    </div>
+                <div class="col-md-6 pt-md-0 pt-3 cursor-pointer" onclick="return redirectHome()">
+                    <div class="btnNav text-uppercase btnBack">Back to shopping</div>
                 </div>
-<<<<<<< Updated upstream
-                <div class="col-md-6 pt-md-0 pt-3">
+                <div class="col-md-6 pt-md-0 pt-3 cursor-pointer" onclick="return openVerify()">
                     <div class="btnNav ml-auto text-uppercase btnContinue"><span
-=======
-                <div class="col-md-6 pt-md-0 pt-3" onclick="return sendRequestToCheckOut()">
-                    <div class="btnNav ml-auto text-uppercase btnContinue cursor-pointer" id="verify-invoice"><span
->>>>>>> Stashed changes
-                            class="fas fa-lock"></span>
-                        <a href="<%=request.getContextPath()%>/payment-checkout">Continue</a>
-                    </div>
+                            class="fas fa-lock"></span>Continue</div>
                 </div>
             </div>
         </div>
@@ -165,16 +171,15 @@
 <!-- Custom Scripts -->
 <script src="<%= Asset.url("/template/web/js/payment.js")%>"></script>
 <script>
-<<<<<<< Updated upstream
-
-=======
+    function redirectHome(){
+        window.location.href = "/TheStarBuck/user-home";
+        window.location.assign("/TheStarBuck/user-home");
+    }
     $("#addresses").change(function (){
         getAddressDetail();
     });
     function openVerify(){
         let onetime = false;
-        $('#verify-invoice').on('click',function (event) {
-            event.preventDefault();
             this.blur(); // Manually remove focus from clicked link.
             if (!onetime) {
                 $.get("<c:url value='/views/web/popupInvoiceVerify.jsp'/>", function (html) {
@@ -184,9 +189,8 @@
             }else{
                 document.querySelectorAll(".modal").forEach(a=>a.style.display = "block");
             }
-        });
     }
-    function sendRequestToCheckOut(){
+    function sendRequestGeneratePDF(){
         let fullname = $("#name").val();
         let phonenumber = $("#phone").val();
         let email = $("#email").val();
@@ -201,9 +205,7 @@
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
             success: function (json) {
-                let tab = window.open('/TheStarBuck/payment-checkout', '_blank');
-                tab.document.write(json);
-                tab.document.close();
+                console.log("generate success!");
             }
         });
     }
@@ -248,7 +250,6 @@
         });
     }
     ajaxRun();
->>>>>>> Stashed changes
 </script>
 </body>
 

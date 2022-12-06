@@ -29,7 +29,7 @@
     <br/>
     <div class='_2'>WAS NOT FOUND</div>
     <br/>
-    <a class='btn' href='#'>BACK TO HOME</a>
+    <a class='btn' href='/TheStarBuck/user-home'>BACK TO HOME</a>
 </div>
 
 </body>

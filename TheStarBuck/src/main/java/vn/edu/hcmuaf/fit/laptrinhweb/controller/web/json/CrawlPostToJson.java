@@ -28,13 +28,10 @@ public class CrawlPostToJson {
     public static void main(String[] args) {
         CrawlPostToJson crawlObj = CrawlPostToJson.getInstance();
         String str = crawlObj.crawlPostAt("https://punchdrink.com/articles/most-popular-best-cocktail-recipes/");
-        System.out.println(str);
 
         for (int i = 1; i < 10; i++) {
             List<Post> list = crawlObj.crawlDataAt(i);
             for (Post pos : list) {
-                //pos.setPost_content(crawlObj.crawlPostAt(pos.getPost_url()));
-                // System.out.println(pos);
                 crawlObj.iPostService.add(pos);
             }
         }
@@ -84,7 +81,6 @@ public class CrawlPostToJson {
             for (Element element : contentBlock) {
                 if (element.hasClass("tags")) break;
                 result += element.html();
-                System.out.println(result);
             }
         }
         return result;

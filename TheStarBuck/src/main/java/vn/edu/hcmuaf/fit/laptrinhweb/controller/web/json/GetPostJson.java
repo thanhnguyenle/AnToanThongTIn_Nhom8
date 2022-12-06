@@ -27,7 +27,6 @@ public class GetPostJson extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String postID = req.getParameter("post_id");
-        System.out.println(postID);
         Thread thread = new Thread(() -> {
             post = postService.findById(postID);
             post.setPost_content(crawlPost.crawlPostAt(post.getPost_url()));

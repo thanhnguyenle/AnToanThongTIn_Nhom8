@@ -28,8 +28,7 @@ public class CheckoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher("/views/web/payment.jsp").forward(request, response);
-        doPost(request, response);
+        request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
     }
 
     @Override
@@ -45,12 +44,10 @@ public class CheckoutServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String note = "name: " + name + ", phone number: " + phone + ", email: " + email;
-        String country = request.getParameter("country");
-        String province = request.getParameter("province");
-        String district = request.getParameter("district");
-        String ward = request.getParameter("ward");
+        String addresses = request.getParameter("addresses");
         String addressDetail = request.getParameter("addressDetail");
-        String address = country + " " + province + " " + district + " " + ward + " " + addressDetail;
+        String payment = request.getParameter("payment");
+        String address = addresses + "\nDetail: " + addressDetail;
         orders.setIdAccount(account.getId());
         orders.setSubTotal(cart.getSubTotalPrice());
         orders.setGrandTotal(cart.getTotalPrice());
@@ -58,7 +55,7 @@ public class CheckoutServlet extends HttpServlet {
         orders.setAddress(address);
         orders.setIdSession("session");
         orders.setToken("token");
-        orders.setStatus("stutus");
+        orders.setStatus("status");
         orders.setItemDiscount(1);
         orders.setTax(1);
         orders.setShipping(1);
@@ -67,18 +64,11 @@ public class CheckoutServlet extends HttpServlet {
         for(Product product:cart.getProductList()){
             orders.getProductList().put(product.getId(),product);
         }
-
-
         boolean checkFlag = orderService.createOrder(account, cart, orders);
-        System.out.println("------ " + checkFlag);
         if (checkFlag) {
             //generate PDF:
             genderPdf.generatePDF(account,orders,request);
-            Orders orders1 = orderService.getItemByIdAc(account.getId());
             session.removeAttribute("cart");
-          //  session.setAttribute("order", orders1);
-          //  session.setAttribute("productSold", cart.getProductList().stream().collect(toCollection(ArrayList::new)));
-            request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/payment");
         }

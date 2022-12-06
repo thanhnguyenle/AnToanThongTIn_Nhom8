@@ -278,7 +278,7 @@
               customers the best experience in terms of service and space.</p>
           </div>
           <div class="btn-box">
-            <a href="">
+            <a href="/TheStarBuck/menu">
               View More
             </a>
           </div>

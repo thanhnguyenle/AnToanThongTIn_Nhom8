@@ -52,7 +52,7 @@ $(document).ready(function(){
       if ($t.is(':visible')) {
       $t.slideUp(500);
       // Other stuff to do on slideUp
-          saveAddress("http://localhost:8080/TheStarBuck/createAddress")
+          saveAddress("http://localhost:8080/TheStarBuck/addAddressJson")
       $('.addButtonBtn').val('Add Address')
   } else {
       $t.slideDown(500);
