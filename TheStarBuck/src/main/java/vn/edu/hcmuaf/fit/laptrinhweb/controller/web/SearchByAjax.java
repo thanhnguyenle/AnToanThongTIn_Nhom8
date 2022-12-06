@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 
-@WebServlet(name = "SerchByAjax", value = "/searchAjax")
+@WebServlet(name = "SearchByAjax", value = "/searchAjax")
 public class SearchByAjax extends HttpServlet {
     ProductService productService = ProductService.getInstance();
 

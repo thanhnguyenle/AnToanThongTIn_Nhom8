@@ -34,3 +34,98 @@
 
 <!--modal-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<style>
+    /*-----------------------------------------------
+	css loader (slack style)
+-----------------------------------------------*/
+
+    .loader {
+        position: relative;
+        width: 5em;
+        height: 5em;
+        transform: rotate(165deg);
+    }
+
+    .loader:before,
+    .loader:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 1em;
+        height: 1em;
+        border-radius: 0.5em;
+        transform: translate(-50%, -50%);
+    }
+
+    .loader:before {
+        animation: slackbefore 2s infinite;
+    }
+
+    .loader:after {
+        animation: slackafter 2s infinite;
+    }
+
+    @keyframes slackbefore {
+        0% {
+            width: 1em;
+            box-shadow: 2em -1em rgba(225, 20, 98, 0.75), -2em 1em rgba(111, 202, 220, 0.75);
+        }
+        35% {
+            width: 5em;
+            box-shadow: 0 -1em rgba(225, 20, 98, 0.75), 0 1em rgba(111, 202, 220, 0.75);
+        }
+        70% {
+            width: 1em;
+            box-shadow: -2em -1em rgba(225, 20, 98, 0.75), 2em 1em rgba(111, 202, 220, 0.75);
+        }
+        100% {
+            box-shadow: 2em -1em rgba(225, 20, 98, 0.75), -2em 1em rgba(111, 202, 220, 0.75);
+        }
+    }
+
+    @keyframes slackafter {
+        0% {
+            height: 1em;
+            box-shadow: 1em 2em rgba(61, 184, 143, 0.75), -1em -2em rgba(233, 169, 32, 0.75);
+        }
+        35% {
+            height: 5em;
+            box-shadow: 1em 0 rgba(61, 184, 143, 0.75), -1em 0 rgba(233, 169, 32, 0.75);
+        }
+        70% {
+            height: 1em;
+            box-shadow: 1em -2em rgba(61, 184, 143, 0.75), -1em 2em rgba(233, 169, 32, 0.75);
+        }
+        100% {
+            box-shadow: 1em 2em rgba(61, 184, 143, 0.75), -1em -2em rgba(233, 169, 32, 0.75);
+        }
+    }
+
+
+    /* position to center */
+
+    .loader {
+        position: absolute;
+        top: calc(50% - 2.5em);
+        left: calc(50% - 2.5em);
+    }
+
+
+    /**
+     * disable background
+     */
+
+    .loader-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        display: table;
+        transition: opacity .3s ease;
+    }
+</style>

@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.payment;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,72 +14,47 @@ import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.OrderService;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-@WebServlet(name = "CheckoutPayment_Servlet", value = "/payment-checkout")
+@WebServlet(name = "DownloadInvoice_Servlet", value = "/download-invoice")
 public class DownloadInvoice extends HttpServlet {
-    private OrderService orderService;
-    private GenderPdf genderPdf;
-
-    public DownloadInvoice() {
-        orderService = OrderService.getInstance();
-        genderPdf = GenderPdf.instance();
-    }
+    public DownloadInvoice() {}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher("/views/web/payment.jsp").forward(request, response);
-        doPost(request, response);
+        String fileName = "invoice.pdf";//request.getParameter("fileName");
+        if(fileName == null || fileName.equals("")){
+            throw new ServletException("File name can't be null or empty");
+        }
+        ServletContext context = request.getServletContext();
+        String fullPath = context.getRealPath("/template/invoice.pdf");
+        File file = new File(fullPath);
+        if(!file.exists()){
+            throw new ServletException("File doesn't exists on server");
+        }
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+        String mimeType = context.getMimeType(file.getAbsolutePath());
+        response.setContentType(mimeType != null? mimeType:"application/octet-stream");
+        response.setContentLength((int) file.length());
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        ServletOutputStream sos = response.getOutputStream();
+        byte[] bufferData = new byte[1024];
+        int read = 0;
+        while((read = bis.read(bufferData))!=-1){
+            sos.write(bufferData,0,read);
+        }
+        sos.flush();
+        sos.close();
+        bis.close();
+        System.out.println("File downloaded at client successfully");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//get cart from session
-        HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        Cart cart = (Cart) session.getAttribute("cart");
-        Account account = (Account) session.getAttribute("account");
-        Orders orders = new Orders();
-        String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String note = "name: " + name + ", phone number: " + phone + ", email: " + email;
-        String addresses = request.getParameter("addresses");
-        String addressDetail = request.getParameter("addressDetail");
-        String payment = request.getParameter("payment");
-        String address = addresses + "\nDetail: " + addressDetail;
-        orders.setIdAccount(account.getId());
-        orders.setSubTotal(cart.getSubTotalPrice());
-        orders.setGrandTotal(cart.getTotalPrice());
-        orders.setNote(note);
-        orders.setAddress(address);
-        orders.setIdSession("session");
-        orders.setToken("token");
-        orders.setStatus("status");
-        orders.setItemDiscount(1);
-        orders.setTax(1);
-        orders.setShipping(1);
-        orders.setId("");
-        orders.setPromo("");
-        for(Product product:cart.getProductList()){
-            orders.getProductList().put(product.getId(),product);
-        }
 
-
-        boolean checkFlag = orderService.createOrder(account, cart, orders);
-        System.out.println("------ " + checkFlag);
-        if (checkFlag) {
-            //generate PDF:
-            genderPdf.generatePDF(account,orders,request);
-            Orders orders1 = orderService.getItemByIdAc(account.getId());
-            session.removeAttribute("cart");
-          //  session.setAttribute("order", orders1);
-          //  session.setAttribute("productSold", cart.getProductList().stream().collect(toCollection(ArrayList::new)));
-            request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
-        } else {
-            response.sendRedirect(request.getContextPath() + "/payment");
-        }
     }
 
 }

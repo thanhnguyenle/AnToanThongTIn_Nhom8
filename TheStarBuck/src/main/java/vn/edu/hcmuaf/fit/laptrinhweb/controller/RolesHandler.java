@@ -8,11 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "404Handler", urlPatterns = {"/404"})
+@WebServlet(name = "RolesHandler", urlPatterns = {"/selectPage"})
 public class RolesHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/views/page404.jsp").forward(req,resp);
+        req.getRequestDispatcher("/views/web/selectRolesPage.jsp").forward(req,resp);
     }
 
     @Override

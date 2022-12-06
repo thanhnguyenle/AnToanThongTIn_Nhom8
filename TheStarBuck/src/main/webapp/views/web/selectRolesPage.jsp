@@ -12,37 +12,50 @@
     <title>Select</title>
     <style>
         .image-management {
-    background-image: url('https://scx1.b-cdn.net/csz/news/800/2017/theoreticala.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-    color: #FFFFFF;
-}
-        .image-home {
-            background-image: url('https://scx1.b-cdn.net/csz/news/800/2017/theoreticala.jpg');
+            background-image: url('https://cdn-icons-png.flaticon.com/512/2139/2139551.png');
             background-repeat: no-repeat;
-            background-attachment: fixed;
             background-size: 100% 100%;
             color: #FFFFFF;
+            width: 300px;
+            height: 300px;
+        }
+        .image-home {
+            background-image: url('https://i.ibb.co/nMxcqW4/logo.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            color: #FFFFFF;
+            width: 300px;
+            height: 300px;
+        }
+        .select-div{
+            display: flex;
+            margin-top: 250px;
+            justify-content: space-evenly;
         }
     </style>
 </head>
 
 <body>
-<div>
-    <div>
-        <div class="image-management">
-        </div>
-       <div>MANAGEMENT</div>
+<div  class="select-div">
+    <div onclick="redirectManagement()">
+        <div class="image-management"></div>
+       <div style="margin-top: 30px;text-align: center;font-weight: bold;">MANAGEMENT</div>
     </div>
-    <div>
+    <div onclick="redirectHome()">
         <div class="image-home"></div>
-        <div>HOME</div>
+        <div style="margin-top: 30px;text-align: center;font-weight: bold;">HOME</div>
     </div>
 
 </div>
 <script>
-
+    function redirectHome(){
+        window.location.href = "/TheStarBuck/user-home";
+        window.location.assign("/TheStarBuck/user-home");
+    }
+    function redirectManagement(){
+        window.location.href = "/TheStarBuck/admin-home";
+        window.location.assign("/TheStarBuck/admin-home");
+    }
 </script>
 </body>
 

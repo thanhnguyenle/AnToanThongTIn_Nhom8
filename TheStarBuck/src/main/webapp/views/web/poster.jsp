@@ -62,7 +62,27 @@
 <!--paging lib-->
 <script src="<%= Asset.url("/template/lib/paging/jquery.twbsPagination.js")%>" type="text/javascript"></script>
 <script type="text/javascript">
+  // loader (after submit)
+  async function turnOnLoadScreen() {
+    //display loader
+    await screenLoader_Global();
+    //just for testing, remove loader
+    setTimeout(async function () {
+      await remove_screenLoader_Global();
+    }, 3000);
+  };
 
+
+  /*-----------------------------------------------------
+          global screen loader add/remove
+      ------------------------------------------------------*/
+  async function screenLoader_Global() {
+    $('<div class="loader-mask"><div class="loader"></div></div>').appendTo('body');
+  }
+
+  async function remove_screenLoader_Global() {
+    $('.loader-mask').remove();
+  }
   $(document).ready(function () {
       let totalPages = ${totalPage};
       let currentPage = 1;
@@ -121,21 +141,23 @@
   });
 
   function ajaxBlog(id) {
+    //display loader
+    screenLoader_Global();
     $.ajax({
       type: "Get",
       url: "/TheStarBuck/post?post_id=" + id,
       ContentType: 'json',
       headers: { Accept: "application/json;charset=utf-8" },
-      success: function (json) {
+      success: async function (json) {
         if (json !== undefined && json != null) {
           let data = "";
           let val = json;
           data +=
-                  " <h1>"+val.title+"</h1>"
+                  " <h1>" + val.title + "</h1>"
                   + "<ul class=\"nav-title\">"
-                  + "<li><i class=\"fa fa-user\" aria-hidden=\"true\"></i><span style=\"margin-left: 10px;\">"+val.author+"</span></li>"
+                  + "<li><i class=\"fa fa-user\" aria-hidden=\"true\"></i><span style=\"margin-left: 10px;\">" + val.author + "</span></li>"
                   + "<li><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i><span style=\"margin-left: 10px;\">" + val.date + "</span></li>"
-                  + "<li><i class=\"fa fa-comments\" aria-hidden=\"true\"></i><span style=\"margin-left: 10px;\">" + val.author +"</span></li>"
+                  + "<li><i class=\"fa fa-comments\" aria-hidden=\"true\"></i><span style=\"margin-left: 10px;\">" + 0 + "</span></li>"
                   + "</ul>"
                   + "<div class=\"context\">"
                   + "<div class=\"img_blog_shop\">"
@@ -145,13 +167,18 @@
                   + "<p>" + val.post_content + "</p>"
                   + "</div>";
           $(".title-context").html(data);
-            $(".tags").remove();
-            $(".lead-capture__article-footer__row").remove();
-            $(".related-article").remove();
-            $("#rc-anchor-container").remove();
+          $(".tags").remove();
+          $(".lead-capture__article-footer__row").remove();
+          $(".related-article").remove();
+          $("#rc-anchor-container").remove();
+          $(".grecaptcha-badge").remove();
         }
+        await remove_screenLoader_Global();
       }
     });
+    setTimeout(async function () {
+      await remove_screenLoader_Global();
+    }, 10000);
   }
   let idOfBlog = "${blogid}";
   if(idOfBlog !=""&&idOfBlog!=undefined){

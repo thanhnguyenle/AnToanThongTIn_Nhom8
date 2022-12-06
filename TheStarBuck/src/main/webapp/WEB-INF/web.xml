@@ -38,4 +38,12 @@
                 /template/lib/ckfinder/core/connector/java/connector.java
             </url-pattern>
         </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>404Handler</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
 </web-app>

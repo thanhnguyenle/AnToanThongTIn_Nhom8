@@ -1,5 +1,4 @@
 <%@ page import="vn.edu.hcmuaf.fit.laptrinhweb.controller.web.Asset" %>
-<%@ page import="vn.edu.hcmuaf.fit.laptrinhweb.model.Account" %>
 <%@include file="/common/taglib.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -7,28 +6,48 @@
 <html lang="en">
 
 <head>
-	<jsp:include page="layout/css.jsp"/>
-
+	<link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileAccount.css")%>" />
 	<!-- Custom StyleSheet -->
 	<title>Invoice</title>
+	<style>
+		.container-popup{
+			background-color: white;
+			width: 40%;
+			height: 50%;
+			margin: 150px auto auto;
+		}
+	</style>
 </head>
 
 <body>
-<br />
-<br />
-<br />
 	<div class="container modal">
-		<br />
+		<div class="container-popup">
+			<h1>VERIFY INVOICE</h1>
+			<br />
+			<br />
+			<br />
 <%--		download file pdf--%>
-		<button>Download Invoice PDF</button>
+		<button onclick="return downloadInvoice()">Download Invoice PDF</button>
 <%--		upload file pdf--%>
-		<form >
-<input type="file" >
+		<form method="post" action="${pageContext.request.contextPath}/upload-invoice" enctype="multipart/form-data">
+			Choose a file: <input type="file" name="file" />
+			<div class="buttonBottom">
+				<button type="button" onclick="closeInvoicePopup()">Close</button>
+				<input type="submit" value="Verify" />
+			</div>
+
 		</form>
+		</div>
 	</div>
 
 <script>
-
+	function closeInvoicePopup(){
+		document.querySelectorAll(".modal").forEach(a=>a.style.display = "none");
+	}
+	function downloadInvoice(){
+		sendRequestGeneratePDF();
+		window.location.assign("/TheStarBuck/download-invoice");
+	}
 </script>
 </body>
 </html>

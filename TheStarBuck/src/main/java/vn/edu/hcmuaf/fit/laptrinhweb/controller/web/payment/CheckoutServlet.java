@@ -28,8 +28,7 @@ public class CheckoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher("/views/web/payment.jsp").forward(request, response);
-        doPost(request, response);
+        request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
     }
 
     @Override
@@ -65,18 +64,11 @@ public class CheckoutServlet extends HttpServlet {
         for(Product product:cart.getProductList()){
             orders.getProductList().put(product.getId(),product);
         }
-
-
         boolean checkFlag = orderService.createOrder(account, cart, orders);
-        System.out.println("------ " + checkFlag);
         if (checkFlag) {
             //generate PDF:
             genderPdf.generatePDF(account,orders,request);
-            Orders orders1 = orderService.getItemByIdAc(account.getId());
             session.removeAttribute("cart");
-          //  session.setAttribute("order", orders1);
-          //  session.setAttribute("productSold", cart.getProductList().stream().collect(toCollection(ArrayList::new)));
-            request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/payment");
         }

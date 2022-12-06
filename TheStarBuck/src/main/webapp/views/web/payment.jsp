@@ -151,16 +151,12 @@
                 </form>
             </div>
             <div class="row pt-lg-3 buttons mb-sm-0 mb-2">
-                <div class="col-md-6 pt-md-0 pt-3">
-                    <div class="btnNav text-uppercase btnBack"><a
-                            href="<%=request.getContextPath()%>/menu">Back to shopping</a>
-                    </div>
+                <div class="col-md-6 pt-md-0 pt-3 cursor-pointer" onclick="return redirectHome()">
+                    <div class="btnNav text-uppercase btnBack">Back to shopping</div>
                 </div>
-                <div class="col-md-6 pt-md-0 pt-3" onclick="return sendRequestToCheckOut()">
+                <div class="col-md-6 pt-md-0 pt-3 cursor-pointer" onclick="return openVerify()">
                     <div class="btnNav ml-auto text-uppercase btnContinue"><span
-                            class="fas fa-lock"></span>
-                        <a href="<%=request.getContextPath()%>/payment-checkout">Continue</a>
-                    </div>
+                            class="fas fa-lock"></span>Continue</div>
                 </div>
             </div>
         </div>
@@ -175,16 +171,15 @@
 <!-- Custom Scripts -->
 <script src="<%= Asset.url("/template/web/js/payment.js")%>"></script>
 <script>
-<<<<<<< Updated upstream
-
-=======
+    function redirectHome(){
+        window.location.href = "/TheStarBuck/user-home";
+        window.location.assign("/TheStarBuck/user-home");
+    }
     $("#addresses").change(function (){
         getAddressDetail();
     });
     function openVerify(){
         let onetime = false;
-        $('#verify-invoice').on('click',function (event) {
-            event.preventDefault();
             this.blur(); // Manually remove focus from clicked link.
             if (!onetime) {
                 $.get("<c:url value='/views/web/popupInvoiceVerify.jsp'/>", function (html) {
@@ -194,9 +189,8 @@
             }else{
                 document.querySelectorAll(".modal").forEach(a=>a.style.display = "block");
             }
-        });
     }
-    function sendRequestToCheckOut(){
+    function sendRequestGeneratePDF(){
         let fullname = $("#name").val();
         let phonenumber = $("#phone").val();
         let email = $("#email").val();
@@ -211,9 +205,7 @@
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
             success: function (json) {
-                let tab = window.open('/TheStarBuck/payment-checkout', '_blank');
-                tab.document.write(json);
-                tab.document.close();
+                console.log("generate success!");
             }
         });
     }
