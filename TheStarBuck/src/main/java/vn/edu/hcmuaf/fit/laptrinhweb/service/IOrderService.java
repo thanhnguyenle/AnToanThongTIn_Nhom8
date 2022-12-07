@@ -17,7 +17,7 @@ public interface IOrderService {
 
     boolean createOrder(Account account, Cart cart, Orders orders);
 
-    Orders getItemByIdAc(String accId);
+    List<Orders> getItemByIdAc(String accId);
 
     int getAmountItem();
 

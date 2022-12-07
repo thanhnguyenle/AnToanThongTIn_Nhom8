@@ -48,7 +48,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Orders getItemByIdAc(String accId) {
+    public List<Orders> getItemByIdAc(String accId) {
         return orderDAO.getItemByIdAc(accId);
     }
 

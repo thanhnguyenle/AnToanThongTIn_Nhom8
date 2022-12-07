@@ -83,6 +83,7 @@
                                                         <th>Address</th>
                                                         <th>Phone number</th>
                                                         <th>PDF</th>
+                                                        <th>Operation</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>

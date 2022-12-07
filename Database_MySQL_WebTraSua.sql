@@ -53,13 +53,15 @@ CREATE TABLE
 IF
 	NOT EXISTS `PublicKey` (
 		`keyID` VARCHAR ( 6 ) NOT NULL,
+		`accountID` VARCHAR ( 6 ) NOT NULL,
 		`typeCypher` VARCHAR ( 100 ) NULL,
         `startDate` DATETIME ( 6 ) NOT NULL,
         `endDate` DATETIME ( 6 ) NOT NULL,
         `content`  VARCHAR ( 255 ) CHARACTER
 		SET 'utf8mb4' NULL DEFAULT NULL,
-		`operation` VARCHAR ( 100 ) NULL,
-		PRIMARY KEY(`keyID`)
+		`status` VARCHAR ( 100 ) NULL,
+		PRIMARY KEY(`keyID`),
+		FOREIGN KEY ( `accountID` ) REFERENCES `Account` ( `id_ac` ) ON DELETE NO ACTION ON UPDATE NO ACTION
 	) ;
 --  --
 --  Table thestarbuck.Address

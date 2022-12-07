@@ -1,22 +1,19 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.dao;
 
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.PublicKey;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public interface IPublicKeyDAO extends IGenericDAO<Account> {
-    List<Account> findAll();
+public interface IPublicKeyDAO extends IGenericDAO<PublicKey> {
+    List<PublicKey> findAll();
 
-    Long save(Account account);
+    Long create(PublicKey publicKey);
+    Long update(PublicKey publicKey);
+    Long delete(String id);
 
-    int getAmountItem();
+    PublicKey getItem(String id);
+    List<PublicKey> getPKByAccountID(String accountID);
 
-    Account getItem(String id);
 
-    Account getAccountByEmail(String email);
-
-    boolean verifyAccount(String email);
-
-    public String mdbPassword(String password) throws NoSuchAlgorithmException;
 }

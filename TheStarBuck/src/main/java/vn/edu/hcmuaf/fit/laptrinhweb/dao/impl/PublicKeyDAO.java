@@ -1,19 +1,18 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.dao.impl;
 
 import vn.edu.hcmuaf.fit.laptrinhweb.dao.IOrderDAO;
+import vn.edu.hcmuaf.fit.laptrinhweb.dao.IPublicKeyDAO;
 import vn.edu.hcmuaf.fit.laptrinhweb.db.QUERIES;
 import vn.edu.hcmuaf.fit.laptrinhweb.mapper.impl.OrderMapper;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
+import vn.edu.hcmuaf.fit.laptrinhweb.mapper.impl.PublicKeyMapper;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class PublicKeyDAO extends AbstractDAO<Orders> implements IOrderDAO {
+public class PublicKeyDAO extends AbstractDAO<PublicKey> implements IPublicKeyDAO {
     private static PublicKeyDAO instance;
 
     private PublicKeyDAO() {
@@ -26,89 +25,34 @@ public class PublicKeyDAO extends AbstractDAO<Orders> implements IOrderDAO {
         return instance;
     }
 
+
     @Override
-    public List<Orders> findAll() {
-        List<Orders> output = query(QUERIES.ORDER.GET_LIST, new OrderMapper());
-        return output;
+    public List<PublicKey> findAll() {
+        return query(QUERIES.PUBLICKEY.GET_LIST,new PublicKeyMapper());
     }
 
     @Override
-    public Long save(Orders orders) {
-        if (orders.getId().equals("")) {
-            return addItem(orders);
-        }
-        return updateItem(orders);
+    public Long create(PublicKey publicKey) {
+        return insert(QUERIES.PUBLICKEY.CREATE,publicKey.getKeyID(),publicKey.getAccountID(),publicKey.getTypeCypher(),new SimpleDateFormat("yyyy-MM-dd").format(publicKey.getStartDate()),new SimpleDateFormat("yyyy-MM-dd").format(publicKey.getEndDate()),publicKey.getContent(),publicKey.getStatus());
     }
 
     @Override
-    public Long deleteItem(String id) {
-        return null;
+    public Long update(PublicKey publicKey) {
+        return insert(QUERIES.PUBLICKEY.UPDATE,publicKey.getAccountID(),publicKey.getTypeCypher(),new SimpleDateFormat("yyyy-MM-dd").format(publicKey.getStartDate()),new SimpleDateFormat("yyyy-MM-dd").format(publicKey.getEndDate()),publicKey.getContent(),publicKey.getStatus(),publicKey.getKeyID());
     }
 
     @Override
-    public Orders getItem(String id) {
-        List<Orders> list = query(QUERIES.ORDER.GET_ITEM_BYID, new OrderMapper(), id);
-        Orders output = list.get(0);
-        return output;
+    public Long delete(String id) {
+        return delete(QUERIES.PUBLICKEY.DELETE,id);
     }
 
     @Override
-    public Map<String, Orders> getAll() {
-        return null;
+    public PublicKey getItem(String id) {
+        return query(QUERIES.PUBLICKEY.GET_PUBLICKEY_BYID, new PublicKeyMapper(),id).get(0);
     }
 
     @Override
-    public Long addItem(Orders orders) {
-        long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(), orders.getIdSession(),orders.getName(),orders.getPhone(),orders.getEmail(), orders.getToken(),
-                orders.getStatus(), orders.getAddress(), orders.getSubTotal(), orders.getItemDiscount(), orders.getTax(),
-                orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
-                new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
-                orders.getIdAccount(), orders.getIdAccount());
-        return output;
-    }
-
-    @Override
-    public Long updateItem(Orders orders) {
-        long output = update(QUERIES.ORDER.UPDATE, orders.getStatus(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), orders.getModifiedBy(), orders.getId());
-        return output;
-    }
-
-    @Override
-    public boolean createOrder(Account account, Cart cart, Orders orders) {
-        long checkTotalProduct = 0;
-        long checkProItem = 0;
-        long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(),
-                orders.getIdSession(),orders.getName(),orders.getPhone(),orders.getEmail(), orders.getToken(),
-                orders.getStatus(), orders.getAddress(), orders.getSubTotal(), orders.getItemDiscount(),
-                orders.getTax(),
-                orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
-                new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
-                orders.getIdAccount(), orders.getIdAccount());
-        Orders orders1 = getItemByIdAc(account.getId());
-        for (Product pro : cart.getProductList()
-        ) {
-            pro.setNote("");
-            checkProItem = insert(QUERIES.ORDERITEM.CREATE, pro.getId(), orders1.getId(), pro.getQuantitySold(), pro.getNote(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
-                    orders.getIdAccount(), orders.getIdAccount());
-            checkTotalProduct += checkProItem;
-        }
-        return output == 1 && checkTotalProduct == cart.getProductList().size();
-    }
-
-    @Override
-    public Orders getItemByIdAc(String accId) {
-        List<Orders> list = query(QUERIES.ORDER.GET_LAST_BYACCID, new OrderMapper(), accId);
-        Orders output = list.get(0);
-        return output;
-    }
-
-    @Override
-    public int getAmountOrder() {
-        return count(QUERIES.ORDER.COUNT_ITEM);
-    }
-
-    @Override
-    public double getSumMoney() {
-        return count(QUERIES.ORDER.SUM_MONEY);
+    public List<PublicKey> getPKByAccountID(String accountID) {
+        return query(QUERIES.PUBLICKEY.GET_PUBLICKEY_BYACCOUNTID,new PublicKeyMapper(),accountID);
     }
 }

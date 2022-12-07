@@ -84,11 +84,12 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
                 orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
                 new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                 orders.getIdAccount(), orders.getIdAccount());
-        Orders orders1 = getItemByIdAc(account.getId());
+        List<Orders> orders1 = getItemByIdAc(account.getId());
+        String id = orders1.get(orders1.size()-1).getId();
         for (Product pro : cart.getProductList()
         ) {
             pro.setNote("");
-            checkProItem = insert(QUERIES.ORDERITEM.CREATE, pro.getId(), orders1.getId(), pro.getQuantitySold(), pro.getNote(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
+            checkProItem = insert(QUERIES.ORDERITEM.CREATE, pro.getId(),id, pro.getQuantitySold(), pro.getNote(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                     orders.getIdAccount(), orders.getIdAccount());
             checkTotalProduct += checkProItem;
         }
@@ -96,10 +97,9 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
     }
 
     @Override
-    public Orders getItemByIdAc(String accId) {
+    public List<Orders> getItemByIdAc(String accId) {
         List<Orders> list = query(QUERIES.ORDER.GET_LAST_BYACCID, new OrderMapper(), accId);
-        Orders output = list.get(0);
-        return output;
+        return list;
     }
 
     @Override
