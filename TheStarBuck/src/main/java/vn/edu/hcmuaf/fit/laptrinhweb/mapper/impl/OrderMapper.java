@@ -14,6 +14,9 @@ public class OrderMapper implements IRowMapper<Orders> {
             orders.setId(resultSet.getString("id_od"));
             orders.setIdAccount(resultSet.getString("od_acId"));
             orders.setIdSession(resultSet.getString("od_sessionId"));
+            orders.setName(resultSet.getString("od_name"));
+            orders.setPhone(resultSet.getString("od_phone"));
+            orders.setEmail(resultSet.getString("od_email"));
             orders.setToken(resultSet.getString("od_token"));
             orders.setStatus(resultSet.getString("od_status"));
             orders.setAddress(resultSet.getString("od_address"));

@@ -44,7 +44,7 @@ public class GenderPdf {
         System.out.println(fullPath);
         return new File(fullPath);
     }
-        public void generatePDF(Account account,Orders orders,HttpServletRequest request) {
+        public boolean generatePDF(Account account,Orders orders,HttpServletRequest request) {
         File file = getResourceFile(request);
         DeviceRgb deviceRgb = new DeviceRgb(63,169,219);
         try {
@@ -109,8 +109,9 @@ public class GenderPdf {
             document.add(itemInfoTable);
             document.close();
             System.out.println("PDF CREATED");
+            return true;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return false;
         }
 
     }

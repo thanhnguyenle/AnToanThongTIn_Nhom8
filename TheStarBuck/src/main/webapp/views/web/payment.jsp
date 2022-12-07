@@ -190,7 +190,7 @@
                 document.querySelectorAll(".modal").forEach(a=>a.style.display = "block");
             }
     }
-    function sendRequestGeneratePDF(){
+    async function sendRequestGeneratePDF(){
         let fullname = $("#name").val();
         let phonenumber = $("#phone").val();
         let email = $("#email").val();
@@ -204,8 +204,9 @@
             ContentType: 'json',
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
+            async:false,
             success: function (json) {
-                console.log("generate success!");
+                console.log(json);
             }
         });
     }
@@ -228,6 +229,7 @@
             }
         });
     }
+
     function getAddressDetail() {
         let id = "${account.id}";
         let addresses = $("#addresses :selected").val();

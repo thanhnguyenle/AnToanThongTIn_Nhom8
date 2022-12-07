@@ -93,7 +93,7 @@ public class QUERIES {
     //ORDER
     public static class ORDER {
         public static final String GET_LIST = "select * from Orders";
-        public static final String CREATE = "insert into Orders values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public static final String CREATE = "insert into Orders values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
         public static final String DELETE = "delete from Orders where id_od = ?";
         public static final String UPDATE = "update orders set od_status = ?, modifiedDate = ?, modifiedBy = ? where id_od = ?";
         public static final String GET_ITEM_BYID = "select * from Orders where id_od = ?";

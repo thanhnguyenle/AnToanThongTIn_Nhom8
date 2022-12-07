@@ -86,22 +86,20 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-<%--                                                    <jsp:useBean id="feedbacks" scope="request" type="java.util.List"/>--%>
-<%--                                                    <c:forEach items="${feedbacks}" var="item">--%>
-<%--                                                        <tr class="odd gradeX">--%>
-<%--                                                            <td>${item.id}</td>--%>
-<%--                                                            <td>${item.idAccount}</td>--%>
-<%--                                                            <td>${item.idProduct}</td>--%>
-<%--                                                            <td>${item.content}</td>--%>
-<%--                                                            <td class="center">${item.rate}</td>--%>
-<%--                                                            <td class="center">${item.status}</td>--%>
-<%--                                                            <td class=" text-center">--%>
-<%--                                                                <a href="<%=request.getContextPath()%>/deleteFeedback?id=${item.id}" class="btn btn-danger" data-toggle="modal"--%>
-<%--                                                                   data-target="#deleteObject">Delete</a>--%>
-<%--                                                                <a href="<%=request.getContextPath()%>/updateFeedback?id=${item.id}" target="_blank" class="btn btn-info">Edit</a>--%>
-<%--                                                            </td>--%>
-<%--                                                        </tr>--%>
-<%--                                                    </c:forEach>--%>
+                                                    <jsp:useBean id="orders" scope="request" type="java.util.List"/>
+                                                    <c:forEach items="${orders}" var="item" varStatus="loop">
+                                                        <tr class="odd gradeX">
+                                                            <td>${loop.count}</td>
+                                                            <td>${item.id}</td>
+                                                            <td>${item.createdDate}</td>
+                                                            <td>${item.address}</td>
+                                                            <td class="center">${item.phone}</td>
+                                                            <td class="center">${item.status}</td>
+                                                            <td class=" text-center">
+                                                                <button class="btn btn-info" data-toggle="modal" >View</button>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -167,26 +165,26 @@
 </div>
 <!-- /#wrapper -->
 <%--model delete--%>
-<form class="modal fade" id="deleteObject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" method="post"
-      aria-hidden="true" action="${pageContext.request.contextPath}/deleteFeedback">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Notify</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Delete</button>
-            </div>
-        </div>
-    </div>
-</form>
+<%--<form class="modal fade" id="deleteObject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" method="post"--%>
+<%--      aria-hidden="true" action="${pageContext.request.contextPath}/deleteFeedback">--%>
+<%--    <div class="modal-dialog" role="document">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h3 class="modal-title" id="exampleModalLabel">Notify</h3>--%>
+<%--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+<%--                    <span aria-hidden="true">&times;</span>--%>
+<%--                </button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body">--%>
+<%--                Are you sure?--%>
+<%--            </div>--%>
+<%--            <div class="modal-footer">--%>
+<%--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+<%--                <button type="submit" class="btn btn-primary">Delete</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</form>--%>
 <%--SCRIPT--%>
 <jsp:include page="layout/script.jsp"/>
 <script>

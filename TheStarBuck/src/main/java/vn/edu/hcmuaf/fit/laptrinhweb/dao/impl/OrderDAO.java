@@ -59,7 +59,7 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
 
     @Override
     public Long addItem(Orders orders) {
-        long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(), orders.getIdSession(), orders.getToken(),
+        long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(), orders.getIdSession(),orders.getName(),orders.getPhone(),orders.getEmail(), orders.getToken(),
                 orders.getStatus(), orders.getAddress(), orders.getSubTotal(), orders.getItemDiscount(), orders.getTax(),
                 orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
                 new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
@@ -78,7 +78,7 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
         long checkTotalProduct = 0;
         long checkProItem = 0;
         long output = insert(QUERIES.ORDER.CREATE, orders.getId(), orders.getIdAccount(),
-                orders.getIdSession(), orders.getToken(),
+                orders.getIdSession(),orders.getName(),orders.getPhone(),orders.getEmail(), orders.getToken(),
                 orders.getStatus(), orders.getAddress(), orders.getSubTotal(), orders.getItemDiscount(),
                 orders.getTax(),
                 orders.getShipping(), orders.getGrandTotal(), orders.getPromo(), orders.getNote(),
@@ -90,10 +90,8 @@ public class OrderDAO extends AbstractDAO<Orders> implements IOrderDAO {
             pro.setNote("");
             checkProItem = insert(QUERIES.ORDERITEM.CREATE, pro.getId(), orders1.getId(), pro.getQuantitySold(), pro.getNote(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                     orders.getIdAccount(), orders.getIdAccount());
-            System.out.println(pro.getId() + " " + pro.getQuantitySold() + " " + pro.getNote() + " ------");
             checkTotalProduct += checkProItem;
         }
-        System.out.println("check : " + (output) + " check2: " + (checkTotalProduct + " " + cart.getProductList().size()));
         return output == 1 && checkTotalProduct == cart.getProductList().size();
     }
 
