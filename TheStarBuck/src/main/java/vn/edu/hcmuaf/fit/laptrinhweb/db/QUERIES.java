@@ -93,7 +93,7 @@ public class QUERIES {
     //ORDER
     public static class ORDER {
         public static final String GET_LIST = "select * from Orders";
-        public static final String CREATE = "insert into Orders values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public static final String CREATE = "insert into Orders values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
         public static final String DELETE = "delete from Orders where id_od = ?";
         public static final String UPDATE = "update orders set od_status = ?, modifiedDate = ?, modifiedBy = ? where id_od = ?";
         public static final String GET_ITEM_BYID = "select * from Orders where id_od = ?";
@@ -128,6 +128,15 @@ public class QUERIES {
         public static final String UPDATE = "update Post set po_title=?, po_description=?, po_content=?, po_author=?,	po_url_image=?,	po_url_Post=?,date=? where id_po=?";
         public static final String GET_POST_BYID = "select * from Post where id_po=?";
         public static final String TOTAL = "select COUNT(*) from Post";
+    }
+    public static class PUBLICKEY {
+        public static final String GET_LIST = "select * from PublicKey";
+        public static final String CREATE = "insert into PublicKey values (?, ?, ?, ?, ?, ?, ?)";
+        public static final String DELETE = "delete from PublicKey where keyID = ?";
+        public static final String UPDATE = "update PublicKey set accountID = ?, typeCypher = ?,startDate = ?,endDate = ?, content = ?, status = ? where keyID = ?";
+        public static final String GET_PUBLICKEY_BYID = "select * from PublicKey where keyID=?";
+        public static final String GET_PUBLICKEY_BYACCOUNTID = "select * from PublicKey where accountID=?";
+        public static final String TOTAL = "select COUNT(*) from PublicKey where accountID=?";
     }
 
 }

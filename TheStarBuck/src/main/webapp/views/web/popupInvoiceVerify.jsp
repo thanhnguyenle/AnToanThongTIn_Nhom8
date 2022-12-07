@@ -44,10 +44,21 @@
 	function closeInvoicePopup(){
 		document.querySelectorAll(".modal").forEach(a=>a.style.display = "none");
 	}
-	function downloadInvoice(){
-		sendRequestGeneratePDF();
-		window.location.assign("/TheStarBuck/download-invoice");
+	async function screenLoader_Global() {
+		$('<div class="loader-mask"><div class="loader"></div></div>').appendTo('body');
 	}
+
+	async function remove_screenLoader_Global() {
+		$('.loader-mask').remove();
+	}
+	  function downloadInvoice() {
+		 screenLoader_Global();
+		 sendRequestGeneratePDF().then(async function () {
+			 await remove_screenLoader_Global();
+			 window.location.assign("/TheStarBuck/download-invoice");
+		 });
+
+	 }
 </script>
 </body>
 </html>

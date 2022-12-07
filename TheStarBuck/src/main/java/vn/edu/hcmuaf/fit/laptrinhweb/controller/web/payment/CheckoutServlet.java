@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.payment;
 
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.OrderService;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toCollection;
@@ -48,6 +50,9 @@ public class CheckoutServlet extends HttpServlet {
         String addressDetail = request.getParameter("addressDetail");
         String payment = request.getParameter("payment");
         String address = addresses + "\nDetail: " + addressDetail;
+        orders.setName(name);
+        orders.setPhone(phone);
+        orders.setEmail(email);
         orders.setIdAccount(account.getId());
         orders.setSubTotal(cart.getSubTotalPrice());
         orders.setGrandTotal(cart.getTotalPrice());
@@ -67,8 +72,17 @@ public class CheckoutServlet extends HttpServlet {
         boolean checkFlag = orderService.createOrder(account, cart, orders);
         if (checkFlag) {
             //generate PDF:
-            genderPdf.generatePDF(account,orders,request);
-            session.removeAttribute("cart");
+            boolean check = genderPdf.generatePDF(account,orders,request);
+            if (check) {
+              String  json = new Gson().toJson("Successful!");
+                PrintWriter out = response.getWriter();
+                try {
+                    out.println(json);
+                } finally {
+                    out.close();
+
+                }
+            }
         } else {
             response.sendRedirect(request.getContextPath() + "/payment");
         }

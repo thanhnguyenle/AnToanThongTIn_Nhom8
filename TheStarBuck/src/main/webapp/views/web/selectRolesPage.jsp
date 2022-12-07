@@ -32,16 +32,20 @@
             margin-top: 250px;
             justify-content: space-evenly;
         }
+         .cursor-pointer {
+             cursor: pointer;
+         }
+
     </style>
 </head>
 
 <body>
 <div  class="select-div">
-    <div onclick="redirectManagement()">
+    <div onclick="redirectManagement()" class="cursor-pointer">
         <div class="image-management"></div>
        <div style="margin-top: 30px;text-align: center;font-weight: bold;">MANAGEMENT</div>
     </div>
-    <div onclick="redirectHome()">
+    <div onclick="redirectHome()" class="cursor-pointer">
         <div class="image-home"></div>
         <div style="margin-top: 30px;text-align: center;font-weight: bold;">HOME</div>
     </div>

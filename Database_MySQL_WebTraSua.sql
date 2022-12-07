@@ -49,6 +49,20 @@ IF
 		SET 'utf8mb4' NULL DEFAULT NULL,
 		PRIMARY KEY(`id_ac`)
 	) ;
+CREATE TABLE
+IF
+	NOT EXISTS `PublicKey` (
+		`keyID` VARCHAR ( 6 ) NOT NULL,
+		`accountID` VARCHAR ( 6 ) NOT NULL,
+		`typeCypher` VARCHAR ( 100 ) NULL,
+        `startDate` DATETIME ( 6 ) NOT NULL,
+        `endDate` DATETIME ( 6 ) NOT NULL,
+        `content`  VARCHAR ( 255 ) CHARACTER
+		SET 'utf8mb4' NULL DEFAULT NULL,
+		`status` VARCHAR ( 100 ) NULL,
+		PRIMARY KEY(`keyID`),
+		FOREIGN KEY ( `accountID` ) REFERENCES `Account` ( `id_ac` ) ON DELETE NO ACTION ON UPDATE NO ACTION
+	) ;
 --  --
 --  Table thestarbuck.Address
 --  --
@@ -80,6 +94,9 @@ IF
 		`id_od` VARCHAR ( 6 ) NOT NULL,
 		`od_acId` VARCHAR ( 6 ) NOT NULL,
 		`od_sessionId` VARCHAR ( 100 ) NOT NULL,
+		`od_name` VARCHAR ( 100 )  NULL,
+		`od_phone` VARCHAR ( 100 )  NULL,
+		`od_email` VARCHAR ( 100 )  NULL,
 		`od_token` VARCHAR ( 100 ) NOT NULL,
 		`od_status` VARCHAR ( 10 ) CHARACTER
 		SET 'utf8mb4' NOT NULL ,
@@ -358,6 +375,23 @@ DELIMITER ;
 --  USE `thestarbuck`;
  -- CREATE TRIGGER--
  -- Tao id_ac for Account
+ DROP TRIGGER IF EXISTS tr_NextPublicKeyID;
+ DELIMITER $$
+ CREATE TRIGGER tr_NextPublicKeyID
+ BEFORE INSERT ON `PublicKey`
+ FOR EACH ROW
+ BEGIN
+				DECLARE lastAccID VARCHAR(6);
+				SET lastAccID = (SELECT `keyID` FROM `PublicKey` ORDER BY `keyID` DESC LIMIT 1);
+				IF lastAccID IS NULL THEN
+						SET lastAccID = '';
+				END IF;
+				IF NEW.`keyID` = '' OR NEW.`keyID` IS NULL	THEN
+						SET NEW.`keyID`= func_autoid(lastAccID, 'pk', 6);
+				END IF;
+ END$$;
+ DELIMITER ;
+
  DROP TRIGGER IF EXISTS tr_NextAccountID;
  DELIMITER $$
  CREATE TRIGGER tr_NextAccountID
@@ -772,10 +806,10 @@ INSERT INTO `Product` VALUES ('pr0168', 'Chocolate Chip Kids Clif ZBar®', 'cs00
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `Orders` VALUES ('od0001', 'ac0001', 'section001', 'token001', 'NEW', NULL, 220, 0.1, 0.01, 2, 202.2, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
-INSERT INTO `Orders` VALUES ('od0002', 'ac0002', 'section002', 'token002', 'COMPLETE', NULL, 438, 0, 0.01, 5, 447.38, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
-INSERT INTO `Orders` VALUES ('od0003', 'ac0003', 'section003', 'token003', 'COMPLETE', NULL, 10000, 0.01, 0.01, 5, 10005, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
-INSERT INTO `Orders` VALUES ('od0004', 'ac0004', 'section004', 'token004', 'FAILED', NULL, 5100, 0, 0.01, 5, 5156, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
+INSERT INTO `Orders` VALUES ('od0001', 'ac0001', 'section001', 'Nguyễn Lê Thành','0931182677',null,'token001', 'NEW', NULL, 220, 0.1, 0.01, 2, 202.2, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
+INSERT INTO `Orders` VALUES ('od0002', 'ac0002', 'section002', 'Nguyễn Lê Thành','0931182677',null,'token002', 'COMPLETE', NULL, 438, 0, 0.01, 5, 447.38, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
+INSERT INTO `Orders` VALUES ('od0003', 'ac0003', 'section003','Nguyễn Lê Thành','0931182677',null, 'token003', 'COMPLETE', NULL, 10000, 0.01, 0.01, 5, 10005, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
+INSERT INTO `Orders` VALUES ('od0004', 'ac0004', 'section004','Nguyễn Lê Thành','0931182677',null, 'token004', 'FAILED', NULL, 5100, 0, 0.01, 5, 5156, 'none', NULL, '2021-12-18', '2021-12-18', 'thanhdev', 'thanhdev');
 
 -- ----------------------------
 -- Records of OrderItem
