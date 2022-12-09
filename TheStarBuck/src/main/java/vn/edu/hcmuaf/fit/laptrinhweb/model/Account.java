@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Account extends AbsModel implements Serializable {

@@ -178,16 +178,17 @@
     $("#addresses").change(function (){
         getAddressDetail();
     });
+    let onetimeVerify = false;
     function openVerify(){
-        let onetime = false;
+
             this.blur(); // Manually remove focus from clicked link.
-            if (!onetime) {
+            if (!onetimeVerify) {
                 $.get("<c:url value='/views/web/popupInvoiceVerify.jsp'/>", function (html) {
                     $(html).appendTo('body').modal();
                 });
-                onetime = true;
+                onetimeVerify = true;
             }else{
-                document.querySelectorAll(".modal").forEach(a=>a.style.display = "block");
+                document.querySelectorAll(".modal-invoice").forEach(a=>a.style.display = "block");
             }
     }
     async function sendRequestGeneratePDF(){

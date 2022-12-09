@@ -11,6 +11,11 @@
     <title>User Management</title>
     <jsp:include page="layout/css.jsp"/>
     <link rel="stylesheet" href="<%= Asset.url("/template/web/css/userManagement.css")%>">
+    <style>
+        body{
+            font-size: 1.7rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="display: flex;align-items: flex-end;margin-bottom: 15px;">
                     <div class="profile-head">
                         <h5>
                            ${account.fullname}
@@ -74,7 +79,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                <table class="table table-striped table-bordered table-hover" id="dataTables-invoice">
                                                     <thead>
                                                     <tr>
                                                         <th>No.</th>
@@ -118,7 +123,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                <table class="table table-striped table-bordered table-hover" id="dataTables-publickey">
                                                     <thead>
                                                     <tr>
                                                         <th>No.</th>
@@ -157,7 +162,14 @@
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button type="button" onclick="createPK()"> Create Public key</button>
+                                    <button type="button" onclick="importPK()"> Import Public key</button>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -189,9 +201,37 @@
 <%--SCRIPT--%>
 <jsp:include page="layout/script.jsp"/>
 <script>
-    $(document).ready(function () {
-        $('.dataTables-example').dataTable();
-    });
+    let onetimeCreate = false;
+    let onetimeImport = false;
+    function createPK(){
+
+        this.blur(); // Manually remove focus from clicked link.
+        if (!onetimeCreate) {
+            $.get("/TheStarBuck/views/web/importPublicKey.jsp", function (html) {
+                // console.log(html);
+               $(html).appendTo('body').modal();
+            });
+            onetimeCreate = true;
+        }else{
+            document.querySelectorAll(".modal-import").forEach(a=>a.style.display = "block");
+        }
+    }
+    function importPK(){
+        this.blur(); // Manually remove focus from clicked link.
+        if (!onetimeImport) {
+            $.get("/TheStarBuck/views/web/generatePairKey.jsp", function (html) {
+                // console.log(html);
+               $(html).appendTo('body').modal();
+            });
+            onetimeImport = true;
+        }else{
+            document.querySelectorAll(".modal-generate").forEach(a=>a.style.display = "block");
+        }
+    }
+    // $(document).ready(function () {
+    //     $('#dataTables-invoice').dataTable();
+    //     $('#dataTables-publickey').dataTable();
+    // });
 </script>
 
 </body>
