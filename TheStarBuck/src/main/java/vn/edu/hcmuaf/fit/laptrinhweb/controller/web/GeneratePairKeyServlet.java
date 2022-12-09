@@ -15,7 +15,7 @@ import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.PublicKeyService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UserManagement_Servlet", value = "/user-management")
+@WebServlet(name = "GeneratePairKey_Servlet", value = "/generatePairKey")
 public class GeneratePairKeyServlet extends HttpServlet {
 
     OrderService orderService = OrderService.getInstance();

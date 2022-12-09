@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<div class="container modal">
+	<div class="container modal-invoice">
 		<div class="container-popup">
 			<h1>VERIFY INVOICE</h1>
 			<br />
