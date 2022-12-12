@@ -15,37 +15,70 @@
 			width: 70%;
 			height: 50%;
 			margin: 150px auto auto;
+			padding: 28px;
+		}
+
+		.container-popup h2 {
+			text-align: center;
+			font-size: 28px;
+		}
+
+		.publicKeyBlock {
+			padding: 15px 0;
+		}
+
+		.width100 {
+			flex: 0 0 100%;
+			max-width: 100%;
+		}
+
+		.buttonBottom {
+			margin-top: 42px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.buttonBottom > * {
+			padding: 5px 10px;
+			border-radius: 5px !important;
+			color: #0e784d;
+			border-color: #0e784d;
+			background-color: transparent;
+			border: 2px solid #0e784d;
+		}
+
+		.buttonBottom > *:hover {
+			background-color: #0e784d;
+			color: white;
 		}
 	</style>
 </head>
 
 <body>
-	<div class="container modal-import">
-		<div class="container-popup">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<h2>Import Your Public Key</h2>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<form role="form" class="ng-pristine ng-valid">
-						<div class="form-group">
-							<textarea id="publicKey" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="publicKey"></textarea>
-						<button type="button" onclick="importPublicKey()">Import</button>
-						</div>
-					</form>
-				</div>
+<div class="container modal-import">
+	<div class="container-popup">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<h2>Import Your Public Key</h2>
 			</div>
-<%--		upload file pdf--%>
+			<div class="col-md-6 col-sm-6 col-xs-12 width100">
+				<form role="form" class="ng-pristine ng-valid">
+					<div class="form-group publicKeyBlock">
+						<textarea id="publicKey" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="publicKey"></textarea>
+						<button type="button" onclick="importPublicKey()">Import</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<%--		upload file pdf--%>
 		<form method="post" action="${pageContext.request.contextPath}/upload-invoice" enctype="multipart/form-data">
-			Choose a file: <input type="file" name="file" />
 			<div class="buttonBottom">
 				<button type="button" onclick="closeInvoicePopup()">Close</button>
 				<button type="button" onclick="saveKey()">Save Public Key</button>
 			</div>
-
-		</form>Key
-		</div>
+		</form>
 	</div>
+</div>
 
 <script>
 	let isImportPublicKey = false;
