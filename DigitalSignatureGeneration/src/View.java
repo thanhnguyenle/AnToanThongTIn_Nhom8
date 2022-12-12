@@ -20,12 +20,17 @@ public class View extends JFrame {
         passwordField = new JPasswordField();
         loginButton = new JButton();
         ChangeTokenName = new JPanel();
-        newUsernamePanel = new JPanel();
         newUsernameLabel = new JLabel();
         newUsernameTextField = new JTextField();
         requirePINLabel = new JLabel();
         requirePINTextField = new JTextField();
-        requirePINButton = new JButton();
+        changeUsernameButton = new JButton();
+        ChangePassword = new JPanel();
+        newPasswordLabel = new JLabel();
+        newPasswordInput = new JTextField();
+        RetypeNewPasswordLabel = new JLabel();
+        RetypeNewPasswordLabelInput = new JTextField();
+        changePasswordButton = new JButton();
 
         //======== mainFrame ========
         {
@@ -89,75 +94,115 @@ public class View extends JFrame {
                 loginButton.setText("\u0110\u0103ng nh\u1eadp");
                 LoginScreen.add(loginButton);
             }
-            mainFrame.add(LoginScreen, BorderLayout.PAGE_END);
+            mainFrame.add(LoginScreen, BorderLayout.LINE_START);
 
             //======== ChangeTokenName ========
             {
 
-                //======== newUsernamePanel ========
-                {
+                //---- newUsernameLabel ----
+                newUsernameLabel.setText("Nh\u1eadp t\u00ean Token m\u1edbi:");
 
-                    //---- newUsernameLabel ----
-                    newUsernameLabel.setText("Nh\u1eadp t\u00ean Token m\u1edbi:");
+                //---- requirePINLabel ----
+                requirePINLabel.setText("Nh\u1eadp PIN x\u00e1c nh\u1eadn:");
 
-                    //---- requirePINLabel ----
-                    requirePINLabel.setText("Nh\u1eadp PIN x\u00e1c nh\u1eadn:");
-
-                    //---- requirePINButton ----
-                    requirePINButton.setText("X\u00e1c nh\u1eadn");
-
-                    GroupLayout newUsernamePanelLayout = new GroupLayout(newUsernamePanel);
-                    newUsernamePanel.setLayout(newUsernamePanelLayout);
-                    newUsernamePanelLayout.setHorizontalGroup(
-                        newUsernamePanelLayout.createParallelGroup()
-                            .addGroup(newUsernamePanelLayout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addGroup(newUsernamePanelLayout.createParallelGroup()
-                                    .addGroup(newUsernamePanelLayout.createSequentialGroup()
-                                        .addComponent(newUsernameLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(newUsernameTextField, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(newUsernamePanelLayout.createSequentialGroup()
-                                        .addComponent(requirePINLabel)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(requirePINTextField, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(requirePINButton)))
-                                .addContainerGap(256, Short.MAX_VALUE))
-                    );
-                    newUsernamePanelLayout.setVerticalGroup(
-                        newUsernamePanelLayout.createParallelGroup()
-                            .addGroup(newUsernamePanelLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(newUsernamePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(newUsernameLabel)
-                                    .addComponent(newUsernameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36)
-                                .addGroup(newUsernamePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(requirePINTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(requirePINLabel)
-                                    .addComponent(requirePINButton))
-                                .addContainerGap(86, Short.MAX_VALUE))
-                    );
-                }
+                //---- changeUsernameButton ----
+                changeUsernameButton.setText("X\u00e1c nh\u1eadn");
 
                 GroupLayout ChangeTokenNameLayout = new GroupLayout(ChangeTokenName);
                 ChangeTokenName.setLayout(ChangeTokenNameLayout);
                 ChangeTokenNameLayout.setHorizontalGroup(
                     ChangeTokenNameLayout.createParallelGroup()
                         .addGroup(ChangeTokenNameLayout.createSequentialGroup()
-                            .addComponent(newUsernamePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap())
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(ChangeTokenNameLayout.createParallelGroup()
+                                .addGroup(ChangeTokenNameLayout.createSequentialGroup()
+                                    .addComponent(newUsernameLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(newUsernameTextField, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(ChangeTokenNameLayout.createSequentialGroup()
+                                    .addComponent(requirePINLabel)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(requirePINTextField, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(changeUsernameButton)))
+                            .addGap(0, 0, Short.MAX_VALUE))
                 );
                 ChangeTokenNameLayout.setVerticalGroup(
                     ChangeTokenNameLayout.createParallelGroup()
                         .addGroup(ChangeTokenNameLayout.createSequentialGroup()
-                            .addGap(15, 15, 15)
-                            .addComponent(newUsernamePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(239, 239, 239))
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(ChangeTokenNameLayout.createParallelGroup()
+                                .addGroup(ChangeTokenNameLayout.createSequentialGroup()
+                                    .addGap(7, 7, 7)
+                                    .addComponent(newUsernameLabel))
+                                .addComponent(newUsernameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(36, 36, 36)
+                            .addGroup(ChangeTokenNameLayout.createParallelGroup()
+                                .addGroup(ChangeTokenNameLayout.createSequentialGroup()
+                                    .addGap(7, 7, 7)
+                                    .addComponent(requirePINLabel))
+                                .addComponent(requirePINTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(changeUsernameButton))
+                            .addGap(0, 0, Short.MAX_VALUE))
                 );
             }
             mainFrame.add(ChangeTokenName, BorderLayout.CENTER);
+
+            //======== ChangePassword ========
+            {
+
+                //---- newPasswordLabel ----
+                newPasswordLabel.setText("Nh\u1eadp Password m\u1edbi:");
+
+                //---- RetypeNewPasswordLabel ----
+                RetypeNewPasswordLabel.setText("Nh\u1eadp l\u1ea1i Password:");
+
+                //---- changePasswordButton ----
+                changePasswordButton.setText("X\u00e1c nh\u1eadn");
+
+                GroupLayout ChangePasswordLayout = new GroupLayout(ChangePassword);
+                ChangePassword.setLayout(ChangePasswordLayout);
+                ChangePasswordLayout.setHorizontalGroup(
+                    ChangePasswordLayout.createParallelGroup()
+                        .addGroup(ChangePasswordLayout.createParallelGroup()
+                            .addGroup(ChangePasswordLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(ChangePasswordLayout.createParallelGroup()
+                                    .addGroup(ChangePasswordLayout.createSequentialGroup()
+                                        .addComponent(newPasswordLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(newPasswordInput, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ChangePasswordLayout.createSequentialGroup()
+                                        .addComponent(RetypeNewPasswordLabel)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(RetypeNewPasswordLabelInput, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(changePasswordButton)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                );
+                ChangePasswordLayout.setVerticalGroup(
+                    ChangePasswordLayout.createParallelGroup()
+                        .addGroup(ChangePasswordLayout.createParallelGroup()
+                            .addGroup(ChangePasswordLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(ChangePasswordLayout.createParallelGroup()
+                                    .addGroup(ChangePasswordLayout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(newPasswordLabel))
+                                    .addComponent(newPasswordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(ChangePasswordLayout.createParallelGroup()
+                                    .addGroup(ChangePasswordLayout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(RetypeNewPasswordLabel))
+                                    .addComponent(RetypeNewPasswordLabelInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(changePasswordButton))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 398, Short.MAX_VALUE)
+                );
+            }
+            mainFrame.add(ChangePassword, BorderLayout.PAGE_END);
             mainFrame.pack();
             mainFrame.setLocationRelativeTo(mainFrame.getOwner());
         }
@@ -178,11 +223,16 @@ public class View extends JFrame {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JPanel ChangeTokenName;
-    private JPanel newUsernamePanel;
     private JLabel newUsernameLabel;
     private JTextField newUsernameTextField;
     private JLabel requirePINLabel;
     private JTextField requirePINTextField;
-    private JButton requirePINButton;
+    private JButton changeUsernameButton;
+    private JPanel ChangePassword;
+    private JLabel newPasswordLabel;
+    private JTextField newPasswordInput;
+    private JLabel RetypeNewPasswordLabel;
+    private JTextField RetypeNewPasswordLabelInput;
+    private JButton changePasswordButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
