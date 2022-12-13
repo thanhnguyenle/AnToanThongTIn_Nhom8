@@ -12,33 +12,78 @@
 	<style>
 		.container-popup{
 			background-color: white;
-			width: 40%;
+			width: 65%;
 			height: 50%;
 			margin: 150px auto auto;
+			padding: 32px 40px;
+			box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		}
+
+		.container-popup h1 {
+			text-align: center;
+		}
+
+		#downloadBtn {
+			border: none;
+			padding: 5px 10px;
+			border-radius: 10px;
+			background-color: #0e784d;
+			color: white;
+			margin-bottom: 25px;
+		}
+
+		input[type=file] {
+			padding: 10px 0px;
+			border-radius: 0px !important;
+		}
+
+		.buttonBottom {
+			margin-top: 42px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.buttonBottom > * {
+			padding: 5px 10px;
+			border-radius: 5px !important;
+			color: #0e784d;
+			border-color: #0e784d;
+			background-color: transparent;
+			border: 2px solid #0e784d;
+		}
+
+		.buttonBottom > *:hover {
+			background-color: #0e784d;
+			color: white;
+		}
+
+		form {
+			font-weight: bold;
+		}
+
 	</style>
 </head>
 
 <body>
-	<div class="container modal-invoice">
-		<div class="container-popup">
-			<h1>VERIFY INVOICE</h1>
-			<br />
-			<br />
-			<br />
-<%--		download file pdf--%>
-		<button onclick="return downloadInvoice()">Download Invoice PDF</button>
-<%--		upload file pdf--%>
+<div class="container modal-invoice">
+	<div class="container-popup">
+		<h1>VERIFY INVOICE</h1>
+		<br />
+		<br />
+		<%--		download file pdf--%>
+		<button id="downloadBtn" onclick="return downloadInvoice()">Download Invoice PDF</button>
+		<%--		upload file pdf--%>
 		<form method="post" action="${pageContext.request.contextPath}/upload-invoice" enctype="multipart/form-data">
-			Choose a file: <input type="file" name="file" />
+			Choose a file: <br />
+			<input type="file" name="file" />
 			<div class="buttonBottom">
-				<button type="button" onclick="closeInvoicePopup()">Close</button>
+				<button class="closeBtn" type="button" onclick="closeInvoicePopup()">Close</button>
 				<input type="submit" value="Verify" />
 			</div>
 
 		</form>
-		</div>
 	</div>
+</div>
 
 <script>
 	function closeInvoicePopup(){
@@ -51,14 +96,14 @@
 	async function remove_screenLoader_Global() {
 		$('.loader-mask').remove();
 	}
-	  function downloadInvoice() {
-		 screenLoader_Global();
-		 sendRequestGeneratePDF().then(async function () {
-			 await remove_screenLoader_Global();
-			 window.location.assign("/TheStarBuck/download-invoice");
-		 });
+	function downloadInvoice() {
+		screenLoader_Global();
+		sendRequestGeneratePDF().then(async function () {
+			await remove_screenLoader_Global();
+			window.location.assign("/TheStarBuck/download-invoice");
+		});
 
-	 }
+	}
 </script>
 </body>
 </html>
