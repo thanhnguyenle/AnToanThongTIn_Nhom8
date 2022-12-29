@@ -1,7 +1,5 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller;
 
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.*;
@@ -12,6 +10,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import java.io.*;
 import java.security.*;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.util.List;
 
 public class Test {
@@ -34,7 +33,7 @@ public class Test {
             KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
             ks.load(new FileInputStream(KEYSTORE), PASSWORD);
             String alias = (String) ks.aliases().nextElement();
-            char[] pwdArray = "123456".toCharArray();
+            char[] pwdArray = "password".toCharArray();
             PrivateKey pk = (PrivateKey) ks.getKey(alias, pwdArray);
             Certificate[] chain = ks.getCertificateChain(alias);
 
@@ -47,7 +46,7 @@ public class Test {
         }
         return false;
     }
-//    keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore newKeyStoreFileName.jks
+    //    keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore newKeyStoreFileName.jks
     public void createKeyStoreFile(){
         KeyStore ks = null;
         try {
@@ -58,9 +57,48 @@ public class Test {
                 ks.store(fos, pwdArray);
             }
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
+    }
+    //    keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore newKeyStoreFileName.jks
+    public void loadEntriesToKeyStoreFile(String keyStoreFileName, String pwKeyStore, String urFullname, String orgUnit, String orgName, String city, String state, String countryCode) {
+        String command = "keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore "  + keyStoreFileName;
+
+        try {
+            Process process = Runtime.getRuntime().exec(command);
+
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(process.getOutputStream()));
+            writer.write(pwKeyStore);
+            writer.write('\n');
+            writer.write(urFullname);
+            writer.write('\n');
+            writer.write(orgUnit);
+            writer.write('\n');
+            writer.write(orgName);
+            writer.write('\n');
+            writer.write(city);
+            writer.write('\n');
+            writer.write(state);
+            writer.write('\n');
+            writer.write(countryCode);
+            writer.write('\n');
+            writer.write("yes");
+            writer.flush();
+
+            writer.close();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void sign(String src, String dest,
                      Certificate[] chain, PrivateKey pk, String digestAlgorithm, String provider,
@@ -94,6 +132,7 @@ public class Test {
         reader.close();
 
     }
+
     public void createSignApperience(){
         try {
             PdfReader reader = new PdfReader(SRC);
@@ -142,6 +181,18 @@ public class Test {
         }
     }
 
+    public void printPublicKeyInKeyStore() throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
+        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+        ks.load(new FileInputStream(KEYSTORE), PASSWORD);
+        String alias = (String) ks.aliases().nextElement();
+//            char[] pwdArray = "password".toCharArray();
+//            PrivateKey pk = (PrivateKey) ks.getKey(alias, pwdArray);
+        Certificate cert = ks.getCertificate(alias);
+        // Get public key
+        PublicKey publicKey = cert.getPublicKey();
+        System.out.println(publicKey);
+    }
+
     public static void main(String[] args) throws IOException {
         BouncyCastleProvider provider = new BouncyCastleProvider();
         Security.addProvider(provider);
@@ -149,10 +200,12 @@ public class Test {
         test.generatePDF();
 //        test.createSignApperience();
 //        test.createKeyStoreFile();
+//        test.loadEntriesToKeyStoreFile(KEYSTORE, "password", "HUU DAO", "VN", "NLU", "HCM", "THU DUC", "+84");
 //        try {
 //            test.testVerifyPdfSampleSigned();
 //        } catch (GeneralSecurityException e) {
 //            e.printStackTrace();
 //        }
+
     }
 }

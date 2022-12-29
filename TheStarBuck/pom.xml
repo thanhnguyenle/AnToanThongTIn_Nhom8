@@ -66,6 +66,11 @@
             <artifactId>mail</artifactId>
             <version>1.5.0-b01</version>
         </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <!--        jsoup is a Java library for working with real-world HTML. It provides a very convenient API
          for fetching URLs and extracting and manipulating data, using the best of HTML5 DOM methods and CSS selectors.
