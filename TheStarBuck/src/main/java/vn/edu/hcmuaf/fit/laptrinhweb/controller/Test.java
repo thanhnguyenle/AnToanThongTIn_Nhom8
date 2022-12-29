@@ -212,7 +212,6 @@ public class Test {
         Security.addProvider(provider);
         Test test = new Test();
         test.generatePDF();
-//        test.createSignApperience();
 //        test.createKeyStoreFile();
 //        test.loadEntriesToKeyStoreFile(KEYSTORE, "password", "HUU DAO", "VN", "NLU", "HCM", "THU DUC", "+84");
 //        test.changePasswordKeyStoreFile("newKeyStoreFileName.jks", "password", "password");

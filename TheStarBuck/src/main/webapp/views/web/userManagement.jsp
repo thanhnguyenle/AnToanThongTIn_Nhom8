@@ -12,10 +12,21 @@
     <jsp:include page="layout/css.jsp"/>
     <link rel="stylesheet" href="<%= Asset.url("/template/web/css/userManagement.css")%>">
     <style>
+        :root {
+            --primary: #017143;
+            --white: #fff;
+            --black: #222;
+            --grey1: #3a3b3c;
+            --grey2: #828282;
+            --back: #62a78a;
+            --grey3: #ebebeb;
+            --xmas: #d50032;
+        }
         body{
             font-size: 1.7rem;
         }
     </style>
+
 </head>
 
 <body>
@@ -118,6 +129,12 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="publickey" role="tabpanel" aria-labelledby="publickey-tab">
+                            <div class="row" style="margin-left: 50%; margin-bottom: 1%;">
+                                <div class="col-lg-12">
+                                    <button type="button" onclick="createPK()"> Create Public key</button>
+                                    <button type="button" onclick="importPK()"> Import Public key</button>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="panel panel-default">
@@ -162,12 +179,7 @@
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <button type="button" onclick="createPK()"> Create Public key</button>
-                                    <button type="button" onclick="importPK()"> Import Public key</button>
-                                </div>
-                            </div>
+
                         </div>
 
                     </div>
@@ -176,6 +188,10 @@
         </form>
     </div>
 </div>
+<!-- Footer -->
+<jsp:include page="layout/footer.jsp"/>
+<!-- End Footer -->
+
 <!-- /#wrapper -->
 <%--model delete--%>
 <%--<form class="modal fade" id="deleteObject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" method="post"--%>
@@ -228,10 +244,10 @@
             document.querySelectorAll(".modal-generate").forEach(a=>a.style.display = "block");
         }
     }
-    // $(document).ready(function () {
-    //     $('#dataTables-invoice').dataTable();
-    //     $('#dataTables-publickey').dataTable();
-    // });
+    $(document).ready(function () {
+        $('#dataTables-invoice').dataTable();
+        $('#dataTables-publickey').dataTable();
+    });
 </script>
 
 </body>
