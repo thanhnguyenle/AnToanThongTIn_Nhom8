@@ -146,13 +146,13 @@ public class Test {
         BouncyCastleProvider provider = new BouncyCastleProvider();
         Security.addProvider(provider);
         Test test = new Test();
-//        test.generatePDF();
+        test.generatePDF();
 //        test.createSignApperience();
 //        test.createKeyStoreFile();
-        try {
-            test.testVerifyPdfSampleSigned();
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            test.testVerifyPdfSampleSigned();
+//        } catch (GeneralSecurityException e) {
+//            e.printStackTrace();
+//        }
     }
 }
