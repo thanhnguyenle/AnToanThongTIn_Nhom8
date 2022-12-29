@@ -51,6 +51,22 @@
 			background-color: #0e784d;
 			color: white;
 		}
+		.modal-import {
+			display: block;
+			position: fixed;
+			max-width: 100%;
+			width: 100%;
+			z-index: 1050;
+			background-color: rgba(0, 0, 0, 0.4);
+			margin: auto;
+			padding-top: 6%;
+			overflow: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			outline: 0;
+		}
 	</style>
 </head>
 
@@ -94,7 +110,7 @@
 	}
 
 	function closeInvoicePopup(){
-		document.querySelectorAll(".modal").forEach(a=>a.style.display = "none");
+		document.querySelectorAll(".modal-import").forEach(a=>a.style.display = "none");
 	}
 	async function screenLoader_Global() {
 		$('<div class="loader-mask"><div class="loader"></div></div>').appendTo('body');
