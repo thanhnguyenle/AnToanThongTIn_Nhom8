@@ -1,0 +1,41 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.4.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:23:p, par t {seq {comp retypeNewPINLabel:::p::p, space u:::p, comp retypeNewPINTextField:::p:200:p}, seq {par l {comp oldPINLabel::l:p::p, comp newPINLabel::l:p::p}, space :p:28:p, par l:::p {comp oldPINTextField::::199:x, comp newPINTextField::::199:x}}}}, seq l {space :p:148:p, comp applyNewPINButton:::p::p}}, space ::75:x}}"
+			"$verticalGroup": "par l {seq l {space :p:43:p, par b {comp oldPINLabel::b:p::p, comp oldPINTextField::b:p::p}, space :p:26:p, par b {comp newPINLabel::b:p::p, comp newPINTextField::b:p::p}, space :p:36:p, par l {comp retypeNewPINLabel:::p::p, comp retypeNewPINTextField:::p::p}, space :p:34:p, comp applyNewPINButton:::p::p, space ::41:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "oldPINLabel"
+				"text": "Nhập PIN cũ:"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "oldPINTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "newPINLabel"
+				"text": "Nhập PIN mới"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "newPINTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "retypeNewPINLabel"
+				"text": "Nhập lại PIN mới"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "retypeNewPINTextField"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "applyNewPINButton"
+				"text": "Áp dụng"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
