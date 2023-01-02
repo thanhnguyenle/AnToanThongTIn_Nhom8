@@ -4,10 +4,10 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:23:p, par t {seq {comp retypeNewPINLabel:::p::p, space u:::p, comp retypeNewPINTextField:::p:200:p}, seq {par l {comp oldPINLabel::l:p::p, comp newPINLabel::l:p::p}, space :p:28:p, par l:::p {comp oldPINTextField::::199:x, comp newPINTextField::::199:x}}}}, seq l {space :p:148:p, comp applyNewPINButton:::p::p}}, space ::75:x}}"
-			"$verticalGroup": "par l {seq l {space :p:43:p, par b {comp oldPINLabel::b:p::p, comp oldPINTextField::b:p::p}, space :p:26:p, par b {comp newPINLabel::b:p::p, comp newPINTextField::b:p::p}, space :p:36:p, par l {comp retypeNewPINLabel:::p::p, comp retypeNewPINTextField:::p::p}, space :p:34:p, comp applyNewPINButton:::p::p, space ::41:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:32:p, par l {seq {comp newPINLabel:::p::p, space s:::p, comp newPINTextField:::p:199:p, space ::201:x}, seq {comp oldPINLabel:::p::p, space s:::p, comp oldPINTextField::::199:x, space :p:206:p}, seq {par l {comp applyNewPINButton:::p::p, seq {comp retypeNewPINLabel:::p::p, space s:::p, comp retypeNewPINTextField:::p:200:p}}, space :0:185:x}}}}"
+			"$verticalGroup": "par l {seq l {space :p:30:p, par b {comp oldPINLabel::b:p::p, comp oldPINTextField::b:p::p}, space :p:24:p, par b {comp newPINLabel::b:p::p, comp newPINTextField::b:p::p}, space :p:25:p, par b {comp retypeNewPINLabel::b:p::p, comp retypeNewPINTextField::b:p::p}, space s:::p, comp applyNewPINButton:::p::p, space ::78:x}}"
 		} ) {
-			name: "this"
+			name: "panel1"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "oldPINLabel"
 				"text": "Nhập PIN cũ:"
@@ -34,8 +34,8 @@ new FormModel {
 				"text": "Áp dụng"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"location": new java.awt.Point( 70, 25 )
+			"size": new java.awt.Dimension( 525, 295 )
 		} )
 	}
 }

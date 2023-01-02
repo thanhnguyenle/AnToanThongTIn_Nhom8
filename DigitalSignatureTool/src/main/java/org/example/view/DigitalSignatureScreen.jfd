@@ -1,0 +1,28 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.4.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:18:p, comp chooseFileLabel:::p::p, space s:::p, comp chooseFileButton:::p::p, space :p:28:p, comp statusLabel:::p::p, space ::381:x}}"
+			"$verticalGroup": "par l {seq l {space :p:23:p, par b {comp chooseFileLabel::b:p::p, comp chooseFileButton::b:p::p, comp statusLabel::b:p::p}, space ::282:x}}"
+		} ) {
+			name: "DigitalSignaturePanel"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "chooseFileLabel"
+				"text": "Lấy file chữ ký"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "chooseFileButton"
+				"text": "Chọn file"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "statusLabel"
+				"text": "Trạng thái"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 25 )
+			"size": new java.awt.Dimension( 655, 335 )
+		} )
+	}
+}
