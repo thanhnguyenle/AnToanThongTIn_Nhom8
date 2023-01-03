@@ -1,5 +1,6 @@
-package vn.edu.hcmuaf.fit.laptrinhweb.controller.web.payment;
+package vn.edu.hcmuaf.fit.laptrinhweb.controller;
 
+import com.google.gson.Gson;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
@@ -7,30 +8,27 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.OrderService;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.GenderKeyStore;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.MyPairKey;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.cert.Certificate;
+import java.util.Base64;
 
-@WebServlet(name = "DownloadInvoice_Servlet", value = "/download-invoice")
-public class DownloadInvoice extends HttpServlet {
-    public DownloadInvoice() {}
+@WebServlet(name = "DownloadJKSFileAPI",urlPatterns = {"/downloadJKSFile"})
+public class DownloadJKSFileAPI extends HttpServlet {
+    GenderKeyStore myKeyStore = GenderKeyStore.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String fileName = "invoice.pdf";//request.getParameter("fileName");
+        String fileName = "keystore.jks";//request.getParameter("fileName");
         if(fileName == null || fileName.equals("")){
             throw new ServletException("File name can't be null or empty");
         }
         ServletContext context = request.getServletContext();
-        String fullPath = context.getRealPath("/template/invoice.pdf");
+        String fullPath = context.getRealPath("/template/keystore.jks");
         File file = new File(fullPath);
         if(!file.exists()){
             throw new ServletException("File doesn't exists on server");

@@ -1,19 +1,18 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.dao;
 
-import vn.edu.hcmuaf.fit.laptrinhweb.model.PublicKey;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.MyCertificate;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public interface IPublicKeyDAO extends IGenericDAO<PublicKey> {
-    List<PublicKey> findAll();
+public interface IPublicKeyDAO extends IGenericDAO<MyCertificate> {
+    List<MyCertificate> findAll();
 
-    Long create(PublicKey publicKey);
-    Long update(PublicKey publicKey);
+    Long create(MyCertificate publicKey);
+    Long update(MyCertificate publicKey);
     Long delete(String id);
 
-    PublicKey getItem(String id);
-    List<PublicKey> getPKByAccountID(String accountID);
+    MyCertificate getItem(String id);
 
-
+    List<MyCertificate> getCertificateByStatus(String accountID,String status);
+    List<MyCertificate> getPKByAccountID(String accountID);
 }

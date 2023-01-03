@@ -1,63 +1,46 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 public class Bill extends AbsModel implements Serializable {
-    private String id;
-    private String idAccount;
-    private String idOrder;
-    private String detail;
-    private double amount;
-    private boolean active;
+    private String billID;
+    private String accountID;
+    private InputStream data;
+    private long timestamp;
 
     public Bill() {
     }
 
-    public String getId() {
-        return id;
+    public String getBillID() {
+        return billID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setBillID(String billID) {
+        this.billID = billID;
     }
 
-    public String getIdAccount() {
-        return idAccount;
+    public String getAccountID() {
+        return accountID;
     }
 
-    public void setIdAccount(String idAccount) {
-        this.idAccount = idAccount;
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
     }
 
-    public String getIdOrder() {
-        return idOrder;
+    public InputStream getData() {
+        return data;
     }
 
-    public void setIdOrder(String idOrder) {
-        this.idOrder = idOrder;
+    public void setData(InputStream data) {
+        this.data = data;
     }
 
-    public String getDetail() {
-        return detail;
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

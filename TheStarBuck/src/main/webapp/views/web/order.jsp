@@ -1,6 +1,5 @@
+
 <%@ page import="vn.edu.hcmuaf.fit.laptrinhweb.controller.web.Asset" %>
-<%@ page import="vn.edu.hcmuaf.fit.laptrinhweb.model.Account" %>
-<%@ page import="vn.edu.hcmuaf.fit.laptrinhweb.model.Orders" %>
 <%@include file="/common/taglib.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -33,21 +32,13 @@
       </div>
   </div>
 <!-- Content -->
-<section class="section order" >
+<section class="section order" style="margin-top:0;margin-bottom: 6rem;overflow: unset" >
     <div style="text-align: center;">
         <h1 style="color: green">THE STARBUCK</h1>
         <h3>YOUR INVOICE</h3>
         <embed src="<%= Asset.url("/template/invoice.pdf")%>"
                width="800"
                height="1200">
-    </div>
-    <div class="row pt-lg-3 buttons mb-sm-0 mb-2">
-        <div class="col-md-6 pt-md-0 pt-3">
-            <div class="btnNav text-uppercase btnBack">Print</div>
-        </div>
-        <div class="col-md-6 pt-md-0 pt-3" onclick="">
-            <div class="btnNav ml-auto text-uppercase btnContinue">Download</div>
-        </div>
     </div>
 </section>
 

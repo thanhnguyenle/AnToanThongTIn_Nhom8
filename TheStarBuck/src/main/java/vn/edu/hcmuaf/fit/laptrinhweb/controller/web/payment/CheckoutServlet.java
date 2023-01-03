@@ -27,12 +27,6 @@ public class CheckoutServlet extends HttpServlet {
         orderService = OrderService.getInstance();
         genderPdf = GenderPdf.instance();
     }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //get cart from session
@@ -71,17 +65,13 @@ public class CheckoutServlet extends HttpServlet {
         }
         boolean checkFlag = orderService.createOrder(account, cart, orders);
         if (checkFlag) {
-            //generate PDF:
-            boolean check = genderPdf.generatePDF(account,orders,request);
-            if (check) {
-              String  json = new Gson().toJson("Successful!");
-                PrintWriter out = response.getWriter();
-                try {
-                    out.println(json);
-                } finally {
-                    out.close();
-
-                }
+            //redirect bill
+            String  json = new Gson().toJson("Successful!");
+            PrintWriter out = response.getWriter();
+            try {
+                out.println(json);
+            } finally {
+                out.close();
             }
         } else {
             response.sendRedirect(request.getContextPath() + "/payment");

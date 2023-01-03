@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.laptrinhweb.dao.IGenericDAO;
 import vn.edu.hcmuaf.fit.laptrinhweb.db.impl.DBConnection;
 import vn.edu.hcmuaf.fit.laptrinhweb.mapper.IRowMapper;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -251,6 +252,8 @@ public abstract class AbstractDAO<T> implements IGenericDAO<T> {
                     statement.setDouble(index, (Double) parameter);
                 } else if (parameter instanceof Boolean) {
                     statement.setBoolean(index, (Boolean) parameter);
+                } else if (parameter instanceof InputStream) {
+                    statement.setBlob(index,(InputStream) parameter);
                 }
             }
         } catch (SQLException e) {

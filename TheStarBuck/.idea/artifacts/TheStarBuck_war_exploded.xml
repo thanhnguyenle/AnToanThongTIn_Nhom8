@@ -14,6 +14,7 @@
           <element id="module-output" name="TheStarBuck" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.sun.xml.security:xml-security-impl:1.0" />
           <element id="library" level="project" name="Maven: com.itextpdf:barcodes:7.2.4" />
           <element id="library" level="project" name="Maven: com.itextpdf:font-asian:7.2.4" />
           <element id="library" level="project" name="Maven: com.itextpdf:forms:7.2.4" />
@@ -85,6 +86,7 @@
           <element id="library" level="project" name="Maven: com.mysql:mysql-connector-j:8.0.31" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.19.4" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.10" />
+          <element id="library" level="project" name="Maven: com.itextpdf:itextpdf:5.5.13.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">
