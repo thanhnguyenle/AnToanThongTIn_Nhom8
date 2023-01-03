@@ -4,6 +4,8 @@
 
 package org.example.view;
 
+import org.example.controller.PDFDigitalSigning;
+
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import java.awt.event.ActionEvent;
@@ -18,7 +20,7 @@ import static org.example.view.LoginControl.getPassword;
  */
 public class DigitalSignatureScreen extends JPanel {
 
-    public String filePath;
+    public String billPath;
     public String keyStorePath;
     public boolean isCheck = false;
     
@@ -37,6 +39,7 @@ public class DigitalSignatureScreen extends JPanel {
         chooseSignatureLabel = new JLabel();
         chooseKeyStoreButton = new JButton();
         keyStorePathLabel = new JLabel();
+        removeInfoButton = new JButton();
 
         //======== DigitalSignaturePanel ========
         {
@@ -62,6 +65,9 @@ public class DigitalSignatureScreen extends JPanel {
             //---- keyStorePathLabel ----
             keyStorePathLabel.setText("\u0110\u01b0\u1eddng d\u1eabn");
 
+            //---- removeInfoButton ----
+            removeInfoButton.setText("Xo\u00e1 to\u00e0n b\u1ed9 th\u00f4ng tin");
+
             GroupLayout DigitalSignaturePanelLayout = new GroupLayout(DigitalSignaturePanel);
             DigitalSignaturePanel.setLayout(DigitalSignaturePanelLayout);
             DigitalSignaturePanelLayout.setHorizontalGroup(
@@ -70,6 +76,7 @@ public class DigitalSignatureScreen extends JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(DigitalSignaturePanelLayout.createParallelGroup()
                             .addComponent(signButton)
+                            .addComponent(removeInfoButton)
                             .addGroup(DigitalSignaturePanelLayout.createSequentialGroup()
                                 .addGroup(DigitalSignaturePanelLayout.createParallelGroup()
                                     .addComponent(chooseFileLabel)
@@ -100,19 +107,21 @@ public class DigitalSignatureScreen extends JPanel {
                             .addComponent(chooseKeyStoreButton)
                             .addComponent(keyStorePathLabel))
                         .addGap(18, 18, 18)
+                        .addComponent(removeInfoButton)
+                        .addGap(26, 26, 26)
                         .addComponent(signButton)
-                        .addContainerGap(186, Short.MAX_VALUE))
+                        .addContainerGap(130, Short.MAX_VALUE))
             );
         }
         chooseFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                filePath = "";
+                billPath = "";
                 JFileChooser file = new JFileChooser();
                 file.showOpenDialog(null);
                 File selectedFile = file.getSelectedFile();
-                filePath = selectedFile.getAbsolutePath();
-                FileSignedPathLabel.setText(filePath);
+                billPath = selectedFile.getAbsolutePath();
+                FileSignedPathLabel.setText(billPath);
             }
         });
         chooseKeyStoreButton.addActionListener(new ActionListener() {
@@ -126,22 +135,30 @@ public class DigitalSignatureScreen extends JPanel {
                 keyStorePathLabel.setText(keyStorePath);
             }
         });
-
+        removeInfoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                billPath = "";
+                keyStorePath = "";
+                isCheck = false;
+                keyStorePathLabel.setText("");
+                FileSignedPathLabel.setText("");
+            }
+        });
         signButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                while (isCheck)
-                if(isCheck == false) {
-                    String password;
+                while(isCheck == false) {
+                    String password = "";
                     String inputPassword = JOptionPane.showInputDialog(null,"Nhập mật khẩu");
                     try {
                         password = getPassword();
                         if(inputPassword.equals(password)) {
                             isCheck = true;
-                            JOptionPane.showMessageDialog(getPanel(),"Đăng nhập thành công");
+                            PDFDigitalSigning.signBill(billPath,inputPassword,keyStorePath);
+                            JOptionPane.showMessageDialog(getPanel(),"Ký thành công, vui lòng kiểm tra file đã ký trong thư mục chứa file gốc");
 
                         } else {
-                            isCheck = false;
                             JOptionPane.showMessageDialog(null,"Đăng nhập thất bại, vui lòng kiểm tra lại mật khẩu!");
                         }
                     } catch (FileNotFoundException ex) {
@@ -165,5 +182,6 @@ public class DigitalSignatureScreen extends JPanel {
     private JLabel chooseSignatureLabel;
     private JButton chooseKeyStoreButton;
     private JLabel keyStorePathLabel;
+    private JButton removeInfoButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

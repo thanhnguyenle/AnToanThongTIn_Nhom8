@@ -50,7 +50,7 @@ public class GenerateKeystoreScreen extends JPanel {
             label5.setText("M\u00e3 v\u00f9ng:");
 
             //---- createCertificate ----
-            createCertificate.setText("T\u1ea1o Certificate");
+            createCertificate.setText("T\u1ea1o Ch\u1eef k\u00fd");
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -106,9 +106,9 @@ public class GenerateKeystoreScreen extends JPanel {
                             .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(CountryCodeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label5)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addComponent(createCertificate)
-                        .addGap(27, 27, 27))
+                        .addGap(28, 28, 28))
             );
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on

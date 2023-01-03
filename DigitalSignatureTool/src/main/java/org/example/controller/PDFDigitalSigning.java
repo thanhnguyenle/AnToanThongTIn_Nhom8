@@ -54,7 +54,7 @@ public class PDFDigitalSigning {
 
     }
     //    keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore newKeyStoreFileName.jks
-    public void loadEntriesToKeyStoreFile(String keyStoreFileName, String pwKeyStore, String urFullname, String orgUnit, String orgName, String city, String state, String countryCode) {
+    public static void loadEntriesToKeyStoreFile(String keyStoreFileName, String pwKeyStore, String urFullname, String orgUnit, String orgName, String city, String state, String countryCode) {
         String command = "keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore "  + keyStoreFileName;
 
         try {
@@ -93,7 +93,7 @@ public class PDFDigitalSigning {
         }
     }
 
-    public boolean signBill(String billPath, String keyStorePassword, String keyStorePath) {
+    public static boolean signBill(String billPath, String keyStorePassword, String keyStorePath) {
         try {
             String billSignedPath ;
             BouncyCastleProvider provider = new BouncyCastleProvider();
@@ -115,7 +115,7 @@ public class PDFDigitalSigning {
 
     }
 
-    public void sign(String src, String dest,
+    public static void sign(String src, String dest,
                      Certificate[] chain, PrivateKey pk, String digestAlgorithm, String provider,
                      PdfSigner.CryptoStandard subfilter, String reason, String location)
             throws GeneralSecurityException, IOException {
@@ -137,7 +137,7 @@ public class PDFDigitalSigning {
 
     }
 
-    private void createSignApperience(PdfSigner signer){
+    private static void createSignApperience(PdfSigner signer){
         Rectangle rect = new Rectangle(36, 250 , 200, 100);
         PdfSignatureAppearance appearance = signer.getSignatureAppearance();
         appearance
@@ -152,7 +152,7 @@ public class PDFDigitalSigning {
         signer.setFieldName("sig");
     }
 
-    public void testVerifyPdfSampleSigned() throws IOException, GeneralSecurityException {
+    public static void testVerifyPdfSampleSigned() throws IOException, GeneralSecurityException {
         File file = new File("hoadonSigned.pdf");
         try {
             InputStream resource = new FileInputStream(file);
@@ -176,7 +176,7 @@ public class PDFDigitalSigning {
         }
     }
 
-    public void verifyPdfSignedIntegrity(String billSignedPath) throws IOException, GeneralSecurityException {
+    public static void verifyPdfSignedIntegrity(String billSignedPath) throws IOException, GeneralSecurityException {
         File file = new File(billSignedPath);
         try {
             InputStream resource = new FileInputStream(file);
@@ -201,13 +201,13 @@ public class PDFDigitalSigning {
     }
 
     public static void main(String[] args) {
-        String billPath = "hoadon.pdf";
-        String password = "password";
-        String billSignedPath = billPath.substring(0,billPath.length() - 4) + "-signed.pdf";
-        String keyStoreFile = "keyStoreFile.jks";
-        BouncyCastleProvider provider = new BouncyCastleProvider();
-        Security.addProvider(provider);
-        PDFDigitalSigning sign = new PDFDigitalSigning();
+//        String billPath = "hoadon.pdf";
+//        String password = "password";
+//        String billSignedPath = billPath.substring(0,billPath.length() - 4) + "-signed.pdf";
+//        String keyStoreFile = "keyStoreFile.jks";
+//        BouncyCastleProvider provider = new BouncyCastleProvider();
+//        Security.addProvider(provider);
+//        PDFDigitalSigning sign = new PDFDigitalSigning();
 //        sign.signBill(billPath, password, keyStoreFile);
 //        sign.createKeyStoreFile("password",keyStoreFile);
 //        sign.loadEntriesToKeyStoreFile(keyStoreFile, "password", "HUU DAO", "VN", "NLU", "HCM", "THU DUC", "+84");

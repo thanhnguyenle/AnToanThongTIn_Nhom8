@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:18:p, par l {comp signButton:::p::p, seq {par l {comp chooseFileLabel::l:p::p, comp chooseSignatureLabel::l:p::p}, space s:::p, par l {seq {comp chooseKeyStoreButton:::p::p, space u:::p, comp keyStorePathLabel:::p::p}, seq {comp chooseFileButton:::p::p, space u:::p, comp FileSignedPathLabel:::p::p}}}}, space ::387:x}}"
-			"$verticalGroup": "par l {seq l {space :p:23:p, par b {comp chooseFileLabel::b:p::p, comp chooseFileButton::b:p::p, comp FileSignedPathLabel::b:p::p}, space s:::p, par b {comp chooseSignatureLabel::b:p::p, comp chooseKeyStoreButton::b:p::p, comp keyStorePathLabel::b:p::p}, space s:::p, comp signButton:::p::p, space ::186:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:18:p, par l {comp signButton:::p::p, comp removeInfoButton:::p::p, seq {par l {comp chooseFileLabel::l:p::p, comp chooseSignatureLabel::l:p::p}, space s:::p, par l {seq {comp chooseKeyStoreButton:::p::p, space u:::p, comp keyStorePathLabel:::p::p}, seq {comp chooseFileButton:::p::p, space u:::p, comp FileSignedPathLabel:::p::p}}}}, space ::387:x}}"
+			"$verticalGroup": "par l {seq l {space :p:23:p, par b {comp chooseFileLabel::b:p::p, comp chooseFileButton::b:p::p, comp FileSignedPathLabel::b:p::p}, space s:::p, par b {comp chooseSignatureLabel::b:p::p, comp chooseKeyStoreButton::b:p::p, comp keyStorePathLabel::b:p::p}, space s:::p, comp removeInfoButton:::p::p, space :p:26:p, comp signButton:::p::p, space ::130:x}}"
 		} ) {
 			name: "DigitalSignaturePanel"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -35,6 +35,10 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "keyStorePathLabel"
 				"text": "Đường dẫn"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "removeInfoButton"
+				"text": "Xoá toàn bộ thông tin"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 15, 25 )
