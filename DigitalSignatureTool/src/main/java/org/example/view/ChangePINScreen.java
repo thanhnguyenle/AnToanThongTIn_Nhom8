@@ -100,4 +100,8 @@ public class ChangePINScreen extends JPanel {
     private JTextField retypeNewPINTextField;
     private JButton applyNewPINButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+    public JPanel getPanel() {
+        return panel1;
+    }
 }
+

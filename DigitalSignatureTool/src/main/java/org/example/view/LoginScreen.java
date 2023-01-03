@@ -8,16 +8,19 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 /**
  * @author unknown
  */
 public class LoginScreen {
+
+    private boolean isLogin;
+
     public LoginScreen() {
         initComponents();
     }
 
-    private boolean isLogin;
     public void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         loginPanel = new JPanel();
@@ -43,23 +46,19 @@ public class LoginScreen {
                         .addComponent(loginPINLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(loginPasswordField, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(29, 29, 29)
                         .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(134, Short.MAX_VALUE))
+                        .addContainerGap(135, Short.MAX_VALUE))
             );
             loginPanelLayout.setVerticalGroup(
                 loginPanelLayout.createParallelGroup()
                     .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addGroup(loginPanelLayout.createParallelGroup()
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(loginPINLabel)
-                                    .addComponent(loginPasswordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(loginButton)))
-                        .addContainerGap(76, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(loginPINLabel)
+                            .addComponent(loginPasswordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginButton))
+                        .addContainerGap(84, Short.MAX_VALUE))
             );
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -70,16 +69,14 @@ public class LoginScreen {
                 String username, password;
 
                 password = loginPasswordField.getPassword().toString();
-
-                if (password == "1") {
-                    isLogin = true;
-                    JOptionPane.showMessageDialog(loginPanel,"Đăng nhập thành công");
-
-                } else {
-                    isLogin = false;
-                    JOptionPane.showMessageDialog(loginPanel,"Vui lòng kiểm tra tài khoản và mật khẩu","Đăng nhập thất bại",JOptionPane.ERROR_MESSAGE);
+                try {
+                    isLogin = LoginControl.isLoginSuccessfully(password);
+                    if (isLogin == false) {
+                        JOptionPane.showMessageDialog(loginPanel, "Mật khẩu sai, vui lòng nhập lại mật khẩu");
+                    }
+                } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(loginPanel,"Không thể đọc password, vui lòng kiểm tra lại");
                 }
-
 
 
             }
@@ -95,5 +92,9 @@ public class LoginScreen {
     private JOptionPane message;
     public JPanel getLoginPanel() {
         return loginPanel;
+    }
+
+    public boolean getLoginStatus() {
+        return isLogin;
     }
 }

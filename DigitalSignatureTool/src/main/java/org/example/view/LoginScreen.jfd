@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:52:p, comp loginPINLabel:::p::p, space u:::p, comp loginPasswordField:::p:202:p, space :p:30:p, comp loginButton:::p:106:p, space ::134:x}}"
-			"$verticalGroup": "par l {seq {par l {seq l {space :p:26:p, par b {comp loginPINLabel::b:p::p, comp loginPasswordField::b:p::p}}, seq l {space :p:34:p, comp loginButton:::p::p}}, space ::76:x}}"
+			"$horizontalGroup": "par l {seq {space :p:52:p, comp loginPINLabel:::p::p, space u:::p, comp loginPasswordField:::p:202:p, space :p:29:p, comp loginButton:::p:106:p, space ::135:x}}"
+			"$verticalGroup": "par l {seq {space :p:24:p, par b {comp loginPINLabel::b:p::p, comp loginPasswordField::b:p::p, comp loginButton::b:p::p}, space ::84:x}}"
 		} ) {
 			name: "loginPanel"
 			add( new FormComponent( "javax.swing.JLabel" ) {
