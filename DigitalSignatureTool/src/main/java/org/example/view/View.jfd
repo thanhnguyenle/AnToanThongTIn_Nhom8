@@ -22,14 +22,14 @@ new FormModel {
 							name: "changePINMenuItem"
 							"text": "Thay đổi Pin"
 						} )
-						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "viewInfoMenuItem"
-							"text": "Thông tin khách hàng"
-						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "digitalSignaltureMenu"
 						"text": "Chứng thư số"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "digitalSignaturePDFMenuItem"
+							"text": "Chữ ký điện tử PDF"
+						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "aboutMenu"
@@ -41,8 +41,13 @@ new FormModel {
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
 			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "mainPanel"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 90, 60 )
+			"location": new java.awt.Point( 50, 30 )
 			"size": new java.awt.Dimension( 765, 545 )
 		} )
 	}
