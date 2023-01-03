@@ -13,7 +13,7 @@
 		.container-popup{
 			background-color: white;
 			width: 70%;
-			height: 50%;
+			height: 75%;
 			margin: 150px auto auto;
 			padding: 28px;
 		}
@@ -75,13 +75,17 @@
 	<div class="container-popup">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-				<h2>Import Your Public Key</h2>
+				<h2>Import Your Certificate</h2>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12 width100">
-				<form role="form" class="ng-pristine ng-valid">
+				<form role="form" class="ng-pristine ng-valid" enctype="multipart/form-data"  method="POST" id="uploadCertificate">
 					<div class="form-group publicKeyBlock">
-						<textarea id="publicKey" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="publicKey"></textarea>
-						<button type="button" onclick="importPublicKey()">Import</button>
+						<input type="file" style="margin-bottom: 5px" name="data-certificate" id="data-certificate" /> <br/>
+						<label for="info">Info Certificate</label><textarea style="margin-bottom: 5px"  id="info" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="6" placeholder="Info Certificate will appear here." name="info" readonly></textarea>
+						<label for="publicKey">Public Key (Base64 Format)</label><textarea id="publicKey" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="publicKey" readonly></textarea>
+						<div class="buttonBottom">
+						<button type="button" onclick="importPublicKey()" id="import-cer">Import Certificate</button>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -90,7 +94,7 @@
 		<form method="post" action="${pageContext.request.contextPath}/upload-invoice" enctype="multipart/form-data">
 			<div class="buttonBottom">
 				<button type="button" onclick="closeInvoicePopup()">Close</button>
-				<button type="button" onclick="saveKey()">Save Public Key</button>
+				<button type="button" onclick="saveKey()">Save Certificate</button>
 			</div>
 		</form>
 	</div>
@@ -102,11 +106,51 @@
 	function importPublicKey(){
 		isImportPublicKey = true;
 	}
+	$('#import-cer').click(function() {
+		let form = $('#uploadCertificate')[0];
+		let dataForm = new FormData(form);
+		$.ajax({
+			type : 'POST',
+			url : '/TheStarBuck/upload-certificate',
+			data : dataForm,
+			enctype : 'multipart/form-data',
+			processData : false,
+			contentType : false,
+			cache : false,
+			success : function(json) {
+				if (json !== undefined && json != null) {
+					let val = json;
+					$("#publicKey").text(val.publicKey);
+					$("#info").text(val.info);
+				}
+			},
+			error : function() {
+				console.log("Fail");
+			},
+		});
+	});
 	function saveKey(){
-		let check = confirm("YOU MUST DOWNLOAD PRIVATE KEY! SYSTEM IS NOT PERMISSION SAVE YOUR PRIVATE KEY!");
-		if(check){
-			//save key
-		}
+		let form = $('#uploadCertificate')[0];
+		let dataForm = new FormData(form);
+		$.ajax({
+			type : 'POST',
+			url : '/TheStarBuck/save-certificate',
+			data : dataForm,
+			enctype : 'multipart/form-data',
+			processData : false,
+			contentType : false,
+			cache : false,
+			success : function(json) {
+				if (json !== undefined && json != null) {
+					let val = json;
+					alert(val);
+				}
+			},
+			error : function() {
+				console.log("Fail");
+			},
+		});
+		closeInvoicePopup();
 	}
 
 	function closeInvoicePopup(){

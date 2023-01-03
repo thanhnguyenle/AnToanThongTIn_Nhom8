@@ -1,16 +1,10 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.service.impl;
 
-import vn.edu.hcmuaf.fit.laptrinhweb.dao.impl.AccountDAO;
 import vn.edu.hcmuaf.fit.laptrinhweb.dao.impl.PublicKeyDAO;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.PublicKey;
-import vn.edu.hcmuaf.fit.laptrinhweb.service.IAccountService;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.MyCertificate;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.IPublicKeyService;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PublicKeyService implements IPublicKeyService {
     private PublicKeyDAO publicKeyDAO = PublicKeyDAO.getInstance();
@@ -26,17 +20,17 @@ public class PublicKeyService implements IPublicKeyService {
     }
 
     @Override
-    public List<PublicKey> findAll() {
+    public List<MyCertificate> findAll() {
         return publicKeyDAO.findAll();
     }
 
     @Override
-    public Long create(PublicKey publicKey) {
+    public Long create(MyCertificate publicKey) {
         return publicKeyDAO.create(publicKey);
     }
 
     @Override
-    public Long update(PublicKey publicKey) {
+    public Long update(MyCertificate publicKey) {
         return publicKeyDAO.update(publicKey);
     }
 
@@ -46,12 +40,17 @@ public class PublicKeyService implements IPublicKeyService {
     }
 
     @Override
-    public PublicKey getItem(String id) {
+    public MyCertificate getItem(String id) {
         return publicKeyDAO.getItem(id);
     }
 
     @Override
-    public List<PublicKey> getPKByAccountID(String accountID) {
+    public List<MyCertificate> getCertificateByStatus(String accountID, String status) {
+        return publicKeyDAO.getCertificateByStatus(accountID,status);
+    }
+
+    @Override
+    public List<MyCertificate> getPKByAccountID(String accountID) {
         return publicKeyDAO.getPKByAccountID(accountID);
     }
 }
