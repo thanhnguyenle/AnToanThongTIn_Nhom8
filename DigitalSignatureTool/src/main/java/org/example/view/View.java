@@ -28,7 +28,7 @@ public class View  {
         digitalSignaturePDFMenuItem = new JMenuItem();
         aboutMenu = new JMenu();
         mainPanel = new JPanel();
-
+        createKeyStoreMenuItem = new JMenuItem();
         //======== mainFrame ========
 
         {
@@ -86,8 +86,25 @@ public class View  {
                                 addScreen(digitalSignatureScreen.getPanel(), mainPanel);
                             }
                         });
+
+//                        ======== Create Keystore ===
+
+                        createKeyStoreMenuItem.setText("Tạo chữ ký");
+                        digitalSignatureMenu.add(createKeyStoreMenuItem);
+                        createKeyStoreMenuItem.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                mainPanel.removeAll();
+                                GenerateKeystoreScreen generateKeystoreScreen = new GenerateKeystoreScreen();
+                                addScreen(generateKeystoreScreen.getPanel(), mainPanel);
+                            }
+                        });
+
+
                     }
                     mainMenuBar.add(digitalSignatureMenu);
+
+
 
                     //======== aboutMenu ========
                     {
@@ -127,6 +144,8 @@ public class View  {
     private JMenuItem changePINMenuItem;
     private JMenu digitalSignatureMenu;
     private JMenuItem digitalSignaturePDFMenuItem;
+    private JMenuItem createKeyStoreMenuItem;
+
     private JMenu aboutMenu;
     private JPanel mainPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

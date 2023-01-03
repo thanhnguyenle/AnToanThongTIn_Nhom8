@@ -38,6 +38,10 @@ public class PDFDigitalSigning {
 //        this.keyStorePath = keyStorePath;
 //    }
 
+    public PDFDigitalSigning() {
+        BouncyCastleProvider provider = new BouncyCastleProvider();
+        Security.addProvider(provider);
+    }
     public void createKeyStoreFile(String password, String keyStorePath){
         KeyStore ks = null;
         try {
@@ -54,7 +58,7 @@ public class PDFDigitalSigning {
 
     }
     //    keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore newKeyStoreFileName.jks
-    public static void loadEntriesToKeyStoreFile(String keyStoreFileName, String pwKeyStore, String urFullname, String orgUnit, String orgName, String city, String state, String countryCode) {
+    public void loadEntriesToKeyStoreFile(String keyStoreFileName, String pwKeyStore, String urFullname, String orgUnit, String orgName, String city, String state, String countryCode) {
         String command = "keytool -genkeypair -alias thestarbuck -keyalg RSA -keystore "  + keyStoreFileName;
 
         try {
@@ -93,7 +97,7 @@ public class PDFDigitalSigning {
         }
     }
 
-    public static boolean signBill(String billPath, String keyStorePassword, String keyStorePath) {
+    public boolean signBill(String billPath, String keyStorePassword, String keyStorePath) {
         try {
             String billSignedPath ;
             BouncyCastleProvider provider = new BouncyCastleProvider();
@@ -107,7 +111,7 @@ public class PDFDigitalSigning {
             Certificate[] chain = ks.getCertificateChain(alias);
             billSignedPath = billPath.substring(0,billPath.length() - 4) + "-signed.pdf";
             sign(billPath, String.format(billSignedPath, 1), chain, pk, DigestAlgorithms.SHA256,
-                    provider.getName(), PdfSigner.CryptoStandard.CMS, "Test 1", "Ghent");
+                    provider.getName(), PdfSigner.CryptoStandard.CMS, "Bill Digital Signature", "Hochiminh City");
         } catch (Exception e) {
             return false;
         }
@@ -115,9 +119,9 @@ public class PDFDigitalSigning {
 
     }
 
-    public static void sign(String src, String dest,
-                     Certificate[] chain, PrivateKey pk, String digestAlgorithm, String provider,
-                     PdfSigner.CryptoStandard subfilter, String reason, String location)
+    public void sign(String src, String dest,
+                            Certificate[] chain, PrivateKey pk, String digestAlgorithm, String provider,
+                            PdfSigner.CryptoStandard subfilter, String reason, String location)
             throws GeneralSecurityException, IOException {
         IExternalDigest digest = new BouncyCastleDigest();
         // Creating the reader and the stamper
@@ -137,78 +141,63 @@ public class PDFDigitalSigning {
 
     }
 
-    private static void createSignApperience(PdfSigner signer){
+    private void createSignApperience(PdfSigner signer){
         Rectangle rect = new Rectangle(36, 250 , 200, 100);
         PdfSignatureAppearance appearance = signer.getSignatureAppearance();
         appearance
-                .setReason("Test")
-                .setLocation("Ghent")
+                .setReason("Bill Digital Signature")
+                .setLocation("Hochiminh City")
 
                 // Specify if the appearance before field is signed will be used
                 // as a background for the signed field. The "false" value is the default value.
                 .setReuseAppearance(false)
                 .setPageRect(rect)
                 .setPageNumber(1);
-        signer.setFieldName("sig");
+        signer.setFieldName("thestarbuck");
     }
 
-    public static void testVerifyPdfSampleSigned() throws IOException, GeneralSecurityException {
-        File file = new File("hoadonSigned.pdf");
-        try {
-            InputStream resource = new FileInputStream(file);
-            PdfDocument pdfDoc = new PdfDocument(new PdfReader(resource));
-            SignatureUtil signUtil = new SignatureUtil(pdfDoc);
-            List<String> names = signUtil.getSignatureNames();
-            for (String name : names) {
-                System.out.println("===== " + name + " =====");
-                System.out.println("Signature covers whole document: " + signUtil.signatureCoversWholeDocument(name));
-                System.out.println("Document revision: " + signUtil.getRevision(name) + " of " + signUtil.getTotalRevisions());
-                PdfPKCS7 pkcs7 = signUtil.readSignatureData(name);
 
-                System.out.println("Subject: " + CertificateInfo.getSubjectFields(pkcs7.getSigningCertificate()));
-                System.out.println("Integrity check OK? " + pkcs7.verifySignatureIntegrityAndAuthenticity());
-            }
-            pdfDoc.close();
-            resource.close();
-            System.out.println();
-        }catch (GeneralSecurityException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void verifyPdfSignedIntegrity(String billSignedPath) throws IOException, GeneralSecurityException {
+    public boolean verifyPdfSignedIntegrity(String billSignedPath) throws IOException, GeneralSecurityException {
         File file = new File(billSignedPath);
+        boolean isCheck = false;
         try {
             InputStream resource = new FileInputStream(file);
             PdfDocument pdfDoc = new PdfDocument(new PdfReader(resource));
             SignatureUtil signUtil = new SignatureUtil(pdfDoc);
             List<String> names = signUtil.getSignatureNames();
             for (String name : names) {
-                System.out.println("===== " + name + " =====");
-                System.out.println("Signature covers whole document: " + signUtil.signatureCoversWholeDocument(name));
-                System.out.println("Document revision: " + signUtil.getRevision(name) + " of " + signUtil.getTotalRevisions());
-                PdfPKCS7 pkcs7 = signUtil.readSignatureData(name);
+                if (signUtil.signatureCoversWholeDocument(name) == true) {
+                    PdfPKCS7 pkcs7 = signUtil.readSignatureData(name);
+                    if (pkcs7.verifySignatureIntegrityAndAuthenticity() == true) {
 
-                System.out.println("Subject: " + CertificateInfo.getSubjectFields(pkcs7.getSigningCertificate()));
-                System.out.println("Integrity check OK? " + pkcs7.verifySignatureIntegrityAndAuthenticity());
+                        isCheck = true;
+                    } else isCheck = false;
+                } else isCheck = false;
+//                System.out.println("===== " + name + " =====");
+//                System.out.println("Signature covers whole document: " + signUtil.signatureCoversWholeDocument(name));
+//                System.out.println("Document revision: " + signUtil.getRevision(name) + " of " + signUtil.getTotalRevisions());
+//                PdfPKCS7 pkcs7 = signUtil.readSignatureData(name);
+//
+//                System.out.println("Subject: " + CertificateInfo.getSubjectFields(pkcs7.getSigningCertificate()));
+//                System.out.println("Integrity check OK? " + pkcs7.verifySignatureIntegrityAndAuthenticity());
             }
             pdfDoc.close();
             resource.close();
-            System.out.println();
+
         }catch (GeneralSecurityException e){
             e.printStackTrace();
-        }
+            isCheck = false;
+        } return isCheck;
     }
 
     public static void main(String[] args) {
-//        String billPath = "hoadon.pdf";
-//        String password = "password";
-//        String billSignedPath = billPath.substring(0,billPath.length() - 4) + "-signed.pdf";
-//        String keyStoreFile = "keyStoreFile.jks";
-//        BouncyCastleProvider provider = new BouncyCastleProvider();
-//        Security.addProvider(provider);
-//        PDFDigitalSigning sign = new PDFDigitalSigning();
-//        sign.signBill(billPath, password, keyStoreFile);
+        String billPath = "hoadon.pdf";
+        String password = "password";
+        String billSignedPath = billPath.substring(0,billPath.length() - 4) + "-signed.pdf";
+        String keyStoreFile = "keyStoreFile.jks";
+
+        PDFDigitalSigning sign = new PDFDigitalSigning();
+        sign.signBill(billPath, password, keyStoreFile);
 //        sign.createKeyStoreFile("password",keyStoreFile);
 //        sign.loadEntriesToKeyStoreFile(keyStoreFile, "password", "HUU DAO", "VN", "NLU", "HCM", "THU DUC", "+84");
 //        sign.changePasswordKeyStoreFile("newKeyStoreFileName.jks", "password", "password");
