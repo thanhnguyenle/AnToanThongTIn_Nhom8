@@ -191,7 +191,7 @@
                 document.querySelectorAll(".modal-invoice").forEach(a=>a.style.display = "block");
             }
     }
-    async function sendRequestGeneratePDF(){
+    async function checkOutAndMoveToBill(){
         let fullname = $("#name").val();
         let phonenumber = $("#phone").val();
         let email = $("#email").val();
@@ -202,6 +202,27 @@
         $.ajax({
             type: "Post",
             url: "/TheStarBuck/payment-checkout",
+            ContentType: 'json',
+            headers: {Accept: "application/json;charset=utf-8"},
+            data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
+            async:false,
+            success: function (json) {
+                console.log(json);
+            }
+        });
+    }
+
+    async function sendRequestGeneratePDF(){
+        let fullname = $("#name").val();
+        let phonenumber = $("#phone").val();
+        let email = $("#email").val();
+        let addresses = $("#addresses :selected").text();
+        let addressDetails = $("#addressDetail :selected").val();
+        let payment = $("#payment :selected").val();
+
+        $.ajax({
+            type: "Post",
+            url: "/TheStarBuck/gender-pdf",
             ContentType: 'json',
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},

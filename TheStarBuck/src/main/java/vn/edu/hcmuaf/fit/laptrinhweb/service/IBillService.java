@@ -1,24 +1,21 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.service;
 
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.Bill;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public interface IBillService {
-    List<Account> findAll();
+    List<Bill> findAll();
 
-    Long save(Account account);
+    Long save(Bill account);
 
     int getAmountItem();
 
-    Account getAccount(String id);
+    Bill getItem(String id);
+    List<Bill> getItemByAccount(String idAccount);
+    Long deleteItem(String id);
 
-    Account getAccountByEmail(String email);
-
-    boolean verifyAccount(String email);
-
-    String mdbPassword(String password) throws NoSuchAlgorithmException;
-
-    boolean updatePass(String pass, String id);
+    Long updateItem(Bill bill);
 }

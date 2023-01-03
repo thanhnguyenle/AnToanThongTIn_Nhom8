@@ -1,18 +1,37 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 import java.io.*;
-import java.security.KeyStore;
+import java.security.*;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 
-public class MyCertificate {
-    private static MyCertificate instance;
+public class GenderKeyStore {
+    private static GenderKeyStore instance;
 
-    private MyCertificate() {
+    private GenderKeyStore() {
     }
-    public static MyCertificate getInstance(){
-        if(instance==null) instance = new MyCertificate();
+    public static GenderKeyStore getInstance(){
+        if(instance==null) instance = new GenderKeyStore();
         return instance;
     }
+    public KeyStore getKeyStore(String pathKeyStore, String passKeyStore){
+        try {
+            BouncyCastleProvider provider = new BouncyCastleProvider();
+            Security.addProvider(provider);
+            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+            ks.load(new FileInputStream(pathKeyStore), passKeyStore.toCharArray());
+            return ks;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException | KeyStoreException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
     public void createKeyStoreFile(String pathKeyStore, String passKeyStore){
         KeyStore ks = null;
         try {
@@ -25,16 +44,8 @@ public class MyCertificate {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public static void main(String[] args) {
-        MyCertificate myCertificate = new MyCertificate();
-        String path = "myStore.jks";
-        myCertificate.createKeyStoreFile(path,"hello1");
-        myCertificate.loadEntriesToKeyStoreFile(path,"hello1","123456","DSA","SHA256withDSA","2048","hi","hi","hi","hi","hi","hi");
-        System.out.println("Succcessful");
-    }
     public void loadEntriesToKeyStoreFile(String keyStorePath,String passKeyStore,String passPrivateKey,String keyAlgorithm, String sigAlgorithm,String keySize, String cn, String ou, String o, String s, String l, String c) {
         String command = "keytool -genkeypair -alias thestarbuck -keyalg "+keyAlgorithm+" -sigalg "+sigAlgorithm+" -keypass "+passPrivateKey+" -keysize "+keySize+" -validity 90 -keystore "  + keyStorePath;
 

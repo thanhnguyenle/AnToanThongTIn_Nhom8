@@ -1,22 +1,19 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.dao;
 
-import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.Bill;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public interface IDAO extends IGenericDAO<Account> {
-    List<Account> findAll();
+public interface IBillDAO extends IGenericDAO<Bill> {
+    List<Bill> findAll();
 
-    Long save(Account account);
+    Long save(Bill account);
 
     int getAmountItem();
 
-    Account getItem(String id);
+    Bill getItem(String id);
+    List<Bill> getItemByAccount(String idAccount);
+    Long deleteItem(String id);
 
-    Account getAccountByEmail(String email);
-
-    boolean verifyAccount(String email);
-
-    public String mdbPassword(String password) throws NoSuchAlgorithmException;
+    Long updateItem(Bill bill);
 }

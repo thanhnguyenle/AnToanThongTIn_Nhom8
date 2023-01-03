@@ -89,12 +89,12 @@
 		<%--		download file pdf--%>
 		<button id="downloadBtn" onclick="return downloadInvoice()">Download Invoice PDF</button>
 		<%--		upload file pdf--%>
-		<form method="post" action="${pageContext.request.contextPath}/upload-invoice" enctype="multipart/form-data">
-			Choose a file: <br />
+		<form method="post" id="formUploadPDF" enctype="multipart/form-data">
+			Choose a file to verify: <br />
 			<input type="file" name="file" />
 			<div class="buttonBottom">
 				<button class="closeBtn" type="button" onclick="closeInvoicePopup()">Close</button>
-				<input type="submit" value="Verify" />
+				<input type="button" value="Verify" onclick="verifyPDF()" />
 			</div>
 
 		</form>
@@ -102,6 +102,29 @@
 </div>
 
 <script>
+	function verifyPDF(){
+		let form = $('#formUploadPDF')[0];
+		let dataForm = new FormData(form);
+		$.ajax({
+			type : 'POST',
+			url : '/TheStarBuck/upload-invoice',
+			data : dataForm,
+			enctype : 'multipart/form-data',
+			processData : false,
+			contentType : false,
+			cache : false,
+			success : function(json) {
+				if (json !== undefined && json != null) {
+					checkOutAndMoveToBill();
+					window.location.href = "/TheStarBuck/bill";
+					window.location.assign("/TheStarBuck/bill");
+				}
+			},
+			error : function() {
+				console.log("Fail");
+			},
+		});
+	}
 	function closeInvoicePopup(){
 		document.querySelectorAll(".modal-invoice").forEach(a=>a.style.display = "none");
 	}
@@ -118,7 +141,6 @@
 			await remove_screenLoader_Global();
 			window.location.assign("/TheStarBuck/download-invoice");
 		});
-
 	}
 </script>
 </body>

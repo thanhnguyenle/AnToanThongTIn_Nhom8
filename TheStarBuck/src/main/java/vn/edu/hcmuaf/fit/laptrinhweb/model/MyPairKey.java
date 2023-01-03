@@ -3,74 +3,38 @@ package vn.edu.hcmuaf.fit.laptrinhweb.model;
 import java.io.*;
 import java.security.KeyStore;
 
-public class GenderKeyStore {
-    private static GenderKeyStore instance;
+public class MyPairKey {
+   private String privateKey;
+   private String publicKey;
+   public String info;
 
-    private GenderKeyStore() {
-    }
-    public static GenderKeyStore getInstance(){
-        if(instance==null) instance = new GenderKeyStore();
-        return instance;
-    }
-
-    public void createKeyStoreFile(String pathKeyStore, String passKeyStore){
-        KeyStore ks = null;
-        try {
-            ks = KeyStore.getInstance("pkcs12");
-            char[] pwdArray = passKeyStore.toCharArray();
-            ks.load(null, pwdArray);
-            try (FileOutputStream fos = new FileOutputStream(pathKeyStore)) {
-                ks.store(fos, pwdArray);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    public String getInfo() {
+        return info;
     }
 
-    public static void main(String[] args) {
-        GenderKeyStore myCertificate = new GenderKeyStore();
-        String path = "myStore.jks";
-        myCertificate.createKeyStoreFile(path,"hello1");
-        myCertificate.loadEntriesToKeyStoreFile(path,"hello1","123456","DSA","SHA256withDSA","2048","hi","hi","hi","hi","hi","hi");
-        System.out.println("Succcessful");
+    public void setInfo(String info) {
+        this.info = info;
     }
-    public void loadEntriesToKeyStoreFile(String keyStorePath,String passKeyStore,String passPrivateKey,String keyAlgorithm, String sigAlgorithm,String keySize, String cn, String ou, String o, String s, String l, String c) {
-        String command = "keytool -genkeypair -alias thestarbuck -keyalg "+keyAlgorithm+" -sigalg "+sigAlgorithm+" -keypass "+passPrivateKey+" -keysize "+keySize+" -validity 90 -keystore "  + keyStorePath;
 
-        try {
-            Process process = Runtime.getRuntime().exec(command);
+    public MyPairKey(){}
 
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(process.getOutputStream()));
-            writer.write(passKeyStore);
-            writer.write('\n');
-            writer.write(cn);
-            writer.write('\n');
-            writer.write(ou);
-            writer.write('\n');
-            writer.write(o);
-            writer.write('\n');
-            writer.write(l);
-            writer.write('\n');
-            writer.write(s);
-            writer.write('\n');
-            writer.write(c);
-            writer.write('\n');
-            writer.write("yes");
-            writer.flush();
+    public String getPrivateKey() {
+        return privateKey;
+    }
 
-            writer.close();
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String getPublicKey() {
+        return publicKey;
+    }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
+    }
+
+    public String toString() {
+        return "PairKey [publicKey=" + publicKey + ", privateKey=" + privateKey + "]";
     }
 }

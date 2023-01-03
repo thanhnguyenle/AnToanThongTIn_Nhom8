@@ -1,13 +1,17 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.model;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.signatures.CertificateInfo;
+import com.itextpdf.signatures.PdfPKCS7;
+import com.itextpdf.signatures.SignatureUtil;
+import org.bouncycastle.crypto.CryptoException;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.io.*;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.Security;
+import java.security.*;
 import java.security.cert.CertificateException;
+import java.util.List;
 
 public class PDFChecker {
     private static PDFChecker instance;
@@ -18,72 +22,43 @@ public class PDFChecker {
         if(instance==null) instance = new PDFChecker();
         return instance;
     }
-    public KeyStore getKeyStore(String pathKeyStore, String passKeyStore){
-        try {
-            BouncyCastleProvider provider = new BouncyCastleProvider();
-            Security.addProvider(provider);
-            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-            ks.load(new FileInputStream(pathKeyStore), passKeyStore.toCharArray());
-            return ks;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (CertificateException | KeyStoreException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-    public void createKeyStoreFile(String pathKeyStore, String passKeyStore){
-        KeyStore ks = null;
-        try {
-            ks = KeyStore.getInstance("pkcs12");
-            char[] pwdArray = passKeyStore.toCharArray();
-            ks.load(null, pwdArray);
-            try (FileOutputStream fos = new FileOutputStream(pathKeyStore)) {
-                ks.store(fos, pwdArray);
+    public boolean checkDigitalSignPDF(InputStream inputStream,String nameSign, PublicKey publicKey){
+            try {
+                try {
+                    PdfDocument pdfDoc = new PdfDocument(new PdfReader(inputStream));
+                    SignatureUtil signUtil = new SignatureUtil(pdfDoc);
+                    List<String> names = signUtil.getSignatureNames();
+                    for (String name : names) {
+                        if(name.equals(nameSign)){
+                            PdfPKCS7 pkcs7 = signUtil.readSignatureData(name);
+//                           //"Integrity check OK? " => pkcs7.verifySignatureIntegrityAndAuthenticity()
+                            return pkcs7.verifySignatureIntegrityAndAuthenticity()&&checkDigitalSign(pkcs7,publicKey);
+                        }
+                    }
+                    pdfDoc.close();
+                    inputStream.close();
+                } catch (IOException e) {
+                   e.printStackTrace();
+                }
+            }catch (GeneralSecurityException e){
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            return false;
     }
-
-    public void loadEntriesToKeyStoreFile(String keyStorePath,String passKeyStore,String passPrivateKey,String keyAlgorithm, String sigAlgorithm,String keySize, String cn, String ou, String o, String s, String l, String c) {
-        String command = "keytool -genkeypair -alias thestarbuck -keyalg "+keyAlgorithm+" -sigalg "+sigAlgorithm+" -keypass "+passPrivateKey+" -keysize "+keySize+" -validity 90 -keystore "  + keyStorePath;
-
+    public boolean checkDigitalSign(PdfPKCS7 pkcs7,PublicKey publicKey){
         try {
-            Process process = Runtime.getRuntime().exec(command);
-
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(process.getOutputStream()));
-            writer.write(passKeyStore);
-            writer.write('\n');
-            writer.write(cn);
-            writer.write('\n');
-            writer.write(ou);
-            writer.write('\n');
-            writer.write(o);
-            writer.write('\n');
-            writer.write(l);
-            writer.write('\n');
-            writer.write(s);
-            writer.write('\n');
-            writer.write(c);
-            writer.write('\n');
-            writer.write("yes");
-            writer.flush();
-
-            writer.close();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            pkcs7.getSigningCertificate().verify(publicKey);
+            return true;
         }
+        // Verification failed
+        catch (InvalidKeyException | SignatureException ex) {
+            return false;
+        }
+        // Problem verifying
+        catch (NoSuchProviderException | NoSuchAlgorithmException | CertificateException ex) {
+           ex.printStackTrace();
+        }
+        return false;
     }
+
 }

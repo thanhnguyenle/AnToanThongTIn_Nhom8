@@ -129,14 +129,23 @@ public class QUERIES {
         public static final String GET_POST_BYID = "select * from Post where id_po=?";
         public static final String TOTAL = "select COUNT(*) from Post";
     }
-    public static class PUBLICKEY {
-        public static final String GET_LIST = "select * from PublicKey";
-        public static final String CREATE = "insert into PublicKey values (?, ?, ?, ?, ?, ?, ?)";
-        public static final String DELETE = "delete from PublicKey where keyID = ?";
-        public static final String UPDATE = "update PublicKey set accountID = ?, typeCypher = ?,startDate = ?,endDate = ?, content = ?, status = ? where keyID = ?";
-        public static final String GET_PUBLICKEY_BYID = "select * from PublicKey where keyID=?";
-        public static final String GET_PUBLICKEY_BYACCOUNTID = "select * from PublicKey where accountID=?";
-        public static final String TOTAL = "select COUNT(*) from PublicKey where accountID=?";
+    public static class CERTIFICATE {
+        public static final String GET_LIST = "select * from Certificate";
+        public static final String  CREATE = "insert into Certificate(keyID, accountID, startDate, endDate, data, status) values (?, ?, ?, ?, ?, ?)";
+        public static final String DELETE = "delete from Certificate where keyID = ?";
+        public static final String UPDATE = "update Certificate set accountID = ?,startDate = ?,endDate = ?, data = ?, status = ? where keyID = ?";
+        public static final String GET_PUBLICKEY_BYID = "select * from Certificate where keyID=?";
+        public static final String GET_PUBLICKEY_BYACCOUNTID = "select * from Certificate where accountID=?";
+        public static final String TOTAL = "select COUNT(*) from Certificate where accountID=?";
+        public static final String GET_CERTIFICATE_STATUS = "SELECT * FROM Certificate WHERE status = ? AND accountID = ?";
     }
-
+    public static class BILL {
+        public static final String GET_LIST = "select * from Bill";
+        public static final String  CREATE = "insert into Bill values (?, ?, ?, ?)";
+        public static final String DELETE = "delete from Certificate where billID = ?";
+        public static final String UPDATE = "update Certificate set accountID = ?,data = ?,timestamp = ? where billID = ?";
+        public static final String GET_BILL_BYID = "select * from Bill where billID=?";
+        public static final String GET_BILL_BYACCOUNTID = "select * from Bill where accountID=?";
+        public static final String TOTAL = "select COUNT(*) from Bill";
+    }
 }

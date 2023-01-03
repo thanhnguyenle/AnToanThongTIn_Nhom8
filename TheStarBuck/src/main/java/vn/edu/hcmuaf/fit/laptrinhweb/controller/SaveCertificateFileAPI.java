@@ -1,8 +1,6 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller;
 
 import com.google.gson.Gson;
-import com.sun.mail.iap.ByteArray;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,6 +16,7 @@ import vn.edu.hcmuaf.fit.laptrinhweb.model.GenderKeyStore;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.MyCertificate;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.MyPairKey;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.PublicKeyService;
+
 import java.io.*;
 import java.nio.file.Paths;
 import java.security.PublicKey;
@@ -26,18 +25,18 @@ import java.sql.Timestamp;
 import java.util.Base64;
 
 
-@WebServlet(name = "UploadCertificateFileAPI",urlPatterns = {"/upload-certificate"})
+@WebServlet(name = "SaveCertificateFileAPI",urlPatterns = {"/save-certificate"})
 @MultipartConfig(maxFileSize = 16177215)
-public class UploadCertificateFileAPI extends HttpServlet {
-    GenderKeyStore myKeyStore = GenderKeyStore.getInstance();
+public class SaveCertificateFileAPI extends HttpServlet {
     PublicKeyService publicKeyService = PublicKeyService.getInstance();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BouncyCastleProvider provider = new BouncyCastleProvider();
         Security.addProvider(provider);
         HttpSession httpSession = req.getSession();
         Account acc = (Account) httpSession.getAttribute("account");
-        if(acc!=null){
+        if (acc != null) {
             InputStream inputStream = null; // input stream of the upload file
             // obtains the upload file part in this multipart request
             Part filePart = req.getPart("data-certificate");
@@ -70,34 +69,10 @@ public class UploadCertificateFileAPI extends HttpServlet {
                 myCertificate.setStatus("AVAILABLE");
                 publicKeyService.create(myCertificate);
 
-                PublicKey pubKey = null;
-                Reader pemReader = new BufferedReader(new InputStreamReader(inputStream));
-                PEMParser pemParser = new PEMParser(pemReader);;
-                PKCS10CertificationRequest csr;
-                try {
-                    csr = (PKCS10CertificationRequest) pemParser.readObject();
-                    SubjectPublicKeyInfo pkInfo = csr.getSubjectPublicKeyInfo();
-                    JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
-                    try {
-                        pubKey = converter.getPublicKey(pkInfo);
-                    } catch (PEMException e) {
-                       e.printStackTrace();
-                    }finally {
-                        pemParser.close();
-                        pemReader.close();
-                        inputStream.close();
-                    }
-                } catch (IOException ex) {
-                   ex.printStackTrace();
-                }
-                    myPairKey.setPublicKey(new String(Base64.getEncoder().encode( pubKey.getEncoded())));
-                }
-
-
                 if (myPairKey != null) {
                     resp.setContentType("application/json");
                     resp.setCharacterEncoding("utf-8");
-                    String json = new Gson().toJson(myPairKey);
+                    String json = new Gson().toJson("Save to database is succcessful");
                     PrintWriter out = resp.getWriter();
                     try {
                         out.println(json);
@@ -108,4 +83,5 @@ public class UploadCertificateFileAPI extends HttpServlet {
                     System.err.println("ERROR!");
             }
         }
+    }
 }

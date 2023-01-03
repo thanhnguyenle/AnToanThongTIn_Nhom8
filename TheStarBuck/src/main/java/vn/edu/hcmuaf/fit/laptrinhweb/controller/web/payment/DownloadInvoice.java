@@ -52,9 +52,4 @@ public class DownloadInvoice extends HttpServlet {
         System.out.println("File downloaded at client successfully");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
 }

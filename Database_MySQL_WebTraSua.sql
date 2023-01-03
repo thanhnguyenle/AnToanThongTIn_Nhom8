@@ -51,14 +51,12 @@ IF
 	) ;
 CREATE TABLE
 IF
-	NOT EXISTS `PublicKey` (
+	NOT EXISTS `Certificate` (
 		`keyID` VARCHAR ( 6 ) NOT NULL,
 		`accountID` VARCHAR ( 6 ) NOT NULL,
-		`typeCypher` VARCHAR ( 100 ) NULL,
-        `startDate` DATETIME ( 6 ) NOT NULL,
-        `endDate` DATETIME ( 6 ) NOT NULL,
-        `content`  VARCHAR ( 255 ) CHARACTER
-		SET 'utf8mb4' NULL DEFAULT NULL,
+        `startDate` LONG NOT NULL,
+        `endDate` LONG NOT NULL,
+        `data`  mediumblob NULL,
 		`status` VARCHAR ( 100 ) NULL,
 		PRIMARY KEY(`keyID`),
 		FOREIGN KEY ( `accountID` ) REFERENCES `Account` ( `id_ac` ) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -194,19 +192,11 @@ IF
 CREATE TABLE
 IF
 	NOT EXISTS `Bill` (
-		`id_bi` VARCHAR ( 6 ) NOT NULL,
-		`bi_orId` VARCHAR ( 6 ) NOT NULL,
-		`bi_detail` VARCHAR ( 255 ) CHARACTER
-		SET 'utf8mb4' NULL DEFAULT NULL,
-		`bi_active` BOOL NULL DEFAULT 0,
-		`createdDate` DATETIME ( 6 ) NOT NULL,
-		`modifiedDate` DATETIME ( 6 ) NULL,
-		`createdBy` VARCHAR ( 255 ) CHARACTER
-		SET 'utf8mb4' NOT NULL,
-		`modifiedBy` VARCHAR ( 255 ) CHARACTER
-		SET 'utf8mb4' NULL,
-		PRIMARY KEY ( `id_bi` ),
-		CONSTRAINT `FK__Bill__bi_orId__430DA2DE` FOREIGN KEY ( `bi_orId` ) REFERENCES `Orders` ( `id_od` ) ON DELETE NO ACTION ON UPDATE NO ACTION
+		`billID` VARCHAR ( 6 ) NOT NULL,
+		`accountID` VARCHAR ( 6 ) NOT NULL,
+		`data` mediumblob NULL,
+		`timestamp` LONG NOT NULL,
+		PRIMARY KEY ( `billID` )
 	);
 
 --  --
@@ -378,11 +368,11 @@ DELIMITER ;
  DROP TRIGGER IF EXISTS tr_NextPublicKeyID;
  DELIMITER $$
  CREATE TRIGGER tr_NextPublicKeyID
- BEFORE INSERT ON `PublicKey`
+ BEFORE INSERT ON `Certificate`
  FOR EACH ROW
  BEGIN
 				DECLARE lastAccID VARCHAR(6);
-				SET lastAccID = (SELECT `keyID` FROM `PublicKey` ORDER BY `keyID` DESC LIMIT 1);
+				SET lastAccID = (SELECT `keyID` FROM `Certificate` ORDER BY `keyID` DESC LIMIT 1);
 				IF lastAccID IS NULL THEN
 						SET lastAccID = '';
 				END IF;
@@ -523,12 +513,12 @@ DELIMITER ;
  FOR EACH ROW
  BEGIN
 				DECLARE lastBillID VARCHAR(6);
-				SET lastBillID = (SELECT `id_bi` FROM `Bill` ORDER BY `id_bi` DESC LIMIT 1);
+				SET lastBillID = (SELECT `billID` FROM `Bill` ORDER BY `billID` DESC LIMIT 1);
 				IF lastBillID IS NULL THEN
 						SET lastBillID = '';
 				END IF;
-				IF NEW.`id_bi` = '' OR NEW.`id_bi` IS NULL	THEN
-						SET NEW.`id_bi`= func_autoid(lastBillID, 'bi', 6);
+				IF NEW.`billID` = '' OR NEW.`billID` IS NULL	THEN
+						SET NEW.`billID`= func_autoid(lastBillID, 'bi', 6);
 				END IF;
  END$$;
  DELIMITER ;

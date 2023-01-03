@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.laptrinhweb.controller;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,76 +11,43 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.GenderKeyStore;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.MyPairKey;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
 import java.util.Base64;
 
-@WebServlet(name = "GenerateCertificateAPI",urlPatterns = {"/generate-cer"})
+@WebServlet(name = "DownloadJKSFileAPI",urlPatterns = {"/downloadJKSFile"})
 public class DownloadJKSFileAPI extends HttpServlet {
     GenderKeyStore myKeyStore = GenderKeyStore.getInstance();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            String cn = req.getParameter("CN");
-            String ou = req.getParameter("OU");
-            String o = req.getParameter("O");
-            String l = req.getParameter("L");
-            String s = req.getParameter("S");
-            String c = req.getParameter("C");
-            String keySize = req.getParameter("keySize");
-            String algorithmGenKey = req.getParameter("algorithmGenKey");
-            String algorithmHash = req.getParameter("algorithmHashing");
-            String passKeyStore = req.getParameter("passKeyStore");
-            String algorithmSig = "";
-            if (algorithmGenKey.equals("EC")) {
-                algorithmSig += algorithmHash + "withECDSA";
-            } else {
-                algorithmSig += algorithmHash + "with" + algorithmGenKey;
-            }
-            File file = getResourceFile(req);
-            myKeyStore.createKeyStoreFile(file.getAbsolutePath(), passKeyStore);
-            myKeyStore.loadEntriesToKeyStoreFile(file.getAbsolutePath(), passKeyStore, passKeyStore, algorithmGenKey, algorithmSig, keySize, cn, ou, o, s, l, c);
-
-            MyPairKey myPairKey = new MyPairKey();
-            //get KeyStore
-            KeyStore ks = myKeyStore.getKeyStore(file.getAbsolutePath(),passKeyStore);
-            String alias = (String) ks.aliases().nextElement();
-            char[] pwdArray = passKeyStore.toCharArray();
-            PrivateKey pk = (PrivateKey) ks.getKey(alias, pwdArray);
-            Certificate[] chain = ks.getCertificateChain(alias);
-            byte[] publicKeyBytes = Base64.getEncoder().encode(chain[0].getPublicKey().getEncoded());
-            byte[] privateKeyBytes = Base64.getEncoder().encode(pk.getEncoded());
-            myPairKey.setPrivateKey(new String(privateKeyBytes));
-            myPairKey.setPublicKey(new String(publicKeyBytes));
-//        myPairKey.setPrivateKey();
-            if (myPairKey != null) {
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("utf-8");
-                String json = new Gson().toJson(myPairKey);
-                PrintWriter out = resp.getWriter();
-                try {
-                    out.println(json);
-                } finally {
-                    out.close();
-
-                }
-            } else
-                System.err.println("ERROR!");
-        }catch(Exception e){
-            e.printStackTrace();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String fileName = "keystore.jks";//request.getParameter("fileName");
+        if(fileName == null || fileName.equals("")){
+            throw new ServletException("File name can't be null or empty");
         }
-
-    }
-    private File getResourceFile(HttpServletRequest request)
-    {
         ServletContext context = request.getServletContext();
         String fullPath = context.getRealPath("/template/keystore.jks");
-        System.out.println(fullPath);
-        return new File(fullPath);
+        File file = new File(fullPath);
+        if(!file.exists()){
+            throw new ServletException("File doesn't exists on server");
+        }
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+        String mimeType = context.getMimeType(file.getAbsolutePath());
+        response.setContentType(mimeType != null? mimeType:"application/octet-stream");
+        response.setContentLength((int) file.length());
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        ServletOutputStream sos = response.getOutputStream();
+        byte[] bufferData = new byte[1024];
+        int read = 0;
+        while((read = bis.read(bufferData))!=-1){
+            sos.write(bufferData,0,read);
+        }
+        sos.flush();
+        sos.close();
+        bis.close();
+        System.out.println("File downloaded at client successfully");
     }
+
 }

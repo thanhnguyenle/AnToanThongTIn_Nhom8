@@ -1,85 +1,112 @@
 package vn.edu.hcmuaf.fit.laptrinhweb.controller;
 
 import com.google.gson.Gson;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.laptrinhweb.model.GenderKeyStore;
+import jakarta.servlet.http.*;
+import org.bouncycastle.asn1.ASN1ObjectIdentifier;
+import org.bouncycastle.asn1.x500.RDN;
+import org.bouncycastle.asn1.x500.X500Name;
+import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.bouncycastle.asn1.x500.style.IETFUtils;
+import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.openssl.PEMException;
+import org.bouncycastle.openssl.PEMParser;
+import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
+import org.bouncycastle.pkcs.PKCS10CertificationRequest;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.MyPairKey;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.KeyStore;
-import java.security.PrivateKey;
-import java.security.cert.Certificate;
+import java.io.*;
+import java.nio.file.Paths;
+import java.security.PublicKey;
+import java.security.Security;
 import java.util.Base64;
 
-@WebServlet(name = "GenerateCertificateAPI",urlPatterns = {"/generate-cer"})
-public class UploadCertificateFileAPI extends HttpServlet {
-    GenderKeyStore myKeyStore = GenderKeyStore.getInstance();
 
+@WebServlet(name = "UploadCertificateFileAPI",urlPatterns = {"/upload-certificate"})
+@MultipartConfig(maxFileSize = 16177215)
+public class UploadCertificateFileAPI extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            String cn = req.getParameter("CN");
-            String ou = req.getParameter("OU");
-            String o = req.getParameter("O");
-            String l = req.getParameter("L");
-            String s = req.getParameter("S");
-            String c = req.getParameter("C");
-            String keySize = req.getParameter("keySize");
-            String algorithmGenKey = req.getParameter("algorithmGenKey");
-            String algorithmHash = req.getParameter("algorithmHashing");
-            String passKeyStore = req.getParameter("passKeyStore");
-            String algorithmSig = "";
-            if (algorithmGenKey.equals("EC")) {
-                algorithmSig += algorithmHash + "withECDSA";
-            } else {
-                algorithmSig += algorithmHash + "with" + algorithmGenKey;
-            }
-            File file = getResourceFile(req);
-            myKeyStore.createKeyStoreFile(file.getAbsolutePath(), passKeyStore);
-            myKeyStore.loadEntriesToKeyStoreFile(file.getAbsolutePath(), passKeyStore, passKeyStore, algorithmGenKey, algorithmSig, keySize, cn, ou, o, s, l, c);
-
-            MyPairKey myPairKey = new MyPairKey();
-            //get KeyStore
-            KeyStore ks = myKeyStore.getKeyStore(file.getAbsolutePath(),passKeyStore);
-            String alias = (String) ks.aliases().nextElement();
-            char[] pwdArray = passKeyStore.toCharArray();
-            PrivateKey pk = (PrivateKey) ks.getKey(alias, pwdArray);
-            Certificate[] chain = ks.getCertificateChain(alias);
-            byte[] publicKeyBytes = Base64.getEncoder().encode(chain[0].getPublicKey().getEncoded());
-            byte[] privateKeyBytes = Base64.getEncoder().encode(pk.getEncoded());
-            myPairKey.setPrivateKey(new String(privateKeyBytes));
-            myPairKey.setPublicKey(new String(publicKeyBytes));
-//        myPairKey.setPrivateKey();
-            if (myPairKey != null) {
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("utf-8");
-                String json = new Gson().toJson(myPairKey);
-                PrintWriter out = resp.getWriter();
-                try {
-                    out.println(json);
-                } finally {
-                    out.close();
-
+        BouncyCastleProvider provider = new BouncyCastleProvider();
+        Security.addProvider(provider);
+        HttpSession httpSession = req.getSession();
+        Account acc = (Account) httpSession.getAttribute("account");
+        if(acc!=null){
+            InputStream inputStream = null; // input stream of the upload file
+            // obtains the upload file part in this multipart request
+            Part filePart = req.getPart("data-certificate");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            if (filePart != null) {
+                // obtains input stream of the upload file
+                inputStream = filePart.getInputStream();
+                InputStream imageStream = filePart.getInputStream();
+                byte[] resultBuff = new byte[0];
+                byte[] buff = new byte[1024];
+                int k = -1;
+                while ((k = imageStream.read(buff, 0, buff.length)) > -1) {
+                    byte[] tbuff = new byte[resultBuff.length + k]; // temp buffer size
+                    System.arraycopy(resultBuff, 0, tbuff, 0, resultBuff.length); // copy
+                    System.arraycopy(buff, 0, tbuff, resultBuff.length, k); // copy
+                    resultBuff = tbuff; // call the temp buffer as your result buff
                 }
-            } else
-                System.err.println("ERROR!");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+                inputStream = new ByteArrayInputStream(resultBuff);
+            }
+            MyPairKey myPairKey = new MyPairKey();
+            if (inputStream != null) {
+                PublicKey pubKey = null;
+                Reader pemReader = new BufferedReader(new InputStreamReader(inputStream));
+                PEMParser pemParser = new PEMParser(pemReader);;
+                PKCS10CertificationRequest csr;
+                X500Name x500Name = null;
+                try {
+                    csr = (PKCS10CertificationRequest) pemParser.readObject();
+                    SubjectPublicKeyInfo pkInfo = csr.getSubjectPublicKeyInfo();
+                    JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
+                    x500Name= csr.getSubject();
+                    try {
+                        pubKey = converter.getPublicKey(pkInfo);
+                    } catch (PEMException e) {
+                       e.printStackTrace();
+                    }finally {
+                        pemParser.close();
+                        pemReader.close();
+                        inputStream.close();
+                    }
+                } catch (IOException ex) {
+                   ex.printStackTrace();
+                }
+                myPairKey.setPublicKey(new String(Base64.getEncoder().encode( pubKey.getEncoded())));
 
-    }
-    private File getResourceFile(HttpServletRequest request)
-    {
-        ServletContext context = request.getServletContext();
-        String fullPath = context.getRealPath("/template/keystore.jks");
-        System.out.println(fullPath);
-        return new File(fullPath);
-    }
+                String info = "";
+                info+=getText("Common Name",BCStyle.CN,x500Name)+"\r\n";
+                info+=getText("Organization Unit",BCStyle.OU,x500Name)+"\r\n";
+                info+=getText("Organization Name",BCStyle.O,x500Name)+"\r\n";
+                info+=getText("Locality Name",BCStyle.L,x500Name)+"\r\n";
+                info+=getText("State Name",BCStyle.ST,x500Name)+"\r\n";
+                info+=getText("Country",BCStyle.C,x500Name);
+                myPairKey.setInfo(info);
+                }
+
+
+                if (myPairKey != null) {
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("utf-8");
+                    String json = new Gson().toJson(myPairKey);
+                    PrintWriter out = resp.getWriter();
+                    try {
+                        out.println(json);
+                    } finally {
+                        out.close();
+                    }
+                } else
+                    System.err.println("ERROR!");
+            }
+        }
+        public String getText(String title,ASN1ObjectIdentifier spec, X500Name x500Name){
+            RDN cn = x500Name.getRDNs(spec)[0];
+            return title+": "+ IETFUtils.valueToString(cn.getFirst().getValue());
+        }
 }
