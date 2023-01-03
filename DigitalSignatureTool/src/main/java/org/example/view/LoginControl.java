@@ -7,17 +7,17 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class LoginControl {
-    private String password;
+    private static String password;
 
-    private String getPassword() throws FileNotFoundException {
+    public static String getPassword() throws FileNotFoundException {
 
-        File pinFile = new File("PinPass.txt");
+        File pinFile = new File("src/main/java/org/example/view/PinPass.txt");
         Scanner myReader = new Scanner(pinFile);
         return myReader.nextLine();
     }
 
     private void writePassword(String newPass) throws FileNotFoundException {
-        File pinFile = new File("PinPass.txt");
+        File pinFile = new File("src/main/java/org/example/view/PinPass.txt");
         PrintWriter writer = new PrintWriter(pinFile);
         writer.print(newPass);
         writer.close();
@@ -25,13 +25,13 @@ public class LoginControl {
 
 
     private void clearPass() throws FileNotFoundException {
-        File pinFile = new File("PinPass.txt");
+        File pinFile = new File("src/main/java/org/example/view/PinPass.txt");
         PrintWriter writer = new PrintWriter(pinFile);
         writer.print("");
         writer.close();
     }
 
-    public boolean isLoginSuccessfully(String inputPassword) throws FileNotFoundException {
+    public static boolean isLoginSuccessfully(String inputPassword) throws FileNotFoundException {
         String currentPassword = getPassword();
         return password.equals(inputPassword);
 
@@ -50,9 +50,5 @@ public class LoginControl {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        LoginControl lc = new LoginControl();
-        System.out.println(lc.getPassword());
-    }
 }
 

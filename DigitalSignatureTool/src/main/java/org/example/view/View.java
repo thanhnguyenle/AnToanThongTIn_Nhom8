@@ -30,6 +30,7 @@ public class View  {
         mainPanel = new JPanel();
 
         //======== mainFrame ========
+
         {
             mainFrame.setTitle("Ph\u1ea7n m\u1ec1m k\u00fd s\u1ed1");
             mainFrame.setLayout(new BorderLayout());
@@ -63,7 +64,8 @@ public class View  {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 mainPanel.removeAll();
-
+                                ChangePINScreen changePINScreen = new ChangePINScreen();
+                                addScreen(changePINScreen.getPanel(), mainPanel);
                             }
                         });
                     }
@@ -105,7 +107,7 @@ public class View  {
             mainFrame.pack();
             mainFrame.setLocationRelativeTo(mainFrame.getOwner());
             mainFrame.setVisible(true);
-            mainFrame.setSize(1280,800);
+            mainFrame.setSize(800,600);
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         }
