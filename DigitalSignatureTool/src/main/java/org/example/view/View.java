@@ -29,6 +29,7 @@ public class View  {
         aboutMenu = new JMenu();
         mainPanel = new JPanel();
         createKeyStoreMenuItem = new JMenuItem();
+        verifyFile = new JMenuItem();
         //======== mainFrame ========
 
         {
@@ -41,35 +42,6 @@ public class View  {
 
                 //======== mainMenuBar ========
                 {
-
-                    //======== settingJMenu ========
-                    {
-                        settingJMenu.setText("C\u1ea5u h\u00ecnh");
-
-                        //---- changeNameMenuItem ----
-                        changeNameMenuItem.setText("\u0110\u1ed5i t\u00ean Token");
-                        settingJMenu.add(changeNameMenuItem);
-                        changeNameMenuItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                mainPanel.removeAll();
-
-                            }
-                        });
-
-                        //---- changePINMenuItem ----
-                        changePINMenuItem.setText("Thay \u0111\u1ed5i Pin");
-                        settingJMenu.add(changePINMenuItem);
-                        changePINMenuItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                mainPanel.removeAll();
-                                ChangePINScreen changePINScreen = new ChangePINScreen();
-                                addScreen(changePINScreen.getPanel(), mainPanel);
-                            }
-                        });
-                    }
-                    mainMenuBar.add(settingJMenu);
 
                     //======== digitalSignaltureMenu ========
                     {
@@ -100,6 +72,18 @@ public class View  {
                             }
                         });
 
+                        //
+                        verifyFile.setText("Kiểm tra trạng thái chữ ký của file");
+                        digitalSignatureMenu.add(verifyFile);
+                        verifyFile.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                mainPanel.removeAll();
+                                VerifyScreen verifyScreen = new VerifyScreen();
+                                addScreen(verifyScreen.getPanel(),mainPanel);
+                            }
+                        });
+
 
                     }
                     mainMenuBar.add(digitalSignatureMenu);
@@ -107,10 +91,10 @@ public class View  {
 
 
                     //======== aboutMenu ========
-                    {
-                        aboutMenu.setText("Gi\u1edbi thi\u1ec7u");
-                    }
-                    mainMenuBar.add(aboutMenu);
+//                    {
+//                        aboutMenu.setText("Gi\u1edbi thi\u1ec7u");
+//                    }
+//                    mainMenuBar.add(aboutMenu);
                 }
                 menuPanel.add(mainMenuBar, BorderLayout.CENTER);
             }
@@ -122,9 +106,9 @@ public class View  {
             }
             mainFrame.add(mainPanel, BorderLayout.CENTER);
             mainFrame.pack();
-            mainFrame.setLocationRelativeTo(mainFrame.getOwner());
+            mainFrame.setLocationRelativeTo(null);
             mainFrame.setVisible(true);
-            mainFrame.setSize(800,600);
+            mainFrame.setSize(600,400);
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         }
@@ -145,7 +129,7 @@ public class View  {
     private JMenu digitalSignatureMenu;
     private JMenuItem digitalSignaturePDFMenuItem;
     private JMenuItem createKeyStoreMenuItem;
-
+    private JMenuItem verifyFile;
     private JMenu aboutMenu;
     private JPanel mainPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

@@ -4,14 +4,27 @@
 
 package org.example.view;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.example.controller.PDFDigitalSigning;
-
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.geom.Rectangle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.StampingProperties;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Text;
+import com.itextpdf.signatures.*;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.security.Security;
 
 import static org.example.view.LoginControl.getPassword;
 
@@ -118,10 +131,22 @@ public class DigitalSignatureScreen extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 billPath = "";
                 JFileChooser file = new JFileChooser();
+                file.addChoosableFileFilter(new FileFilter() {
+                    @Override
+                    public boolean accept(File f) {
+                        return f.getName().toLowerCase().endsWith(".pdf");
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "File PDF";
+                    }
+                });
                 file.showOpenDialog(null);
                 File selectedFile = file.getSelectedFile();
                 billPath = selectedFile.getAbsolutePath();
                 FileSignedPathLabel.setText(billPath);
+
             }
         });
         chooseKeyStoreButton.addActionListener(new ActionListener() {
@@ -129,6 +154,17 @@ public class DigitalSignatureScreen extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 keyStorePath = "";
                 JFileChooser file = new JFileChooser();
+                file.addChoosableFileFilter(new FileFilter() {
+                    @Override
+                    public boolean accept(File f) {
+                        return f.getName().toLowerCase().endsWith(".jks");
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "File Chữ ký";
+                    }
+                });
                 file.showOpenDialog(null);
                 File selectedFile = file.getSelectedFile();
                 keyStorePath = selectedFile.getAbsolutePath();
@@ -148,23 +184,35 @@ public class DigitalSignatureScreen extends JPanel {
         signButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                while(isCheck == false) {
-                    String password = "";
-                    String inputPassword = JOptionPane.showInputDialog(null,"Nhập mật khẩu");
-                    try {
-                        password = getPassword();
-                        if(inputPassword.equals(password)) {
-                            isCheck = true;
-                            PDFDigitalSigning.signBill(billPath,inputPassword,keyStorePath);
-                            JOptionPane.showMessageDialog(getPanel(),"Ký thành công, vui lòng kiểm tra file đã ký trong thư mục chứa file gốc");
-
-                        } else {
-                            JOptionPane.showMessageDialog(null,"Đăng nhập thất bại, vui lòng kiểm tra lại mật khẩu!");
-                        }
-                    } catch (FileNotFoundException ex) {
-                        JOptionPane.showMessageDialog(null,"Đăng nhập thất bại, vui lòng kiểm tra lại mật khẩu!");
-                    }
+                    System.out.println(billPath);
+//                    String inputPassword = JOptionPane.showInputDialog(null,passwordDialog);
+                String inputPassword= "";
+                JPanel panel = new JPanel();
+                JLabel label = new JLabel("Enter a password:");
+                JPasswordField pass = new JPasswordField(10);
+                panel.add(label);
+                panel.add(pass);
+                String[] options = new String[]{"OK", "Cancel"};
+                int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                        JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                        null, options, options[1]);
+                if(option == 0) // pressing OK button
+                {
+                    char[] password = pass.getPassword();
+                    inputPassword = password.toString();
                 }
+
+                    isCheck = false;
+                    PDFDigitalSigning sign = new PDFDigitalSigning();
+                    boolean isok = sign.signBill(billPath,inputPassword,keyStorePath);
+                    if(isok == true) {
+                        JOptionPane.showMessageDialog(getPanel(),"Ký thành công, vui lòng kiểm tra file đã ký trong thư mục chứa file gốc");
+
+                    } else
+                        JOptionPane.showMessageDialog(getPanel(),"Ký thất bại ");
+                         JOptionPane.getRootFrame().dispose();
+
+
             }
         });
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
