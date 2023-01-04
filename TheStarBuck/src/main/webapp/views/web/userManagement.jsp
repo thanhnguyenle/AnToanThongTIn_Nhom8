@@ -192,8 +192,6 @@
                                                             <td class="center">  <a href="<%=request.getContextPath()%>/downloadCertificate?id=${item.keyID}" target="_blank" class="btn btn-info">Download</a></td>
                                                             <td class="center">${item.status}</td>
                                                             <td class=" text-center">
-                                                                <a href="<%=request.getContextPath()%>/deleteCertificateUser?id=${item.keyID}" class="btn btn-danger" data-toggle="modal"
-                                                                   data-target="#deleteObject">Delete</a>
                                                                 <a href="#" onclick="viewData('${item.keyID}')" class="btn btn-info" data-toggle="modal" data-target="#viewObject">View</a>
                                                             </td>
                                                         </tr>
@@ -238,7 +236,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Delete</button>
             </div>
         </div>
     </div>
