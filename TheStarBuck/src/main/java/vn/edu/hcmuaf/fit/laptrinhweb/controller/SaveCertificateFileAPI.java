@@ -66,7 +66,10 @@ public class SaveCertificateFileAPI extends HttpServlet {
                 myCertificate.setStartDate(timestamp.getTime());
                 myCertificate.setEndDate(0l);
                 myCertificate.setData(inputStream);
-                myCertificate.setStatus("AVAILABLE");
+                if(publicKeyService.getCertificateByStatus(acc.getId(),MyCertificate.SELECTED).size()==0){
+                    myCertificate.setStatus(MyCertificate.SELECTED);
+                }else
+                myCertificate.setStatus(MyCertificate.AVAILABLE);
                 publicKeyService.create(myCertificate);
 
                 if (myPairKey != null) {

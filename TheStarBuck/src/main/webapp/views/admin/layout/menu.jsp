@@ -25,6 +25,23 @@
             <a href="<%=request.getContextPath()%>/admin-home"> Dashboard</a>
         </li>
         <li>
+            <a href="<%=request.getContextPath()%>/all-bill">Bill management</a>
+            <ul class="nav nav-second-level">
+                <li>
+                    <a href="<%=request.getContextPath()%>/all-bill">List Bill</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="<%=request.getContextPath()%>/all-certificate">Certificate management</a>
+            <ul class="nav nav-second-level">
+                <li>
+                    <a href="<%=request.getContextPath()%>/all-certificate">List Certificate</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="<c:url value='/views/admin/accountManagement.jsp'/>">User management</a>
             <ul class="nav nav-second-level">
                 <li>
@@ -45,18 +62,7 @@
 
             </ul>
         </li>
-        <li>
-            <a href="<%=request.getContextPath()%>/shipper">Shipper management</a>
-            <ul class="nav nav-second-level">
-                <li>
-                    <a href="<%=request.getContextPath()%>/shipper">List Shipper</a>
-                </li>
-                <li>
-                    <a href="<%=request.getContextPath()%>/createShipper">Add Shipper</a>
-                </li>
 
-            </ul>
-        </li>
         <li>
             <a href="<%=request.getContextPath()%>/category">Category management</a>
             <ul class="nav nav-second-level">

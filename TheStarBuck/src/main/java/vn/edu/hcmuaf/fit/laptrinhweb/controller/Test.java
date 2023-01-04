@@ -20,6 +20,7 @@ import org.bouncycastle.openssl.PEMException;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
+import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.BillService;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -44,7 +45,7 @@ public class Test {
     public static final char[] PASSWORD = "password".toCharArray();
     public static final String SRC = "test.pdf";
     public static final String DEST = "test-signed.pdf";
-
+    BillService billService = BillService.getInstance();
     public boolean generatePDF() {
         File file = new File(SRC);
         try {
@@ -376,7 +377,7 @@ public class Test {
     public void testVerifyPdfSampleSigned() throws IOException, GeneralSecurityException {
         File file = new File(DEST);
         try {
-            InputStream resource = new FileInputStream(file);
+            InputStream resource = billService.getItem("bi0002").getData();
             PdfDocument pdfDoc = new PdfDocument(new PdfReader(resource));
             SignatureUtil signUtil = new SignatureUtil(pdfDoc);
             List<String> names = signUtil.getSignatureNames();
@@ -389,6 +390,7 @@ public class Test {
 //               byte[] data = pkcs7.getSigningInfoVersion();
 //                System.out.println(Arrays.toString(data));
 //                System.out.println(pkcs7.getEncodedPKCS7(pkcs7.));
+//                CertificateInfo.getSubjectFields(pkcs7.getSigningCertificate()).
                 System.out.println("Subject: " + CertificateInfo.getSubjectFields(pkcs7.getSigningCertificate()));
                 System.out.println("Integrity check OK? " + pkcs7.verifySignatureIntegrityAndAuthenticity());
             }
@@ -448,6 +450,21 @@ public class Test {
         BouncyCastleProvider provider = new BouncyCastleProvider();
         Security.addProvider(provider);
         Test test = new Test();
+
+//        File file = new File(DEST);
+//        NLUHash nluHash = new NLUHash("SHA256");
+//        try {
+//            test.extractHashes(new FileInputStream(file),nluHash);
+//            System.out.println("--------------------------------------------------------");
+//            File file1 = new File(SRC);
+//
+//            String hash = nluHash.hashByte(new FileInputStream(file1));
+//            System.out.println(hash);
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+
         test.generatePDF();
 //        test.createKeyStoreFile();
 //        test.loadEntriesToKeyStoreFile(KEYSTORE, "password", "HUU DAO", "VN", "NLU", "HCM", "THU DUC", "+84");
@@ -470,6 +487,7 @@ public class Test {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         //test.checkCertificate();
 //        test.createKeyStoreFile();
 //        test.loadEntriesToKeyStoreFile(KEYSTORE, "password", "HUU DAO", "VN", "NLU", "HCM", "THU DUC", "+84");
