@@ -1,0 +1,27 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.4.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:52:p, comp loginPINLabel:::p::p, space u:::p, comp loginPasswordField:::p:202:p, space :p:29:p, comp loginButton:::p:106:p, space ::135:x}}"
+			"$verticalGroup": "par l {seq {space :p:24:p, par b {comp loginPINLabel::b:p::p, comp loginPasswordField::b:p::p, comp loginButton::b:p::p}, space ::84:x}}"
+		} ) {
+			name: "loginPanel"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "loginPINLabel"
+				"text": "Nhập mã PIN:"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "loginButton"
+				"text": "Đăng nhập"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "loginPasswordField"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 10 )
+			"size": new java.awt.Dimension( 610, 140 )
+		} )
+	}
+}

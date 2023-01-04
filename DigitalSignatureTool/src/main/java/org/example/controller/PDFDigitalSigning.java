@@ -190,6 +190,35 @@ public class PDFDigitalSigning {
         } return isCheck;
     }
 
+    public boolean exportCertificate(String pathKeyStore, String pathDestCSR, String passKeyStore){
+        String command = "keytool -certreq -file "+pathDestCSR+" -alias thestarbuck -keystore "+pathKeyStore;
+        System.out.println(command);
+
+        try {
+            Process process = Runtime.getRuntime().exec(command);
+
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(process.getOutputStream()));
+            writer.write(passKeyStore);
+            writer.write('\n');
+            writer.flush();
+
+            writer.close();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         String billPath = "hoadon.pdf";
         String password = "password";
@@ -210,4 +239,6 @@ public class PDFDigitalSigning {
 //        }
 
     }
+
+
 }

@@ -1,0 +1,34 @@
+JFDML JFormDesigner: "8.0.1.0.199" Java: "17.0.4.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:14:p, par l {comp label1::l:p::p, comp label2::l:p::p}, space s:::p, par l:::p {comp getFileButton::::157:x, comp statusLabel::::157:x}, space s:::p, comp fileLinkLabel:::p::p, space ::284:x}}"
+			"$verticalGroup": "par l {seq l {space :p:15:p, par b {comp label1::b:p::p, comp getFileButton::b:p::p, comp fileLinkLabel::b:p::p}, space s:::p, par l {comp label2:::p::p, comp statusLabel:::p::p}, space ::31:x}}"
+		} ) {
+			name: "panel1"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Chọn file cần kiểm tra:"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "getFileButton"
+				"text": "Chọn file"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Trạng thái:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "statusLabel"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "fileLinkLabel"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 630, 110 )
+		} )
+	}
+}
