@@ -152,7 +152,7 @@
 				<h3>Public Key</h3>
 				<form role="form" class="ng-pristine ng-valid">
 					<div class="form-group">
-						<textarea id="publicKey" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="publicKey" readonly></textarea>
+						<textarea id="publicKeyG" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="publicKeyG" readonly></textarea>
 					</div>
 				</form>
 			</div>
@@ -198,7 +198,7 @@
 				if (json !== undefined && json != null) {
 					let val = json;
 					$("#privateKey").text(val.privateKey);
-					$("#publicKey").text(val.publicKey);
+					$("#publicKeyG").text(val.publicKey);
 				}
 			},
 			error: function (){

@@ -110,15 +110,15 @@ public class Test {
         signer.setFieldName("sig");
     }
 
-    public void exportCertificate(){
-        String command = "keytool -certreq -file newcsr.csr -alias thestarbuck -keystore "+KEYSTORE;
+    public void exportCertificate(String pathKeyStore, String pathDestCSR, String passKeyStore){
+        String command = "keytool -certreq -file "+pathDestCSR+" -alias thestarbuck -keystore "+pathKeyStore;
 
         try {
             Process process = Runtime.getRuntime().exec(command);
 
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(process.getOutputStream()));
-            writer.write("password");
+            writer.write(passKeyStore);
             writer.write('\n');
             writer.flush();
 
@@ -280,38 +280,38 @@ public class Test {
             e.printStackTrace();
         }
     }
-    public void sign(String src, String dest,
-                     Certificate[] chain, PrivateKey pk, String digestAlgorithm, String provider,
-                     PdfSigner.CryptoStandard subfilter, String reason, String location)
-            throws GeneralSecurityException, IOException {
-        IExternalDigest digest = new BouncyCastleDigest();
-        // Creating the reader and the stamper
-        PdfReader reader = new PdfReader(src);
-        FileOutputStream os = new FileOutputStream(dest);
-        PdfSigner signer = new PdfSigner(reader, os, new StampingProperties());
-        signer.setFieldName("thestarbuck");
-        //appearance
-        Rectangle rect = new Rectangle(36, 648, 200, 100);
-        PdfSignatureAppearance appearance = signer.getSignatureAppearance();
-        appearance
-                .setReason("Test")
-                .setLocation("Ghent")
-
-                // Specify if the appearance before field is signed will be used
-                // as a background for the signed field. The "false" value is the default value.
-                .setReuseAppearance(false)
-                .setPageRect(rect)
-                .setPageNumber(1);
-//        signer.setFieldName("sig");
-
-        IExternalSignature signature =
-                new PrivateKeySignature(pk, digestAlgorithm, provider);
-        signer.signDetached(digest, signature, chain, null, null,
-                null, 0, PdfSigner.CryptoStandard.CMS);
-        os.close();
-        reader.close();
-
-    }
+//    public void sign(String src, String dest,
+//                     Certificate[] chain, PrivateKey pk, String digestAlgorithm, String provider,
+//                     PdfSigner.CryptoStandard subfilter, String reason, String location)
+//            throws GeneralSecurityException, IOException {
+//        IExternalDigest digest = new BouncyCastleDigest();
+//        // Creating the reader and the stamper
+//        PdfReader reader = new PdfReader(src);
+//        FileOutputStream os = new FileOutputStream(dest);
+//        PdfSigner signer = new PdfSigner(reader, os, new StampingProperties());
+//        signer.setFieldName("thestarbuck");
+//        //appearance
+//        Rectangle rect = new Rectangle(36, 648, 200, 100);
+//        PdfSignatureAppearance appearance = signer.getSignatureAppearance();
+//        appearance
+//                .setReason("Test")
+//                .setLocation("Ghent")
+//
+//                // Specify if the appearance before field is signed will be used
+//                // as a background for the signed field. The "false" value is the default value.
+//                .setReuseAppearance(false)
+//                .setPageRect(rect)
+//                .setPageNumber(1);
+////        signer.setFieldName("sig");
+//
+//        IExternalSignature signature =
+//                new PrivateKeySignature(pk, digestAlgorithm, provider);
+//        signer.signDetached(digest, signature, chain, null, null,
+//                null, 0, PdfSigner.CryptoStandard.CMS);
+//        os.close();
+//        reader.close();
+//
+//    }
     void extractHashes(InputStream inputStream, NLUHash nluHash) throws Exception
     {
         Provider provider = new BouncyCastleProvider();
