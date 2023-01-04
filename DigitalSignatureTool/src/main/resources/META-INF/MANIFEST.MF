@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Main-Class: org.example.view.View
+Class-Path: hyph-7.2.4.jar pdfa-7.2.4.jar commons-7.2.4.jar io-7.2.4.jar
+  font-asian-7.2.4.jar kernel-7.2.4.jar bcpkix-jdk15on-1.70.jar layout-7
+ .2.4.jar sign-7.2.4.jar bcprov-jdk15on-1.70.jar barcodes-7.2.4.jar svg-
+ 7.2.4.jar slf4j-api-1.7.36.jar styled-xml-parser-7.2.4.jar bcutil-jdk15
+ on-1.70.jar forms-7.2.4.jar
+

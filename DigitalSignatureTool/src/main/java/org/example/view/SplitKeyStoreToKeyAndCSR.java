@@ -56,7 +56,7 @@ public class SplitKeyStoreToKeyAndCSR extends JPanel {
             selectCSVDirectoryButton.setText("Ch\u1ecdn \u0111\u01b0\u1eddng d\u1eabn");
 
             //---- csrDirectoryLabel ----
-            csrDirectoryLabel.setText("text");
+            csrDirectoryLabel.setText("");
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
