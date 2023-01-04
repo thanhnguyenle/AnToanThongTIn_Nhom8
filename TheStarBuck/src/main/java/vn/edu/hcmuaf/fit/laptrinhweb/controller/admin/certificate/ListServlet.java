@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.certificate.bill;
+package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.certificate;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -7,14 +7,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Bill;
+import vn.edu.hcmuaf.fit.laptrinhweb.model.MyCertificate;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.BillService;
+import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.PublicKeyService;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "BillAdminServlet", value = "/all-bill")
+@WebServlet(name = "CertificateAdminServlet", value = "/all-certificate")
 public class ListServlet extends HttpServlet {
-    BillService billService = BillService.getInstance();
+  PublicKeyService publicKeyService = PublicKeyService.getInstance();
 
     @Override
     public void init() throws ServletException {
@@ -23,9 +25,9 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Bill> bills = billService.findAll();
-        request.setAttribute("bills", bills);
-        RequestDispatcher rd = request.getRequestDispatcher("/views/admin/billManagement.jsp");
+        List<MyCertificate> bills = publicKeyService.findAll();
+        request.setAttribute("cers", bills);
+        RequestDispatcher rd = request.getRequestDispatcher("/views/admin/certificateManagement.jsp");
         rd.forward(request, response);
 //        response.sendRedirect(request.getContextPath() + request.getServletPath() +  "/list");
 

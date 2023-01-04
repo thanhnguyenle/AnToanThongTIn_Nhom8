@@ -11,6 +11,11 @@
     <title>User Management</title>
     <jsp:include page="layout/css.jsp"/>
     <link rel="stylesheet" href="<%= Asset.url("/template/web/css/userManagement.css")%>">
+    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/bootstrap.min.css")%>" />
+    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/plugins/dataTables/dataTables.bootstrap.css")%>" />
+    <link rel="stylesheet" href="<%= Asset.url("/template/admin/font-awesome/css/font-awesome.css")%>" />
+    <!-- SB Admin CSS - Include with every page -->
+    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/sb-admin.css")%>" />
     <style>
         :root {
             --primary: #017143;
@@ -25,6 +30,30 @@
         body{
             font-size: 1.7rem;
         }
+        .fade {
+             opacity: 100%;
+            -webkit-transition: opacity .15s linear;
+            transition: opacity .15s linear;
+        }
+        .buttonBottom {
+            margin-top: 42px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buttonBottom > * {
+            padding: 5px 10px;
+            border-radius: 5px !important;
+            color: #0e784d;
+            border-color: #0e784d;
+            background-color: transparent;
+            border: 2px solid #0e784d;
+        }
+
+        .buttonBottom > *:hover {
+            background-color: #0e784d;
+            color: white;
+        }
     </style>
 
 </head>
@@ -37,7 +66,7 @@
     <div class="container emp-profile" style="margin-top: 110px;">
         <form method="post">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="profile-img">
                         <img src="${account.avatar}" alt=""/>
                         <div class="file btn btn-lg btn-primary">
@@ -46,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="display: flex;align-items: flex-end;margin-bottom: 15px;">
+                <div class="col-md-7" style="display: flex;align-items: flex-end;margin-bottom: 15px;">
                     <div class="profile-head">
                         <h5>
                            ${account.fullname}
@@ -70,7 +99,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="profile-work">
                         <p>USERNAME</p>
                         <a href="">${account.username}</a>
@@ -82,7 +111,7 @@
                         <a href="">${account.lastLogin}</a>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane fade show active" id="invoice" role="tabpanel" aria-labelledby="invoice-tab">
                             <div class="row">
@@ -111,9 +140,9 @@
                                                             <td>${item.createdDate}</td>
                                                             <td>${item.address}</td>
                                                             <td class="center">${item.phone}</td>
-                                                            <td class="center">${item.status}</td>
+                                                            <td class="center">  <a href="<%=request.getContextPath()%>/downloadBill?id=${item.promo}" target="_blank" class="btn btn-info">Download</a></td>
                                                             <td class=" text-center">
-                                                                <button class="btn btn-info" data-toggle="modal" >View</button>
+                                                                <a href="#" onclick="viewBillData('${item.promo}')" class="btn btn-info" data-toggle="modal" data-target="#viewBillObject">View</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -130,7 +159,7 @@
                         </div>
                         <div class="tab-pane fade" id="publickey" role="tabpanel" aria-labelledby="publickey-tab">
                             <div class="row" style="margin-left: 50%; margin-bottom: 1%;">
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 buttonBottom">
                                     <button type="button" onclick="createPK()"> Create Public key</button>
                                     <button type="button" onclick="importPK()"> Import Public key</button>
                                 </div>
@@ -145,30 +174,30 @@
                                                     <tr>
                                                         <th>No.</th>
                                                         <th>Key ID</th>
-                                                        <th>Type Cypher</th>
                                                         <th>Start Date</th>
                                                         <th>End Date</th>
-                                                        <th>Text File</th>
+                                                        <th>Data</th>
+                                                        <th>Status</th>
                                                         <th>Operation</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-<%--                                                    <jsp:useBean id="feedbacks" scope="request" type="java.util.List"/>--%>
-<%--                                                    <c:forEach items="${feedbacks}" var="item">--%>
-<%--                                                        <tr class="odd gradeX">--%>
-<%--                                                            <td>${item.id}</td>--%>
-<%--                                                            <td>${item.idAccount}</td>--%>
-<%--                                                            <td>${item.idProduct}</td>--%>
-<%--                                                            <td>${item.content}</td>--%>
-<%--                                                            <td class="center">${item.rate}</td>--%>
-<%--                                                            <td class="center">${item.status}</td>--%>
-<%--                                                            <td class=" text-center">--%>
-<%--                                                                <a href="<%=request.getContextPath()%>/deleteFeedback?id=${item.id}" class="btn btn-danger" data-toggle="modal"--%>
-<%--                                                                   data-target="#deleteObject">Delete</a>--%>
-<%--                                                                <a href="<%=request.getContextPath()%>/updateFeedback?id=${item.id}" target="_blank" class="btn btn-info">Edit</a>--%>
-<%--                                                            </td>--%>
-<%--                                                        </tr>--%>
-<%--                                                    </c:forEach>--%>
+                                                    <jsp:useBean id="publickey" scope="request" type="java.util.List"/>
+                                                    <c:forEach items="${publickey}" var="item">
+                                                        <tr class="odd gradeX">
+                                                            <td>${item.keyID}</td>
+                                                            <td>${item.accountID}</td>
+                                                            <td>${item.startDate}</td>
+                                                            <td>${item.endDate}</td>
+                                                            <td class="center">  <a href="<%=request.getContextPath()%>/downloadCertificate?id=${item.keyID}" target="_blank" class="btn btn-info">Download</a></td>
+                                                            <td class="center">${item.status}</td>
+                                                            <td class=" text-center">
+                                                                <a href="<%=request.getContextPath()%>/deleteCertificateUser?id=${item.keyID}" class="btn btn-danger" data-toggle="modal"
+                                                                   data-target="#deleteObject">Delete</a>
+                                                                <a href="#" onclick="viewData('${item.keyID}')" class="btn btn-info" data-toggle="modal" data-target="#viewObject">View</a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -194,29 +223,98 @@
 
 <!-- /#wrapper -->
 <%--model delete--%>
-<%--<form class="modal fade" id="deleteObject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" method="post"--%>
-<%--      aria-hidden="true" action="${pageContext.request.contextPath}/deleteFeedback">--%>
-<%--    <div class="modal-dialog" role="document">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <h3 class="modal-title" id="exampleModalLabel">Notify</h3>--%>
-<%--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--                    <span aria-hidden="true">&times;</span>--%>
-<%--                </button>--%>
-<%--            </div>--%>
-<%--            <div class="modal-body">--%>
-<%--                Are you sure?--%>
-<%--            </div>--%>
-<%--            <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-<%--                <button type="submit" class="btn btn-primary">Delete</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</form>--%>
-<%--SCRIPT--%>
+<form class="modal fade" id="deleteObject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" method="post"
+      aria-hidden="true" action="${pageContext.request.contextPath}/deleteCertificateUser">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Notify</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+</form>
+<%--view--%>
+<form class="modal fade" id="viewObject" tabindex="-1" role="presentation" aria-labelledby="exampleModalLabel" method="post"
+      aria-hidden="true" action="${pageContext.request.contextPath}/viewCertificate" style="background-color: rgba(0,0,0,-0.5);max-width: 100%;width: 100%;">
+    <div class="modal-dialog" role="document" style="margin-top: 245px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="view-exampleModalLabel">Information Certificate</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="view-info">Info Certificate</label><textarea style="margin-bottom: 5px"  id="view-info" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="6" placeholder="Info Certificate will appear here." name="view-info" readonly></textarea>
+                <label for="view-publicKey">Public Key (Base64 Format)</label><textarea id="view-publicKey" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="5" placeholder="Public key will appear here." name="view-publicKey" readonly></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
+<%--view bill--%>
+<form class="modal fade" id="viewBillObject" tabindex="-1" role="presentation" aria-labelledby="exampleModalLabel" method="post"
+      aria-hidden="true" action="${pageContext.request.contextPath}/viewBill" style="background-color: rgba(0,0,0,-0.5);max-width: 100%;width: 100%;">
+    <div class="modal-dialog" role="document" style="margin-top: 245px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="view-billModalLabel">Information Digital Signing</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="view-body">
+                <label for="view-billinfo">Info Certificate</label><textarea style="margin-bottom: 5px"  id="view-billinfo" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="17" placeholder="Info Certificate will appear here." name="view-info" readonly></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
 <jsp:include page="layout/script.jsp"/>
 <script>
+    function  viewBillData(id){
+        $.ajax({
+            type: "Get",
+            url: "/TheStarBuck/viewBill?id="+id,
+            ContentType: 'json',
+            headers: { Accept: "application/json;charset=utf-8" },
+            success: function (json) {
+                if (json !== undefined && json != null) {
+                    let obj = json;
+                    $("#view-billinfo").text(obj.info);
+                }
+            }
+        });
+    }
+    function viewData(id){
+            $.ajax({
+                type: "Get",
+                url: "/TheStarBuck/viewCertificate?id="+id,
+                ContentType: 'json',
+                headers: { Accept: "application/json;charset=utf-8" },
+                success: function (json) {
+                    if (json !== undefined && json != null) {
+                        let obj = json;
+                        $("#view-info").text(obj.info);
+                        $("#view-publicKey").text(obj.publicKey);
+                    }
+                }
+            });
+    }
     let onetimeCreate = false;
     let onetimeImport = false;
     function createPK(){
@@ -248,8 +346,10 @@
         $('#dataTables-invoice').dataTable();
         $('#dataTables-publickey').dataTable();
     });
-</script>
 
+</script>
+<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/jquery.dataTables.js")%>"></script>
+<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/dataTables.bootstrap.js")%>"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.bill.account;
+package vn.edu.hcmuaf.fit.laptrinhweb.controller.admin.bill;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -6,13 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.AccountService;
+import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.BillService;
 
 import java.io.IOException;
 
 
-@WebServlet(name = "DeleteAccountServlet", value = "/deleteAccount")
+@WebServlet(name = "DeleteBill_Servlet", value = "/deleteBill")
 public class DeleteServlet extends HttpServlet {
-    AccountService accountService = AccountService.getInstance();
+  BillService billService = BillService.getInstance();
 
     @Override
     public void init() throws ServletException {
@@ -21,13 +22,9 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(request.getContextPath() + "/account").forward(request, response);
-        System.out.println("------------------");
         String id = request.getParameter("id");
-        System.out.println(id);
-        boolean check = accountService.deleteItem(id);
-        if (check) {
-            System.out.println("++++++++");
+        Long check = billService.deleteItem(id);
+        if (check>0) {
             doPost(request, response);
         } else {
             System.out.println("------------- something wrong");
@@ -37,7 +34,7 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/account");
+        response.sendRedirect(request.getContextPath() + "/all-bill");
 
     }
 }

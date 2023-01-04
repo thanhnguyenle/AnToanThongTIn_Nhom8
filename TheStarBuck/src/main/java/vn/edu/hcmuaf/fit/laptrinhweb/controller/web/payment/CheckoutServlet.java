@@ -11,10 +11,12 @@ import vn.edu.hcmuaf.fit.laptrinhweb.model.Account;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Cart;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Orders;
 import vn.edu.hcmuaf.fit.laptrinhweb.model.Product;
+import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.BillService;
 import vn.edu.hcmuaf.fit.laptrinhweb.service.impl.OrderService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -22,6 +24,7 @@ import static java.util.stream.Collectors.toCollection;
 public class CheckoutServlet extends HttpServlet {
     private OrderService orderService;
     private GenderPdf genderPdf;
+    BillService billService = BillService.getInstance();
 
     public CheckoutServlet() {
         orderService = OrderService.getInstance();
@@ -59,7 +62,9 @@ public class CheckoutServlet extends HttpServlet {
         orders.setTax(1);
         orders.setShipping(1);
         orders.setId("");
-        orders.setPromo("");
+        int num = billService.getAmountItem()+1;;
+        String idbill = "bi"+fillID(num+"");
+        orders.setPromo(idbill);
         for(Product product:cart.getProductList()){
             orders.getProductList().put(product.getId(),product);
         }
@@ -77,5 +82,11 @@ public class CheckoutServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/payment");
         }
     }
-
+    public String fillID(String id){
+        String re = "";
+        while((id.length()+re.length())<4){
+            re+="0";
+        }
+        return re+id;
+    }
 }

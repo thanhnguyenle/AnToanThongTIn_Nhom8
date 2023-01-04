@@ -13,7 +13,7 @@
 		.container-popup{
 			background-color: white;
 			width: 70%;
-			height: 75%;
+			height: 80%;
 			margin: 150px auto auto;
 			padding: 28px;
 		}
@@ -59,7 +59,6 @@
 			z-index: 1050;
 			background-color: rgba(0, 0, 0, 0.4);
 			margin: auto;
-			padding-top: 6%;
 			overflow: auto;
 			top: 0;
 			right: 0;

@@ -12,7 +12,7 @@
 <html>
 
 <head>
-    <title>List User</title>
+    <title>BILL MANAGEMENT</title>
     <jsp:include page="layout/css.jsp"/>
 </head>
 
@@ -23,7 +23,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User Tables</h1>
+                <h1 class="page-header">Bill Tables</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -41,29 +41,25 @@
                                 <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>username</th>
-                                    <th>fullname</th>
-                                    <th>active</th>
-                                    <th>phone number</th>
-                                    <th>email</th>
+                                    <th>owner</th>
+                                    <th>data</th>
+                                    <th>timestamp</th>
                                     <th>Operation</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                            <jsp:useBean id="accs" scope="request" type="java.util.List"/>
-                            <c:forEach items="${accs}" var="item">
+                            <jsp:useBean id="bills" scope="request" type="java.util.List"/>
+                            <c:forEach items="${bills}" var="item">
                                 <tr class="odd gradeX">
-                                    <td>${item.id}</td>
-                                    <td>${item.username}</td>
-                                    <td>${item.fullname}</td>
-                                    <td>${item.active}</td>
-                                    <td class="center">${item.phoneNumber}</td>
-                                    <td class="center">${item.email}</td>
+                                    <td>${item.billID}</td>
+                                    <td>${item.accountID}</td>
+                                    <td> <a href="<%=request.getContextPath()%>/downloadBill?id=${item.billID}" target="_blank" class="btn btn-info">Download</a></td>
+                                    <td>${item.timestamp}</td>
                                     <td class=" text-center">
-                                        <a href="<%=request.getContextPath()%>/deleteAccount?id=${item.id}" class="btn btn-danger" data-toggle="modal"
+                                        <a href="<%=request.getContextPath()%>/deleteBill?id=${item.billID}" class="btn btn-danger" data-toggle="modal"
                                            data-target="#deleteObject" >Delete</a>
-<%-- //input hidden,  name = id                                       --%>
-                                        <a href="<%=request.getContextPath()%>/updateAccount?id=${item.id}" target="_blank" class="btn btn-info">Edit</a>
+                                        <a href="#" onclick="viewBillData('${item.billID}')" class="btn btn-info" data-toggle="modal"
+                                           data-target="#viewBillObject">View</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -104,10 +100,43 @@
         </div>
     </div>
 </form>
+<form class="modal fade" id="viewBillObject" tabindex="-1" role="presentation" aria-labelledby="exampleModalLabel" method="post"
+      aria-hidden="true" action="${pageContext.request.contextPath}/viewBill" style="background-color: rgba(0,0,0,-0.5);max-width: 100%;width: 100%;">
+    <div class="modal-dialog" role="document" style="margin-top: 245px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="view-billModalLabel">Information Digital Signing</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="view-body">
+                <label for="view-billinfo">Info Certificate</label><textarea style="margin-bottom: 5px"  id="view-billinfo" class="form-control input-lg ng-pristine ng-valid ng-touched" rows="17" placeholder="Info Certificate will appear here." name="view-info" readonly></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
 <%--SCRIPT--%>
 <jsp:include page="layout/script.jsp"/>
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
+    function  viewBillData(id){
+        $.ajax({
+            type: "Get",
+            url: "/TheStarBuck/viewBill?id="+id,
+            ContentType: 'json',
+            headers: { Accept: "application/json;charset=utf-8" },
+            success: function (json) {
+                if (json !== undefined && json != null) {
+                    let obj = json;
+                    $("#view-billinfo").text(obj.info);
+                }
+            }
+        });
+    }
     $(document).ready(function () {
         $('#dataTables-example').dataTable();
     });
