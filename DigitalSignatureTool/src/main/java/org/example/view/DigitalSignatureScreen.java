@@ -184,8 +184,7 @@ public class DigitalSignatureScreen extends JPanel {
         signButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    System.out.println(billPath);
-//                    String inputPassword = JOptionPane.showInputDialog(null,passwordDialog);
+
                 String inputPassword= "";
                 JPanel panel = new JPanel();
                 JLabel label = new JLabel("Enter a password:");
@@ -193,13 +192,15 @@ public class DigitalSignatureScreen extends JPanel {
                 panel.add(label);
                 panel.add(pass);
                 String[] options = new String[]{"OK", "Cancel"};
-                int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                int option = JOptionPane.showOptionDialog(null, panel, "Nhập mật khẩu Keystore",
                         JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                         null, options, options[1]);
                 if(option == 0) // pressing OK button
                 {
                     char[] password = pass.getPassword();
-                    inputPassword = password.toString();
+                    for (int i = 0; i < password.length;i++) {
+                        inputPassword += password[i];
+                    }
                 }
 
                     isCheck = false;

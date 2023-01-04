@@ -26,10 +26,12 @@ public class View  {
         changePINMenuItem = new JMenuItem();
         digitalSignatureMenu = new JMenu();
         digitalSignaturePDFMenuItem = new JMenuItem();
-        aboutMenu = new JMenu();
+//        aboutMenu = new JMenu();
+        splitKeystoreFileMenu = new JMenuItem();
         mainPanel = new JPanel();
         createKeyStoreMenuItem = new JMenuItem();
         verifyFile = new JMenuItem();
+
         //======== mainFrame ========
 
         {
@@ -90,11 +92,19 @@ public class View  {
 
 
 
-                    //======== aboutMenu ========
-//                    {
-//                        aboutMenu.setText("Gi\u1edbi thi\u1ec7u");
-//                    }
-//                    mainMenuBar.add(aboutMenu);
+//                    ======== aboutMenu ========
+                    {
+                        splitKeystoreFileMenu.setText("Tạo file Certificate từ file chữ ký");
+                    }
+                    digitalSignatureMenu.add(splitKeystoreFileMenu);
+                    splitKeystoreFileMenu.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            mainPanel.removeAll();
+                            SplitKeyStoreToKeyAndCSR splitScreen = new SplitKeyStoreToKeyAndCSR();
+                            addScreen(splitScreen.getPanel(),mainPanel);
+                        }
+                    });
                 }
                 menuPanel.add(mainMenuBar, BorderLayout.CENTER);
             }
@@ -112,6 +122,7 @@ public class View  {
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         }
+
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -130,7 +141,7 @@ public class View  {
     private JMenuItem digitalSignaturePDFMenuItem;
     private JMenuItem createKeyStoreMenuItem;
     private JMenuItem verifyFile;
-    private JMenu aboutMenu;
+    private JMenuItem splitKeystoreFileMenu;
     private JPanel mainPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
