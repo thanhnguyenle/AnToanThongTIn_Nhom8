@@ -1,0 +1,54 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.4.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "java.awt.Frame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "mainFrame"
+			"title": "Phần mềm ký số"
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/icon.gif" )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "menuPanel"
+				add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+					name: "mainMenuBar"
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "settingJMenu"
+						"text": "Cấu hình"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "changeNameMenuItem"
+							"text": "Đổi tên Token"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "changePINMenuItem"
+							"text": "Thay đổi Pin"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "digitalSignaltureMenu"
+						"text": "Chứng thư số"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "digitalSignaturePDFMenuItem"
+							"text": "Chữ ký điện tử PDF"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "aboutMenu"
+						"text": "Giới thiệu"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "North"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "mainPanel"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 50, 30 )
+			"size": new java.awt.Dimension( 765, 545 )
+		} )
+	}
+}

@@ -195,12 +195,12 @@ public class GenerateKeystoreScreen extends JPanel {
                         if(city.equals("") == false) {
                             if(ward.equals("") == false) {
                                 if(countryCode.equals("") == false) {
-                                    if(password.equals("") == false) {
+                                    if(password.equals("") == false && password.length() >= 6) {
                                         PDFDigitalSigning sign = new PDFDigitalSigning();
                                         sign.createKeyStoreFile(password, keyStorePath);
                                         sign.loadEntriesToKeyStoreFile(keyStorePath,password,fullName,org,org,city,ward,countryCode);
                                         JOptionPane.showMessageDialog(panel1,"Tạo thành công, vui lòng kiểm tra file tại đường dẫn bên trên");
-                                    } else JOptionPane.showMessageDialog(panel1,"Vui lòng nhập Password!","Thiếu",JOptionPane.ERROR_MESSAGE);
+                                    } else JOptionPane.showMessageDialog(panel1,"Chiều dài password từ 6 ký tự trở lên, vui lòng nhập lại","Thiếu",JOptionPane.ERROR_MESSAGE);
                                 } else JOptionPane.showMessageDialog(panel1,"Vui lòng nhập mã vùng!","Thiếu",JOptionPane.ERROR_MESSAGE);
                             }else JOptionPane.showMessageDialog(panel1,"Vui lòng nhập Huyện/Thành phố/Thị xã!","Thiếu",JOptionPane.ERROR_MESSAGE);
                         } else JOptionPane.showMessageDialog(panel1,"Vui lòng nhập Tỉnh/Thành phố!","Thiếu",JOptionPane.ERROR_MESSAGE);
