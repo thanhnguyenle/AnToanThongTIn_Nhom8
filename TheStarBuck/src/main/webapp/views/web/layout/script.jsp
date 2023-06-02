@@ -120,7 +120,7 @@
                     console.log($('#ipSearch').val());
                     $.ajax({
                         method: "POST",
-                        url: "searchAjax?product_search=" + $('#ipSearch').val(),
+                        url: "${pageContext.request.contextPath}/searchAjax?product_search=" + $('#ipSearch').val(),
                         // data: { name: "John", location: "Boston" }
                         success: function (data) {
                             $('.search_container').empty();

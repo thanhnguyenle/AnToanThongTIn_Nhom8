@@ -88,7 +88,7 @@
 <jsp:include page="layout/script.jsp"/>
 
 <!-- Page-Level Demo Scripts - Blank - Use for reference -->
-<script src="js/addressAjax.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/addressAjax.js"></script>
 </body>
 
 </html>

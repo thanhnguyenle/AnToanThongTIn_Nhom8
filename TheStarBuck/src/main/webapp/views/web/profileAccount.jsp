@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileAccount.css")%>" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/profileAccount.css" />
 	<!-- Custom StyleSheet -->
 	<title>Profile</title>
 	<style>
@@ -158,7 +158,7 @@
 		</form>
 		</div>
 	</div>
-<script src="<%= Asset.url("/template/web/js/profileAccount.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/web/js/profileAccount.js"></script>
 <script>
 	function ajaxGetAccount() {
 		$("#account_fullname1").text("${account.fullname}");
@@ -185,7 +185,7 @@
 		if (confirm("You want verify your mail right now!") === true) {
 			//send mail to user
 			let email = "${account.email}";
-			let posting = $.post("http://localhost:8080/TheStarBuck/activeAccount",{email:email});
+			let posting = $.post("${pageContext.request.contextPath}/activeAccount",{email:email});
 			posting.done(function (data){
 				alert("Check email to active!");
 			});

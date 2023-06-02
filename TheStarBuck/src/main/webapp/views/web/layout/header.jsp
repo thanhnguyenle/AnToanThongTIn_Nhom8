@@ -6,7 +6,7 @@
 %>
 <nav id="header" class="nav">
     <div class="wrapper container">
-        <div class="logo"><a href="<c:url value='http://localhost:8080/TheStarBuck/user-home'/>">
+        <div class="logo"><a href="<c:url value='/user-home'/>">
             <img src="<c:url value='https://i.ibb.co/nMxcqW4/logo.png'/>" alt="">
         </a>
         </div>
@@ -14,9 +14,9 @@
             <div class="top">
                 <label class="btn close-btn"><i class="fas fa-times"></i></label>
             </div>
-            <li><a href="<c:url value='http://localhost:8080/TheStarBuck/user-home'/>">Home</a></li>
-            <li><a href="<c:url value='http://localhost:8080/TheStarBuck/menu'/>">Menu</a></li>
-            <li><a href="<c:url value='http://localhost:8080/TheStarBuck/blog'/>">Blog</a></li>
+            <li><a href="<c:url value='/user-home'/>">Home</a></li>
+            <li><a href="<c:url value='/menu'/>">Menu</a></li>
+            <li><a href="<c:url value='/blog'/>">Blog</a></li>
 
 
             <li>
@@ -25,7 +25,7 @@
                 <label for="showdrop2" class="mobile-item">Page <span><i class="fas fa-chevron-down"></i></span></label>
                 <ul class="drop-menu2">
                     <li><a href="<c:url value='/views/web/aboutUs.jsp'/>">About Us</a></li>
-                    <li><a href="<c:url value='http://localhost:8080/TheStarBuck/contact'/>">Contact</a></li>
+                    <li><a href="<c:url value='/contact'/>">Contact</a></li>
                 </ul>
             </li>
 
@@ -52,9 +52,9 @@
                 <label for="showdrop1" class="mobile-item"><span><i class="fas fa-chevron-down"></i></span></label>
                 <ul class="drop-menu1 <c:if test="${account == null}"> d-none </c:if>" >
                     <li id="manual-ajax"><a href="#">Profile</a></li>
-                    <li><a href="/TheStarBuck/user-profile-pass">Change password</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user-profile-pass">Change password</a></li>
                     <li><a href="<c:url value='/views/web/history.jsp'/>">History</a></li>
-                    <li><a href="/TheStarBuck/user-management">User Management</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user-management">User Management</a></li>
                     <li><a href="<c:url value='/doLogout'/>">Logout</a></li>
                 </ul>
                 <ul class="drop-menu1 <c:if test="${account != null}"> d-none </c:if>" >

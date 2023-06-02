@@ -16,10 +16,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 <!--custom navigation-->
-<link rel="stylesheet" href="<%= Asset.url("/template/web/css/navigation.css")%>" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/navigation.css" />
 
 <!--custom footer-->
-<link rel="stylesheet" href="<%= Asset.url("/template/web/css/footer.css")%>" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/footer.css" />
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="https://i.ibb.co/nMxcqW4/logo.png" type="image/png" />

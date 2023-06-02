@@ -10,7 +10,7 @@
 <head>
   <jsp:include page="layout/css.jsp"/>
   <!-- Custom StyleSheet -->
-  <link rel="stylesheet" href="<%= Asset.url("/template/web/css/contact.css")%>" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/contact.css" />
   <title>Contact Us</title>
     <style>
         #status_css{
@@ -57,6 +57,6 @@
 <!-- End Footer -->
 <jsp:include page="layout/script.jsp"/>
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/product.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/product.js"></script>
 </body>
 </html>

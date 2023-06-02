@@ -21,17 +21,17 @@
     <link rel="shortcut icon" href="https://i.ibb.co/nMxcqW4/logo.png" type="image/png" />
     <!-- Core CSS - Include with every page -->
     <%--    <link href="css/bootstrap.min.css" rel="stylesheet">--%>
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/bootstrap.min.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/bootstrap.min.css" />
     <%--    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">--%>
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/font-awesome/css/font-awesome.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/font-awesome/css/font-awesome.css" />
 
     <!-- Page-Level Plugin CSS - Tables -->
     <%--    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">--%>
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/plugins/dataTables/dataTables.bootstrap.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/plugins/dataTables/dataTables.bootstrap.css" />
 
     <!-- SB Admin CSS - Include with every page -->
     <%--    <link href="css/sb-admin.css" rel="stylesheet">--%>
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/sb-admin.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/sb-admin.css" />
 
 </head>
 
@@ -126,20 +126,20 @@
 
 <!-- Core Scripts - Include with every page -->
 <%--<script src="js/jquery-1.10.2.js"></script>--%>
-<script src="<%= Asset.url("/template/admin/js/jquery-1.10.2.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/jquery-1.10.2.js"></script>
 <%--<script src="js/bootstrap.min.js"></script>--%>
-<script src="<%= Asset.url("/template/admin/js/bootstrap.min.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/bootstrap.min.js"></script>
 <%--<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>--%>
-<<script src="<%= Asset.url("/template/admin/js/plugins/metisMenu/jquery.metisMenu.js")%>"></script>
+<<script src="${pageContext.request.contextPath}/template/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
 <!-- Page-Level Plugin Scripts - Tables -->
 <%--<script src="js/plugins/dataTables/jquery.dataTables.js"></script>--%>
-<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/jquery.dataTables.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
 <%--<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>--%>
-<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/dataTables.bootstrap.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <!-- SB Admin Scripts - Include with every page -->
 <%--<script src="js/sb-admin.js"></script>--%>
-<script src="<%= Asset.url("/template/admin/js/sb-admin.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/sb-admin.js"></script>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>

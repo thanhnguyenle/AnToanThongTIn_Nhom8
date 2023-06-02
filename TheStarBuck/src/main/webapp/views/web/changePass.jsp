@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="layout/css.jsp"/>
     <title>Change Password</title>
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/forgotpass.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/forgotpass.css" />
 </head>
 
 <body>
@@ -13,7 +13,7 @@
         <div class="">
             <div class="row g-0">
                 <div class="col-lg-5 thumb-box">
-                    <img src="images/change.png" class="img-fluid" alt="" srcset="">
+                    <img src="${pageContext.request.contextPath}/template/web/image/change.png" class="img-fluid" alt="" srcset="">
                 </div>
                 <div class="col-lg-7 text-center py-4 loginContent">
                     <h1>CHANGE PASSWORD</h1>

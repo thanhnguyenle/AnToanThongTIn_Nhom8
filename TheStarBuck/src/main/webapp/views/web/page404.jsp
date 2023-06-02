@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 404</title>
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/page404.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/page404.css" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@
     <br/>
     <div class='_2'>WAS NOT FOUND</div>
     <br/>
-    <a class='btn' href='/TheStarBuck/user-home'>BACK TO HOME</a>
+    <a class='btn' href='${pageContext.request.contextPath}/user-home'>BACK TO HOME</a>
 </div>
 
 </body>

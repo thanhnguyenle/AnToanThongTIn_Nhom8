@@ -119,7 +119,7 @@
 </div>
 <%--SCRIPT--%>
 <jsp:include page="layout/script.jsp"/>
-<script type="text/javascript" src="<%= Asset.url("/template/lib/ckfinder/ckfinder.js")%>"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/lib/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
     function BrowseServer(id)
     {

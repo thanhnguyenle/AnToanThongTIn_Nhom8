@@ -12,7 +12,7 @@ public class DBConnectionUtils {
         try {
             String url;
             Class.forName("com.mysql.cj.jdbc.Driver");
-            url = "jdbc:mysql://" + getDbHost() + ":" + getDbPort() + "/" + getDbName() + "?useSSL=" + getDbUseSSL();
+            url = "jdbc:mysql://" + getDbHost() + ":" + getDbPort() + "/" + getDbName() + "?allowPublicKeyRetrieval=true&useSSL=" + getDbUseSSL();
             connection = DriverManager.getConnection(url, getDbUsername(), getDbPassword());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

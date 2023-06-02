@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- slier-image -->
   <!--custom footer-->
-  <link rel="stylesheet" href="<%= Asset.url("/template/web/css/home.css")%>" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/home.css" />
   <title>Home</title>
 </head>
 
@@ -234,7 +234,7 @@
     <c:forEach items="${slideBanner}" var="x">
     <div class="container">
       <div class="col">
-        <img class="banner__decor" src="<%= Asset.url("/template/web/image/bell__xmas.png")%>" alt="" srcset="">
+        <img class="banner__decor" src="${pageContext.request.contextPath}/template/web/image/bell__xmas.png" alt="" srcset="">
         <div class="banner_box">
           <div class="banner_content ">
             <h2>${x.greetingH2}</h2>
@@ -255,20 +255,20 @@
     <div class="about-layout container">
       <div class="wrapper">
         <div class="one item">
-          <img src="<%= Asset.url("/template/web/image/about1.png")%>" alt="">
-          <img src="<%= Asset.url("/template/web/image/about1_1.png")%>" alt="" class="img-change">
+          <img src="${pageContext.request.contextPath}/template/web/image/about1.png" alt="">
+          <img src="${pageContext.request.contextPath}/template/web/image/about1_1.png" alt="" class="img-change">
         </div>
         <div class="two item">
-          <img src="<%= Asset.url("/template/web/image/about2.png")%>" alt="">
-          <img src="<%= Asset.url("/template/web/image/about2_2.png")%>" alt="" class="img-change">
+          <img src="${pageContext.request.contextPath}/template/web/image/about2.png" alt="">
+          <img src="${pageContext.request.contextPath}/template/web/image/about2_2.png" alt="" class="img-change">
         </div>
         <div class="three item">
-          <img src="<%= Asset.url("/template/web/image/about3.png")%>" alt="">
-          <img src="<%= Asset.url("/template/web/image/about3_3.png")%>" alt="" class="img-change">
+          <img src="${pageContext.request.contextPath}/template/web/image/about3.png" alt="">
+          <img src="${pageContext.request.contextPath}/template/web/image/about3_3.png" alt="" class="img-change">
         </div>
         <div class="four item">
-          <img src="<%= Asset.url("/template/web/image/about4.png")%>" alt="">
-          <img src="<%= Asset.url("/template/web/image/about4_4.png")%>" alt="" class="img-change">
+          <img src="${pageContext.request.contextPath}/template/web/image/about4.png" alt="">
+          <img src="${pageContext.request.contextPath}/template/web/image/about4_4.png" alt="" class="img-change">
         </div>
         <div class="five">
           <div class="content">
@@ -278,7 +278,7 @@
               customers the best experience in terms of service and space.</p>
           </div>
           <div class="btn-box">
-            <a href="/TheStarBuck/menu">
+            <a href="${pageContext.request.contextPath}/menu">
               View More
             </a>
           </div>
@@ -308,34 +308,34 @@
       <div class="ordering-stepss">
         <div class="item steps-one">
           <div class="criea">
-            <img src="<%= Asset.url("/template/web/image/step_1.png")%>" alt="" width="40px" height="40px">
+            <img src="${pageContext.request.contextPath}/template/web/image/step_1.png" alt="" width="40px" height="40px">
           </div>
           <h4>Contact</h4>
         </div>
         <div class="item min">
-          <img src="<%= Asset.url("/template/web/image/step.png")%>" alt="" width="40px" height="40px">
+          <img src="${pageContext.request.contextPath}/template/web/image/step.png" alt="" width="40px" height="40px">
         </div>
         <div class="item steps-two">
           <div class="criea">
-            <img src="<%= Asset.url("/template/web/image/step_2.png")%>" alt="" width="40px" height="40px">
+            <img src="${pageContext.request.contextPath}/template/web/image/step_2.png" alt="" width="40px" height="40px">
           </div>
           <h4>Create order</h4>
         </div>
         <div class="item min">
-          <img src="<%= Asset.url("/template/web/image/step.png")%>" alt="" width="40px" height="40px">
+          <img src="${pageContext.request.contextPath}/template/web/image/step.png" alt="" width="40px" height="40px">
         </div>
         <div class="item steps-three">
           <div class="criea">
-            <img src="<%= Asset.url("/template/web/image/step_3.png")%>" alt="" width="40px" height="40px">
+            <img src="${pageContext.request.contextPath}/template/web/image/step_3.png" alt="" width="40px" height="40px">
           </div>
           <h4>Delivery</h4>
         </div>
         <div class="item min">
-          <img src="<%= Asset.url("/template/web/image/step.png")%>" alt="" width="40px" height="40px">
+          <img src="${pageContext.request.contextPath}/template/web/image/step.png" alt="" width="40px" height="40px">
         </div>
         <div class="item steps-four">
           <div class="criea">
-            <img src="<%= Asset.url("/template/web/image/step_4.png")%>" alt="" width="40px" height="40px">
+            <img src="${pageContext.request.contextPath}/template/web/image/step_4.png" alt="" width="40px" height="40px">
           </div>
           <h4>Pay</h4>
         </div>
@@ -351,7 +351,7 @@
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <!-- jQuery Modal -->
-  <script type="text/javascript" src="<%= Asset.url("/template/web/js/index.js")%>"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/template/web/js/index.js"></script>
 <%-- <script src="<%= Asset.url("/template/web/js/profileAccount.js")%>"></script>--%>
 <script  type="text/javascript">
   const starbuckAv = document.querySelector("#starbuckAv");
@@ -370,7 +370,7 @@
   function ajaxRunPost(_randomNum) {
     $.ajax({
       type: "Get",
-      url: "/TheStarBuck/posts?page-index=" + _randomNum + "&per-page=" + 2,
+      url: "<%=request.getContextPath()%>/posts?page-index=" + _randomNum + "&per-page=" + 2,
       ContentType: 'json',
       headers: { Accept: "application/json;charset=utf-8" },
       success: function (json) {

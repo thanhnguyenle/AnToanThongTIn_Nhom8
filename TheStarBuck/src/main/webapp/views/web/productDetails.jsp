@@ -281,7 +281,7 @@
 
 <!-- messenger -->
 <div class="messenger">
-    <a href=""><img src="images/mees.png" alt="" width="70px"></a>
+    <a href=""><img src="${pageContext.request.contextPath}/template/web/image/mees.png" alt="" width="70px"></a>
 </div>
 <div class="up">
     <a href="#" class="iconUp"><i class="fa fa-arrow-circle-up"></i></a>
@@ -312,7 +312,7 @@
 <jsp:include page="layout/footer.jsp"/>
 <jsp:include page="layout/script.jsp"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="<%= Asset.url("/template/web/js/productDetails.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/web/js/productDetails.js"></script>
 </body>
 
 </html>

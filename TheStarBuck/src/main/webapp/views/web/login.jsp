@@ -23,7 +23,7 @@
           crossorigin="anonymous">
     <link rel="shortcut icon" type="images/logo.png" href="https://i.ibb.co/nMxcqW4/logo.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="<c:url value="/template/web/css/login.css"/>">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/login.css">
 </head>
 
 <body>
@@ -95,7 +95,7 @@
 <!-- jquery -->
 <jsp:include page="layout/script.jsp"/>
 <%--    <script src="<c:url value="/template/web/js/login.js"/>"></script>--%>
-<script src="<%= Asset.url("/template/web/js/login.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/web/js/login.js"></script>
 
 <script>
     var error = document.querySelector('#error');

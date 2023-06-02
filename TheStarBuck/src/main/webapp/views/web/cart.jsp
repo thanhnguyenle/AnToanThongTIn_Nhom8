@@ -13,9 +13,9 @@
 <head>
     <jsp:include page="layout/css.jsp"/>
     <!-- Custom StyleSheet -->
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/cart.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/cart.css" />
     <!-- datatable -->
-    <link rel="stylesheet" href="<%= Asset.url("/vendor/dt/datatables.min.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/vendor/dt/datatables.min.css" />
 
   <title>Cart</title>
 </head>
@@ -111,8 +111,8 @@
                           <dt>Total:</dt>
                           <dd class="text-right text-dark b ml-3"><strong class="total-cart"></strong></dd>
                       </dl>
-                      <hr> <a href="<%=request.getContextPath()%>/cart-checkout" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> <a
-                          href="<%=request.getContextPath()%>/menu" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                      <hr> <a href="${pageContext.request.contextPath}/cart-checkout" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> <a
+                          href="${pageContext.request.contextPath}/menu" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
                   </div>
               </div>
           </aside>
@@ -125,10 +125,10 @@
   <jsp:include page="layout/script.jsp"/>
 <%--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/cart.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/cart.js"></script>
 
   <!-- datatable -->
-  <script src="<%= Asset.url("/vendor/dt/datatables.min.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/vendor/dt/datatables.min.js"></script>
 <%--  <script src="/vendor/dt/datatables.min.js"></script>--%>
 <script>
 

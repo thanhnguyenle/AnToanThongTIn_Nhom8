@@ -13,9 +13,9 @@
 <head>
     <jsp:include page="layout/css.jsp"/>
     <!-- Custom StyleSheet -->
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/cart.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/cart.css" />
     <!-- datatable -->
-    <link rel="stylesheet" href="<%= Asset.url("/vendor/dt/datatables.min.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/vendor/dt/datatables.min.css" />
 
   <title>History</title>
 </head>
@@ -84,10 +84,10 @@
   <jsp:include page="layout/script.jsp"/>
 <%--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/cart.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/cart.js"></script>
 
   <!-- datatable -->
-  <script src="<%= Asset.url("/vendor/dt/datatables.min.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/vendor/dt/datatables.min.js"></script>
 <%--  <script src="/vendor/dt/datatables.min.js"></script>--%>
 <script>
   // $(".sub-total-cart").html("123");

@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileAccount.css")%>" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/profileAccount.css" />
 	<!-- Custom StyleSheet -->
 	<title>Invoice</title>
 	<style>
@@ -190,7 +190,7 @@
 		let passKeyStore = $("#passKeyStore").val();
 		$.ajax({
 			type: "Post",
-			url: "/TheStarBuck/generate-cer",
+			url: "/generate-cer",
 			ContentType: 'json',
 			headers: { Accept: "application/json;charset=utf-8" },
 			data:{"CN":cn,"OU":ou,"O":o,"L":l,"S":s,"C":c,"keySize":keySize,"algorithmGenKey":algorithmGenKey,"algorithmHashing":algorithmHashing,"passKeyStore":passKeyStore},
@@ -218,7 +218,7 @@
 	}
 
 	function downloadJKS() {
-		window.location.assign("/TheStarBuck/downloadJKSFile");
+		window.location.assign("/downloadJKSFile");
 	}
 
 </script>

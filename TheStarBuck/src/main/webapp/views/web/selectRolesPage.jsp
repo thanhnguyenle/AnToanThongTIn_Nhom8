@@ -53,12 +53,12 @@
 </div>
 <script>
     function redirectHome(){
-        window.location.href = "/TheStarBuck/user-home";
-        window.location.assign("/TheStarBuck/user-home");
+        window.location.href = "${pageContext.request.contextPath}/user-home";
+        window.location.assign("${pageContext.request.contextPath}/user-home");
     }
     function redirectManagement(){
-        window.location.href = "/TheStarBuck/admin-home";
-        window.location.assign("/TheStarBuck/admin-home");
+        window.location.href = "${pageContext.request.contextPath}/admin-home";
+        window.location.assign("${pageContext.request.contextPath}/admin-home");
     }
 </script>
 </body>

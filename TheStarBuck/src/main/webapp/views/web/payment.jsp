@@ -15,7 +15,7 @@
 <head>
     <jsp:include page="layout/css.jsp"/>
     <!-- Custom StyleSheet -->
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/payment.css")%>"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/payment.css"/>
     <title>Payment</title>
     <style>
         .cursor-pointer {
@@ -169,11 +169,11 @@
 <!-- jquery -->
 <jsp:include page="layout/script.jsp"/>
 <!-- Custom Scripts -->
-<script src="<%= Asset.url("/template/web/js/payment.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/web/js/payment.js"></script>
 <script>
     function redirectHome(){
-        window.location.href = "/TheStarBuck/user-home";
-        window.location.assign("/TheStarBuck/user-home");
+        window.location.href = "/user-home";
+        window.location.assign("/user-home");
     }
     $("#addresses").change(function (){
         getAddressDetail();
@@ -201,7 +201,7 @@
 
         $.ajax({
             type: "Post",
-            url: "/TheStarBuck/payment-checkout",
+            url: "${pageContext.request.contextPath}/payment-checkout",
             ContentType: 'json',
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
@@ -222,7 +222,7 @@
 
         $.ajax({
             type: "Post",
-            url: "/TheStarBuck/gender-pdf",
+            url: "${pageContext.request.contextPath}/gender-pdf",
             ContentType: 'json',
             headers: {Accept: "application/json;charset=utf-8"},
             data:{"name":fullname,"phone":phonenumber,"email":email,"addresses":addresses,"payment":payment,"addressDetail":addressDetails},
@@ -236,7 +236,7 @@
         let id = "${account.id}";
         $.ajax({
             type: "Post",
-            url: "/TheStarBuck/getAddressJson?id="+id,
+            url: "${pageContext.request.contextPath}/getAddressJson?id="+id,
             ContentType: 'json',
             headers: {Accept: "application/json;charset=utf-8"},
             success: function (json) {
@@ -257,7 +257,7 @@
         let addresses = $("#addresses :selected").val();
         $.ajax({
             type: "Post",
-            url: "/TheStarBuck/getAddressJson?id="+id,
+            url: "${pageContext.request.contextPath}/getAddressJson?id="+id,
             ContentType: 'json',
             headers: {Accept: "application/json;charset=utf-8"},
             success: function (json) {

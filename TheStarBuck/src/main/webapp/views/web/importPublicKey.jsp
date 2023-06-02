@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileAccount.css")%>" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/profileAccount.css" />
 	<!-- Custom StyleSheet -->
 	<title>Invoice</title>
 	<style>
@@ -110,7 +110,7 @@
 		let dataForm = new FormData(form);
 		$.ajax({
 			type : 'POST',
-			url : '/TheStarBuck/upload-certificate',
+			url : '<%=request.getContextPath()%>/upload-certificate',
 			data : dataForm,
 			enctype : 'multipart/form-data',
 			processData : false,
@@ -133,7 +133,7 @@
 		let dataForm = new FormData(form);
 		$.ajax({
 			type : 'POST',
-			url : '/TheStarBuck/save-certificate',
+			url : '<%=request.getContextPath()%>/save-certificate',
 			data : dataForm,
 			enctype : 'multipart/form-data',
 			processData : false,

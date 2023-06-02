@@ -19,7 +19,7 @@
     <title>Home</title>
     <jsp:include page="layout/css.jsp"/>
     <!-- Page-Level Plugin CSS - Dashboard -->
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/plugins/timeline/timeline.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/plugins/timeline/timeline.css" />
 
 </head>
 
@@ -317,7 +317,7 @@
 
 <jsp:include page="layout/script.jsp"/>
 <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
-<script src="<%= Asset.url("/template/admin/js/demo/dashboard-demo.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/demo/dashboard-demo.js"></script>
 </body>
 
 </html>

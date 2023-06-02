@@ -52,7 +52,7 @@ $(document).ready(function(){
       if ($t.is(':visible')) {
       $t.slideUp(500);
       // Other stuff to do on slideUp
-          saveAddress("http://localhost:8080/TheStarBuck/addAddressJson")
+          saveAddress("/addAddressJson")
       $('.addButtonBtn').val('Add Address')
   } else {
       $t.slideDown(500);
@@ -166,7 +166,7 @@ function saveAddress(url){
 function ajaxAddressList(id) {
     $.ajax({
         type: "Get",
-        url: "/TheStarBuck/getAddressJson?id=" + id,
+        url: "/getAddressJson?id=" + id,
         ContentType: 'json',
         headers: { Accept: "application/json;charset=utf-8" },
         success: function (json) {

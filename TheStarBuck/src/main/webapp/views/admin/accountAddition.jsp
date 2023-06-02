@@ -15,8 +15,8 @@
 <head>
     <title>Add Account</title>
     <jsp:include page="layout/css.jsp"/>
-    <script type="text/javascript" src="<%= Asset.url("/template/lib/ckeditor/ckeditor.js")%>"></script>
-    <script type="text/javascript" src="<%= Asset.url("/template/lib/ckfinder/ckfinder.js")%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/template/lib/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/template/lib/ckfinder/ckfinder.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -129,7 +129,7 @@
 </div>
 <%--SCRIPT--%>
 <jsp:include page="layout/script.jsp"/>
-<script type="text/javascript" src="<%= Asset.url("/template/lib/ckfinder/ckfinder.js")%>"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/lib/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
     function BrowseServer(id)
     {

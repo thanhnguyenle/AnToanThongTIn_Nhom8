@@ -10,12 +10,12 @@
 <head>
     <title>User Management</title>
     <jsp:include page="layout/css.jsp"/>
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/userManagement.css")%>">
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/bootstrap.min.css")%>" />
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/plugins/dataTables/dataTables.bootstrap.css")%>" />
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/font-awesome/css/font-awesome.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/userManagement.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/plugins/dataTables/dataTables.bootstrap.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/font-awesome/css/font-awesome.css" />
     <!-- SB Admin CSS - Include with every page -->
-    <link rel="stylesheet" href="<%= Asset.url("/template/admin/css/sb-admin.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/sb-admin.css" />
     <style>
         :root {
             --primary: #017143;
@@ -286,7 +286,7 @@
     function  viewBillData(id){
         $.ajax({
             type: "Get",
-            url: "/TheStarBuck/viewBill?id="+id,
+            url: "${pageContext.request.contextPath}/viewBill?id="+id,
             ContentType: 'json',
             headers: { Accept: "application/json;charset=utf-8" },
             success: function (json) {
@@ -300,7 +300,7 @@
     function viewData(id){
             $.ajax({
                 type: "Get",
-                url: "/TheStarBuck/viewCertificate?id="+id,
+                url: "${pageContext.request.contextPath}/viewCertificate?id="+id,
                 ContentType: 'json',
                 headers: { Accept: "application/json;charset=utf-8" },
                 success: function (json) {
@@ -318,7 +318,7 @@
 
         this.blur(); // Manually remove focus from clicked link.
         if (!onetimeCreate) {
-            $.get("/TheStarBuck/views/web/importPublicKey.jsp", function (html) {
+            $.get("${pageContext.request.contextPath}/views/web/importPublicKey.jsp", function (html) {
                 // console.log(html);
                $(html).appendTo('body').modal();
             });
@@ -330,7 +330,7 @@
     function importPK(){
         this.blur(); // Manually remove focus from clicked link.
         if (!onetimeImport) {
-            $.get("/TheStarBuck/views/web/generatePairKey.jsp", function (html) {
+            $.get("${pageContext.request.contextPath}/views/web/generatePairKey.jsp", function (html) {
                 // console.log(html);
                $(html).appendTo('body').modal();
             });
@@ -345,8 +345,8 @@
     });
 
 </script>
-<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/jquery.dataTables.js")%>"></script>
-<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/dataTables.bootstrap.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 </body>
 
 </html>

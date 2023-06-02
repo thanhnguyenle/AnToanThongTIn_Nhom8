@@ -4,16 +4,16 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	config.filebrowserBrowseUrl = 'http://localhost:8080/ckfinder/ckfinder.html';
+	config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html';
 
-	config.filebrowserImageBrowseUrl = 'http://localhost:8080/ckfinder/ckfinder.html?type=Images';
+	config.filebrowserImageBrowseUrl = '/ckfinder/ckfinder.html?type=Images';
 
-	config.filebrowserFlashBrowseUrl = 'http://localhost:8080/ckfinder/ckfinder.html?type=Flash';
+	config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
 
-	config.filebrowserUploadUrl = 'http://localhost:8080/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+	config.filebrowserUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 
-	config.filebrowserImageUploadUrl = 'http://localhost:8080/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+	config.filebrowserImageUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
 
-	config.filebrowserFlashUploadUrl = 'http://localhost:8080/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+	config.filebrowserFlashUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
 
 };

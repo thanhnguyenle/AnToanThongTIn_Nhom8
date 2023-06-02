@@ -5,7 +5,7 @@
 <head>
   <jsp:include page="layout/css.jsp"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link rel="stylesheet" href="<%= Asset.url("/template/web/css/aboutUs.css")%>" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/aboutUs.css" />
   <!-- Custom StyleSheet -->
   <title>About Us</title>
 </head>
@@ -26,7 +26,7 @@
     <div class="introBox">
       <div class="imIntro">
 <%--        <%= Asset.url("/template/web/image/aboutUs_intro_title.png")%>--%>
-        <img src="<%=Asset.url("/template/web/image/aboutUs_intro_title.png")%>" class="animate__animated animate__bounceInLeft" alt="" srcset="">
+        <img src="${pageContext.request.contextPath}/template/web/image/aboutUs_intro_title.png" class="animate__animated animate__bounceInLeft" alt="" srcset="">
       </div>
       <div class="introText animate__animated animate__bounceInRight">
         <h3>A few words about us</h3>
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="breakbreak">
-      <img src="<%=Asset.url("/template/web/image/brbr.webp")%>" alt="" srcset="">
+      <img src="${pageContext.request.contextPath}/template/web/image/brbr.webp" alt="" srcset="">
     </div>
     <div class="introProduct">
       <div class="title">
@@ -50,7 +50,7 @@
       <div class="grid-container">
         <div class="item1 item_flex">
           <div class="item_icon">
-            <img src="<%=Asset.url("/template/web/image/about_icon_1.png")%>" alt="">
+            <img src="${pageContext.request.contextPath}/template/web/image/about_icon_1.png" alt="">
           </div>
           <div class="item_content">
             <p>123</p>
@@ -59,7 +59,7 @@
         </div>
         <div class="item1 item_flex">
           <div class="item_icon">
-            <img src="<%=Asset.url("/template/web/image/about_icon_2.png")%>" alt="">
+            <img src="${pageContext.request.contextPath}/template/web/image/about_icon_2.png" alt="">
           </div>
           <div class="item_content">
             <p>150</p>
@@ -68,7 +68,7 @@
         </div>
         <div class="item1 item_flex">
           <div class="item_icon">
-            <img src="<%=Asset.url("/template/web/image/about_icon_3.png")%>" alt="">
+            <img src="${pageContext.request.contextPath}/template/web/image/about_icon_3.png" alt="">
           </div>
           <div class="item_content">
             <p>100</p>
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="breakbreak">
-      <img src="images/brbr.webp" alt="" srcset="">
+      <img src="${pageContext.request.contextPath}/template/web/image/brbr.webp" alt="" srcset="">
     </div>
     <div class="title">
       <h2>Meet our team</h2>
@@ -86,7 +86,7 @@
     <div class="aboutUs-layout">
       <div class="item">
         <div class="avt_profile">
-          <img src="<%=Asset.url("/template/web/image/KyAnh.png")%>" alt="" width="300" height="300">
+          <img src="${pageContext.request.contextPath}/template/web/image/KyAnh.png" alt="" width="300" height="300">
           <h1 class="titleName" id="clickKA">KA</h1>
         </div>
         <div class="context_profile">
@@ -101,7 +101,7 @@
       </div>
       <div class="item">
         <div class="avt_profile">
-          <img src="<%=Asset.url("/template/web/image/Thanh.png")%>" alt="" width="300" height="300">
+          <img src="${pageContext.request.contextPath}/template/web/image/Thanh.png" alt="" width="300" height="300">
           <h1 class="titleName" id="clickThanh">Thanh</h1>
         </div>
         <div class="context_profile">
@@ -116,7 +116,7 @@
       </div>
       <div class="item">
         <div class="avt_profile">
-          <img src="<%=Asset.url("/template/web/image/Nhu.png")%>" alt="" width="300" height="300">
+          <img src="${pageContext.request.contextPath}/template/web/image/Nhu.png" alt="" width="300" height="300">
           <h1 class="titleName" id="clickNhu">Nhu</h1>
         </div>
         <div class="context_profile">
@@ -131,13 +131,13 @@
       </div>
     </div>
     <div class="about_poster">
-      <img src="<%=Asset.url("/template/web/image/about_poster_1.png")%>" alt="" srcset="">
+      <img src="${pageContext.request.contextPath}/template/web/image/about_poster_1.png" alt="" srcset="">
     </div>
   </section>
   <jsp:include page="layout/footer.jsp"/>
   <jsp:include page="layout/script.jsp"/>
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/aboutUs.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/aboutUs.js"></script>
 </body>
 
 </html>

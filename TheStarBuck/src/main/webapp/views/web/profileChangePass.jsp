@@ -8,7 +8,7 @@
 
 <head>
     <jsp:include page="layout/css.jsp"/>
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileChange.css")%>"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/profileChange.css"/>
     <!-- Custom StyleSheet -->
     <title>ChangePassword</title>
 </head>
@@ -84,6 +84,6 @@
 <br/>
 <jsp:include page="layout/footer.jsp"/>
 <!-- End Footer -->
-<script src="<%= Asset.url("/template/web/js/profileAccount.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/web/js/profileAccount.js"></script>
 </body>
 </html>

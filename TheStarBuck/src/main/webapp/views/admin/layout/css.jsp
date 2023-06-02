@@ -15,11 +15,11 @@
 <!-- Favicon -->
 <link rel="shortcut icon" href="https://i.ibb.co/nMxcqW4/logo.png" type="image/png" />
 <!-- Core CSS - Include with every page -->
-<link rel="stylesheet" href="<%= Asset.url("/template/admin/css/bootstrap.min.css")%>" />
-<link rel="stylesheet" href="<%= Asset.url("/template/admin/font-awesome/css/font-awesome.css")%>" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/font-awesome/css/font-awesome.css" />
 
 <!-- Page-Level Plugin CSS - Tables -->
-<link rel="stylesheet" href="<%= Asset.url("/template/admin/css/plugins/dataTables/dataTables.bootstrap.css")%>" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/plugins/dataTables/dataTables.bootstrap.css" />
 
 <!-- SB Admin CSS - Include with every page -->
-<link rel="stylesheet" href="<%= Asset.url("/template/admin/css/sb-admin.css")%>" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/css/sb-admin.css" />

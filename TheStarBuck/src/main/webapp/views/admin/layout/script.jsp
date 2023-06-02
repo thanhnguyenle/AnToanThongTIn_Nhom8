@@ -10,13 +10,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%--this order is strict--%>
-<script src="<%= Asset.url("/template/admin/js/jquery-1.10.2.js")%>"></script>
-<script src="<%= Asset.url("/template/admin/js/bootstrap.min.js")%>"></script>
-<script src="<%= Asset.url("/template/admin/js/plugins/metisMenu/jquery.metisMenu.js")%>"></script>
-<script src="<%= Asset.url("/template/admin/js/sb-admin.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/jquery-1.10.2.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/sb-admin.js"></script>
 
-<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/jquery.dataTables.js")%>"></script>
-<script src="<%= Asset.url("/template/admin/js/plugins/dataTables/dataTables.bootstrap.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
 <script>
     //AJAX read file json -> generate list province, district, ward

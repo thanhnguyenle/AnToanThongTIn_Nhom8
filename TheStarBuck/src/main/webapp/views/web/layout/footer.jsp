@@ -13,7 +13,7 @@
 <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=1106802269902043&autoLogAppEvents=1"
         nonce="EknEoy7g"></script>
-<script src="<%= Asset.url("/template/web/js/jquery.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/web/js/jquery.js"></script>
 <%--<div class="fb-livechat" style="margin-bottom: 4rem ;margin-right: 2rem ;overflow: hidden; position: fixed;right: 20px;  bottom: 80px;">--%>
 <%--    <div class="ctrlq fb-overlay"></div>--%>
 <%--    <div class="fb-widget">--%>

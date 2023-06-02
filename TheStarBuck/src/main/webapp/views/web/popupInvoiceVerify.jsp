@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="<%= Asset.url("/template/web/css/profileAccount.css")%>" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/profileAccount.css" />
 	<!-- Custom StyleSheet -->
 	<title>Invoice</title>
 	<style>
@@ -107,7 +107,7 @@
 		let dataForm = new FormData(form);
 		$.ajax({
 			type : 'POST',
-			url : '/TheStarBuck/upload-invoice',
+			url : '${pageContext.request.contextPath}/upload-invoice',
 			data : dataForm,
 			enctype : 'multipart/form-data',
 			processData : false,
@@ -116,8 +116,8 @@
 			success : function(json) {
 				if (json !== undefined && json != null) {
 					checkOutAndMoveToBill();
-					window.location.href = "/TheStarBuck/bill";
-					window.location.assign("/TheStarBuck/bill");
+					window.location.href = "/bill";
+					window.location.assign("/bill");
 				}
 			},
 			error : function() {
@@ -139,7 +139,7 @@
 		screenLoader_Global();
 		sendRequestGeneratePDF().then(async function () {
 			await remove_screenLoader_Global();
-			window.location.assign("/TheStarBuck/download-invoice");
+			window.location.assign("${pageContext.request.contextPath}/download-invoice");
 		});
 	}
 </script>

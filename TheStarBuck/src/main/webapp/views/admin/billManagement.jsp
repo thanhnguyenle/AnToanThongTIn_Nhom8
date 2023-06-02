@@ -126,7 +126,7 @@
     function  viewBillData(id){
         $.ajax({
             type: "Get",
-            url: "/TheStarBuck/viewBill?id="+id,
+            url: "${pageContext.request.contextPath}/viewBill?id="+id,
             ContentType: 'json',
             headers: { Accept: "application/json;charset=utf-8" },
             success: function (json) {
@@ -141,7 +141,7 @@
         $('#dataTables-example').dataTable();
     });
     jQuery(function (){
-        url = "http://localhost:8080/TheStarBuck/api/account?action=get";
+        url = "${pageContext.request.contextPath}/api/account?action=get";
         $.ajax({
             type: "GET",
             url: url,
@@ -154,7 +154,7 @@
         })
     })
 </script>
-<script src="<%= Asset.url("/template/admin/js/commonHtml.js")%>"></script>
+<script src="${pageContext.request.contextPath}/template/admin/js/commonHtml.js"></script>
 </body>
 
 </html>

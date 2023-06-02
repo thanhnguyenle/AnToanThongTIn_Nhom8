@@ -11,7 +11,7 @@
   <!--jquery-ui css-->
   <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
   <!-- Custom StyleSheet -->
-  <link rel="stylesheet" href="<%= Asset.url("/template/web/css/product.css")%>" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/product.css" />
   <title>Menu</title>
 </head>
 
@@ -106,7 +106,7 @@
 
   <!-- messenger -->
   <div class="messenger">
-    <a href=""><img src="images/mees.png" alt="" width="70px"></a>
+    <a href=""><img src="${pageContext.request.contextPath}/template/web/image/mees.png" alt="" width="70px"></a>
   </div>
   <div class="up">
     <a href="#" class="iconUp"><i class="fa fa-arrow-circle-up"></i></a>
@@ -122,10 +122,10 @@
 <%--  jQuery UI là một thư viện miễn phí, xây dựng dựa trên jQuery, giúp bạn tạo các thành phần giao diện trong trang như datepicker, accordion, autocomplete, tab, menu, select…--%>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/product.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/product.js"></script>
 
   <!--paging lib-->
-  <script src="<%= Asset.url("/template/lib/paging/jquery.twbsPagination.js")%>" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/template/lib/paging/jquery.twbsPagination.js" type="text/javascript"></script>
   <script type="text/javascript">
 
     let totalPages = ${totalPage};
@@ -186,7 +186,7 @@
           text = textSearch;
         $.ajax({
           type: "Post",
-          url: "/TheStarBuck/products?page-index=" + currentPage + "&per-page=" + limit+"&category_id="+category_id+"&sort_by="+sort_by+"&from_price="+from_price+"&to_price="+to_price+"&order_by="+order_by+"&text_search="+text,
+          url: "${pageContext.request.contextPath}/products?page-index=" + currentPage + "&per-page=" + limit+"&category_id="+category_id+"&sort_by="+sort_by+"&from_price="+from_price+"&to_price="+to_price+"&order_by="+order_by+"&text_search="+text,
           ContentType: 'json',
           headers: {Accept: "application/json;charset=utf-8"},
           success: function (json) {

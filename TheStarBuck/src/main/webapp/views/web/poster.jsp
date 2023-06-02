@@ -8,7 +8,7 @@
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <jsp:include page="layout/css.jsp"/>
   <!-- Custom StyleSheet -->
-  <link rel="stylesheet" href="<%= Asset.url("/template/web/css/post.css")%>" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/post.css" />
   <title>Blog</title>
 </head>
 
@@ -57,10 +57,10 @@
 <jsp:include page="layout/script.jsp"/>
 
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/product.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/product.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <!--paging lib-->
-<script src="<%= Asset.url("/template/lib/paging/jquery.twbsPagination.js")%>" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/template/lib/paging/jquery.twbsPagination.js" type="text/javascript"></script>
 <script type="text/javascript">
   // loader (after submit)
   async function turnOnLoadScreen() {
@@ -112,7 +112,7 @@
         textSearch = mytext;
       $.ajax({
         type: "Get",
-        url: "/TheStarBuck/posts?page-index=" + currentPage + "&per-page=" + limit+"&text-search="+textSearch,
+        url: "${pageContext.request.contextPath}/posts?page-index=" + currentPage + "&per-page=" + limit+"&text-search="+textSearch,
         ContentType: 'json',
         headers: { Accept: "application/json;charset=utf-8" },
         success: function (json) {
@@ -145,7 +145,7 @@
     screenLoader_Global();
     $.ajax({
       type: "Get",
-      url: "/TheStarBuck/post?post_id=" + id,
+      url: "${pageContext.request.contextPath}/post?post_id=" + id,
       ContentType: 'json',
       headers: { Accept: "application/json;charset=utf-8" },
       success: async function (json) {

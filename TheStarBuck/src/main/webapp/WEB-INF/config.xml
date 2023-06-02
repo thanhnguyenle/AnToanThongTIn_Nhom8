@@ -18,7 +18,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 	<baseDir></baseDir>
-	<baseURL>http://localhost:8080/TheStarBuck/template/web/image/</baseURL>
+	<baseURL>https://3136-203-113-146-152.ngrok-free.app/template/web/image/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--

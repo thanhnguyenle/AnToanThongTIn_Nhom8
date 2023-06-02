@@ -8,9 +8,9 @@
 <head>
     <jsp:include page="layout/css.jsp"/>
     <!-- Custom StyleSheet -->
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/payment.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/payment.css" />
     <title>Bill</title>
-    <link rel="stylesheet" href="<%= Asset.url("/template/web/css/listorder.css")%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/css/listorder.css" />
 
 </head>
 
@@ -36,7 +36,7 @@
     <div style="text-align: center;">
         <h1 style="color: green">THE STARBUCK</h1>
         <h3>YOUR INVOICE</h3>
-        <embed src="<%= Asset.url("/template/invoice.pdf")%>"
+        <embed src="${pageContext.request.contextPath}/template/invoice.pdf"
                width="800"
                height="1200">
     </div>
@@ -48,6 +48,6 @@
   <!-- jquery -->
   <jsp:include page="layout/script.jsp"/>
   <!-- Custom Scripts -->
-  <script src="<%= Asset.url("/template/web/js/product.js")%>"></script>
+  <script src="${pageContext.request.contextPath}/template/web/js/product.js"></script>
 </body>
 </html>
